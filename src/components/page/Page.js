@@ -1,13 +1,15 @@
 import React from "react";
-import PageNav from "./PageNav";
+import PageHeader from "./PageHeader";
 import PageMain from "./PageMain";
 import PageFooter from "./PageFooter";
+import PageSideBar from "./PageSideBar";
 
 export default function Page(props) {
   const { children } = props;
   return (
     <div className="min-h-screen flex flex-col">
-      <PageNav />
+      <PageHeader />
+      <PageSideBar/>
       <PageMain>{children}</PageMain>
       <PageFooter />
     </div>
