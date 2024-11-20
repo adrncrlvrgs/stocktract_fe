@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { IconFA } from "components/Icons";
 
-export default function PageSideBar() {
+const Sidebar = ({ navItems }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -16,26 +17,33 @@ export default function PageSideBar() {
     >
       <div className="flex justify-between items-center p-4">
         <button onClick={toggleSidebar}>
-        <IconFA name="bars" className="fa-lg mr-1" />
-
+          <IconFA name="bars" className="fa-lg" />
         </button>
       </div>
       <nav className="flex-1">
         <ul>
-          <li className="p-4 hover:bg-gray-700 flex items-center space-x-4">
-            <IconFA name="home" />
-            {isOpen && <span>Home</span>}
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center space-x-4">
-            <IconFA name="user" />
-            {isOpen && <span>Profile</span>}
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center space-x-4">
-            <IconFA name="cog" />
-            {isOpen && <span>Settings</span>}
-          </li>
+          {navItems.map((item, index) => (
+            <li
+              key={index}
+              className="p-4 hover:bg-gray-700 flex items-center space-x-4"
+            >
+              <IconFA name={item.icon} />
+              {isOpen && <span>{item.label}</span>}
+            </li>
+          ))}
         </ul>
       </nav>
     </aside>
   );
-}
+};
+
+Sidebar.propTypes = {
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+export default Sidebar;
