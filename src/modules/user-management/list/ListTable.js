@@ -1,38 +1,65 @@
 import React from "react";
-import Table from "components/table/Table";
+import { Table } from "components/Table";
 
 const ListTable = (props) => {
   const { post, isLoading, toggleEdit, toggleDelete } = props;
-  const heads = ["Title", "Message", "Created At", "Actions"];
+
+  const mockUsers = [
+    {
+      id: 1,
+      name: "Alice Johnson",
+      role: "Admin",
+      email: "alice.johnson@example.com",
+      status: "Active",
+    },
+    {
+      id: 2,
+      name: "Bob Smith",
+      role: "User",
+      email: "bob.smith@example.com",
+      status: "Inactive",
+    },
+    {
+      id: 3,
+      name: "Charlie Brown",
+      role: "Manager",
+      email: "charlie.brown@example.com",
+      status: "Active",
+    },
+  ];
+
+  const tableHeaders = ["Name", "Role", "Email", "Status", "Actions"];
 
   return (
-    <Table heads={heads} isLoading={isLoading}>
-      {/* {post?.map((data) => (
-        <tr key={data.postId} className="border-b hover:bg-gray-50">
-          <td className="px-4 py-2 text-sm text-gray-700">{data.title}</td>
-          <td className="px-4 py-2 text-sm text-gray-700">{data.message}</td>
-          <td className="px-4 py-2 text-sm text-gray-500">
-            {moment(data.createdAt).format("YYYY-MM-DD | hh:mm:ss A")}
-          </td>
-          <td className="px-4 py-2 text-sm text-gray-700">
-            <div className="flex space-x-2">
-              <button
-                onClick={() => toggleEdit(data.postId)}
-                className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+    <div className="p-6">
+      <h1 className="text-2xl font-semibold mb-4">User Management</h1>
+      <Table heads={tableHeaders}>
+        {mockUsers.map((user) => (
+          <tr key={user.id} className="hover:bg-gray-50">
+            <td className="px-4 py-2 border-b border-gray-200">{user.name}</td>
+            <td className="px-4 py-2 border-b border-gray-200">{user.role}</td>
+            <td className="px-4 py-2 border-b border-gray-200">{user.email}</td>
+            <td className="px-4 py-2 border-b border-gray-200">
+              <span
+                className={`inline-block px-2 py-1 text-xs font-semibold rounded ${
+                  user.status === "Active"
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
+                }`}
               >
-                Edit
-              </button>
-              <button
-                onClick={() => toggleDelete(data.postId)}
-                className="px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600"
-              >
+                {user.status}
+              </span>
+            </td>
+            <td className="px-4 py-2 border-b border-gray-200">
+              <button className="text-blue-500 hover:underline">Edit</button>
+              <button className="text-red-500 hover:underline ml-4">
                 Delete
               </button>
-            </div>
-          </td>
-        </tr>
-      ))} */}
-    </Table>
+            </td>
+          </tr>
+        ))}
+      </Table>
+    </div>
   );
 };
 

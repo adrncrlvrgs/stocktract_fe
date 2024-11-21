@@ -1,4 +1,4 @@
-import { Page } from "components/page";
+import { Page } from "components/Pages";
 import Statistics from "modules/dashboard/view";
 // import ListTable from 'modules/user-management/list/ListTable'
 import React from "react";

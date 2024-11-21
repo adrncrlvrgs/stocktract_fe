@@ -1,4 +1,4 @@
-import { Page } from "components/page";
+import { Page } from "components/Pages";
 import React from "react";
 import LoginForm from "./LoginForm";
 
