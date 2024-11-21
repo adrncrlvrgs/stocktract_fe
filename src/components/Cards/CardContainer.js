@@ -10,7 +10,7 @@ const CardContainer = (props) => {
     >
 
       {title && (
-        <div className="mb-4">
+        <div className="pb-4">
           {typeof title === "string" ? (
             <h2 className="text-xl font-bold text-gray-800">{title}</h2>
           ) : (
@@ -21,7 +21,7 @@ const CardContainer = (props) => {
         </div>
       )}
 
-      <div className="mb-4">
+      <div className="pb-4">
         {typeof content === "string" ? (
           <p className="text-gray-700">{content}</p>
         ) : (
