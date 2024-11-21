@@ -31,7 +31,9 @@ const SalesActivity = () => {
   ]; //temp
 
   return (
-    <div className="flex space-x-4 p-4 bg-gray-100">
+    <div className=" bg-gray-100 p-4 h-72">
+     <h2 className="text-xl font-semibold">Sales Activity</h2> 
+    <div className="flex space-x-4 p-4">
       {stats.map((stat, index) => (
         <StatsCard
           key={index}
@@ -40,6 +42,7 @@ const SalesActivity = () => {
           className="bg-blue-50"
         />
       ))}
+    </div>
     </div>
   );
 };
