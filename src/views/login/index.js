@@ -15,7 +15,7 @@ export default function index() {
               <p className="text-sm mt-6 text-gray-800">
                 Your Ultimate Web-Based Inventory Management Solution.
               </p>
-              <p claclassName="text-sm mt-12 text-gray-800">
+              <p lassName="text-sm mt-12 text-gray-800">
                 Don't have an account{" "}
                 <a
                   href="/"
