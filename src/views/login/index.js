@@ -1,6 +1,6 @@
 import { Page } from "components/Pages";
 import React from "react";
-import LoginForm from "./LoginForm";
+import LoginForm from "../../modules/login/LoginForm";
 
 export default function index() {
   return (
