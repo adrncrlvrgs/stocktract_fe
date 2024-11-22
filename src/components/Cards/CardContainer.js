@@ -10,24 +10,16 @@ const CardContainer = (props) => {
     >
 
       {title && (
-        <div className="pb-4">
+        <div className="pb-1">
           {typeof title === "string" ? (
             <h2 className="text-xl font-bold text-gray-800">{title}</h2>
           ) : (
             title
           )}
   
-          <div className="border-t my-4 border-gray-300" />
+          <div className="border-t my-2 border-gray-300" />
         </div>
       )}
-
-      <div className="pb-4">
-        {typeof content === "string" ? (
-          <p className="text-gray-700">{content}</p>
-        ) : (
-          content
-        )}
-      </div>
 
 
       {children && <div className="mb-4">{children}</div>}
@@ -41,13 +33,12 @@ const CardContainer = (props) => {
   );
 };
 
-// Define Default Props
 CardContainer.defaultProps = {
   footer: null,
   children: null,
 };
 
-// Define Prop Types
+
 CardContainer.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
