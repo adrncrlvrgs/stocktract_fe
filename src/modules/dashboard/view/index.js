@@ -3,6 +3,7 @@ import SalesActivity from "../statistics/StatsSalesActivity";
 import StatsInventorySummary from "../statistics/StatsInventorySummary";
 import StatsProductDetails from "../statistics/StatsProductDetails";
 import StatsTopSellingItems from "../statistics/StatsTopSellingItems";
+import StatsPurchaseOrder from "../statistics/StatsPurchaseOrder";
 
 function Index() {
   return (
@@ -28,7 +29,7 @@ function Index() {
 
         <div className="flex flex-col sm:flex-row sm:space-x-5">
           <div className="w-full sm:w-1/3">
-            <StatsTopSellingItems />
+            <StatsPurchaseOrder />
           </div>
           <div className="w-full sm:w-2/3">
             <StatsTopSellingItems />

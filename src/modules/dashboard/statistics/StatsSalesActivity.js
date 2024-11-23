@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const StatsCard = ({ number, title, className }) => {
+const StatsCard = (props) => {
+  const { number, title, className } = props;
   return (
     <div
       className={`flex flex-col items-center justify-center w-48 h-48 bg-white shadow-lg rounded-lg ${className}`}
@@ -18,9 +19,6 @@ StatsCard.propTypes = {
   className: PropTypes.string,
 };
 
-StatsCard.defaultProps = {
-  className: "",
-};
 
 const SalesActivity = () => {
   const stats = [
@@ -32,17 +30,17 @@ const SalesActivity = () => {
 
   return (
     <div className=" bg-gray-100 p-4 h-72">
-     <h2 className="text-xl font-semibold">Sales Activity</h2> 
-    <div className="flex space-x-4 p-4">
-      {stats.map((stat, index) => (
-        <StatsCard
-          key={index}
-          number={stat.number}
-          title={stat.title}
-          className="bg-blue-50"
-        />
-      ))}
-    </div>
+      <h2 className="text-xl font-semibold">Sales Activity</h2>
+      <div className="flex space-x-4 p-4">
+        {stats.map((stat, index) => (
+          <StatsCard
+            key={index}
+            number={stat.number}
+            title={stat.title}
+            className="bg-blue-50"
+          />
+        ))}
+      </div>
     </div>
   );
 };

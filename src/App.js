@@ -1,6 +1,17 @@
-// import Login from "views/login";
-import Dashboard from "views/dashboard";
-import UserManagement from "views/user-management";
-export default function App() {
-  return <Dashboard />;
-}
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+// import { AuthProvider } from "context/AuthContext";
+import HandleRoutes from "utils/HandleRoutes";
+import { routes } from "routes";
+
+const App = () => {
+  return (
+    // <AuthProvider>
+      <Router>
+        <HandleRoutes routes={routes} />
+      </Router>
+    // </AuthProvider>
+  );
+};
+
+export default App;
