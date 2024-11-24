@@ -1,16 +1,15 @@
-import { Page } from "components/Pages";
 import React from "react";
 import LoginForm from "../../modules/login/LoginForm";
 
 export default function index() {
   return (
-    <Page>
+    <React.Fragment>
       <div className="font-[sans-serif]">
         <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
           <div className="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
             <div>
               <h2 className="lg:text-5xl text-4xl font-extrabold lg:leading-[55px] text-gray-800">
-                Stocktract
+                Stocktract.
               </h2>
               <p className="text-sm mt-6 text-gray-800">
                 Your Ultimate Web-Based Inventory Management Solution.
@@ -30,6 +29,6 @@ export default function index() {
           </div>
         </div>
       </div>
-    </Page>
+    </React.Fragment>
   );
 }
