@@ -14,7 +14,7 @@ const HandleRoutes = ({ routes }) => {
 
       // Handle authentication checks
       if (access === "private" && !isAuth) {
-        return <Route key={index} path={path} element={<Navigate to="/login" />} />;
+        return <Route key={index} path={path} element={<Navigate to="/" />} />;
       }
 
       if (access === "public" && isAuth) {
@@ -27,7 +27,6 @@ const HandleRoutes = ({ routes }) => {
           path={path}
           element={
             <Component>
-              {/* Render subroutes if present */}
               {subRoutes && subRoutes.length > 0 && (
                 <Routes>{renderRoutes(subRoutes)}</Routes>
               )}

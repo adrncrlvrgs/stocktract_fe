@@ -2,7 +2,7 @@ import Login from "views/login";
 
 const loginRoutes = [
   {
-    path: "/login",
+    path: "/",
     component: Login,
     access: "public",
   },
