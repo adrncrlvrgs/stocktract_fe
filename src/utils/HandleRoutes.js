@@ -6,7 +6,7 @@ const HandleRoutes = ({ routes }) => {
   // Assuming `useAuth` returns `isAuth` to indicate if the user is authenticated
   // const { isAuth } = useAuth();
 
-  const isAuth = true; // Replace this with actual auth logic
+  const isAuth = false; // Replace this with actual auth logic
 
   const renderRoutes = (routes) => {
     return routes.map((route, index) => {

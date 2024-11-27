@@ -11,7 +11,7 @@ export default function index() {
               <h2 className="lg:text-5xl text-4xl font-extrabold lg:leading-[55px] text-gray-800">
                 Stocktract.
               </h2>
-              <p className="text-sm mt-6 text-gray-800">
+              <p className="text-sm mt-6 mb-1 text-gray-800">
                 Your Ultimate Web-Based Inventory Management Solution.
               </p>
               <p lassName="text-sm mt-12 text-gray-800">
