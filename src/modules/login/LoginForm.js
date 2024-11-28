@@ -1,18 +1,22 @@
+import CustomForm from "components/form/Form";
+import useLogin from "./useLogin";
 import React from "react";
+import { useAuth } from "context/AuthContext";
 
 export default function LoginForm() {
+  const { login } = useAuth();
+  const { handleLogin, error } = useLogin(login);
   return (
-    <form class="max-w-md md:ml-auto w-full">
-      <h3 class="text-gray-800 text-3xl font-extrabold mb-8">Sign in</h3>
-
-      <div class="space-y-4">
+    <CustomForm onSubmit={handleLogin} className="max-w-md md:ml-auto w-full">
+      <h3 className="text-gray-800 text-3xl font-extrabold mb-8">Sign in</h3>
+      <div className="space-y-4">
         <div>
           <input
             name="email"
             type="email"
-            autocomplete="email"
+            autoComplete="email"
             required
-            class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-blue-600 focus:bg-transparent"
+            className="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-blue-600 focus:bg-transparent"
             placeholder="Email address"
           />
         </div>
@@ -20,46 +24,47 @@ export default function LoginForm() {
           <input
             name="password"
             type="password"
-            autocomplete="current-password"
+            autoComplete="current-password"
             required
-            class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-blue-600 focus:bg-transparent"
+            className="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-blue-600 focus:bg-transparent"
             placeholder="Password"
           />
         </div>
-        <div class="flex flex-wrap items-center justify-between gap-4">
-          <div class="flex items-center">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center">
             <input
               id="remember-me"
               name="remember-me"
               type="checkbox"
-              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             />
-            <label for="remember-me" class="ml-3 block text-sm text-gray-800">
+            <label
+              htmlFor="remember-me"
+              className="ml-3 block text-sm text-gray-800"
+            >
               Remember me
             </label>
           </div>
-          <div class="text-sm">
+          <div className="text-sm">
             <a
               href="jajvascript:void(0);"
-              class="text-blue-600 hover:text-blue-500 font-semibold"
+              className="text-blue-600 hover:text-blue-500 font-semibold"
             >
               Forgot your password?
             </a>
           </div>
         </div>
       </div>
-
-      <div class="!mt-8">
+      <div className="!mt-8">
         <button
-          type="button"
-          class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+          type="submit"
+          className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
         >
           Log in
         </button>
       </div>
-
-      <div class="space-x-6 flex justify-center mt-8">
-        <button type="button" class="border-none outline-none">
+      <div className="space-x-6 flex justify-center mt-8">
+        <button type="button" className="border-none outline-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32px"
@@ -97,7 +102,7 @@ export default function LoginForm() {
             />
           </svg>
         </button>
-        <button type="button" class="border-none outline-none">
+        <button type="button" className="border-none outline-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32px"
@@ -116,6 +121,6 @@ export default function LoginForm() {
           </svg>
         </button>
       </div>
-    </form>
+    </CustomForm>
   );
 }

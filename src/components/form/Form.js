@@ -1,6 +1,6 @@
 import React from "react";
 import serialize from "form-serialize";
-import { Form } from "reactstrap";
+
 
 const usePostForm = (onSubmit) => {
   const handleSubmit = (event) => {
@@ -23,9 +23,9 @@ const CustomForm = ({ onSubmit, children, ...props }) => {
   const handleSubmit = usePostForm(onSubmit);
 
   return (
-    <Form onSubmit={handleSubmit} {...props}>
+    <form onSubmit={handleSubmit} {...props}>
       {children}
-    </Form>
+    </form>
   );
 };
 

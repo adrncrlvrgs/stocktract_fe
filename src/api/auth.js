@@ -1,8 +1,8 @@
 import { api } from "instance/instance";
 
 const loginUser = async (data) => {
-  const response = await api("post", `/auth/login`, data);
-  return response.data;
+  const response = await api("POST", `/auth/login`, data);
+  return response; // .data error
 };
 
 const signUpUser = async (data) => {

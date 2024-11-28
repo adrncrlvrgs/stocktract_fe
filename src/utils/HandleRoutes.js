@@ -1,13 +1,11 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-// import { useAuth } from "context/AuthContext";
+import { useAuth } from "context/AuthContext";
 
 const HandleRoutes = ({ routes }) => {
   // Assuming `useAuth` returns `isAuth` to indicate if the user is authenticated
-  // const { isAuth } = useAuth();
-
-  const isAuth = false; // Replace this with actual auth logic
-
+  const { isAuth } = useAuth();
+ 
   const renderRoutes = (routes) => {
     return routes.map((route, index) => {
       const { path, component: Component, access, subRoutes } = route;
@@ -18,7 +16,13 @@ const HandleRoutes = ({ routes }) => {
       }
 
       if (access === "public" && isAuth) {
-        return <Route key={index} path={path} element={<Navigate to="/dashboard" />} />;
+        return (
+          <Route
+            key={index}
+            path={path}
+            element={<Navigate to="/dashboard" />}
+          />
+        );
       }
 
       return (
