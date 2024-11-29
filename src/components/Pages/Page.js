@@ -11,7 +11,7 @@ export default function Page(props) {
     { label: "Dashboard", icon: "home" },
     { label: "User Management", icon: "user" },
     { label: "Settings", icon: "cog" },
-    { label: "Logout", icon: "sign-out" },
+    // { label: "Logout", icon: "right-from-bracket" },
   ]; //temp
   return (
     <div className="min-h-screen flex flex-col">

@@ -2,7 +2,7 @@ import { api } from "instance/instance";
 
 const loginUser = async (data) => {
   const response = await api("POST", `/auth/login`, data);
-  return response; // .data error
+  return response.data;
 };
 
 const signUpUser = async (data) => {

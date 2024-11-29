@@ -8,9 +8,10 @@ import {
   faCoffee,
   faBars,
   faCog,
+  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHome, faUser, faCoffee, faBars, faCog);
+library.add(faHome, faUser, faCoffee, faBars, faCog, faRightFromBracket);
 
 class IconFA extends React.Component {
   static defaultProps = {
@@ -18,7 +19,7 @@ class IconFA extends React.Component {
   };
 
   static propTypes = {
-    name: PropTypes.string.isRequired, 
+    name: PropTypes.string.isRequired,
   };
 
   render() {

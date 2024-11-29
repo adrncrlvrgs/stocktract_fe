@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { IconFA } from "components/Icons";
+import { useAuth } from "context/AuthContext";
 
 const Sidebar = ({ navItems }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const { logout } = useAuth();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -31,6 +33,13 @@ const Sidebar = ({ navItems }) => {
               {isOpen && <span>{item.label}</span>}
             </li>
           ))}
+          <li
+            className="p-4 hover:bg-gray-700 flex items-center space-x-4 cursor-pointer"
+            onClick={logout} 
+          >
+            <IconFA name="right-from-bracket" />
+            {isOpen && <span>Logout</span>}
+          </li>
         </ul>
       </nav>
     </aside>
