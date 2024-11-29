@@ -6,13 +6,18 @@ const loginUser = async (data) => {
 };
 
 const signUpUser = async (data) => {
-  const response = await api("post", `/user/signup`, data);
+  const response = await api("POST", `/user/signup`, data);
+  return response.data;
+};
+
+const getUserProfile = async () => {
+  const response = await api("GET", `/auth/profile`);
   return response.data;
 };
 
 const refreshUserData = async (token) => {
-  const response = await api("get", `/auth/refresh`);
+  const response = await api("GET", `/auth/refresh`);
   return response.data;
 };
 
-export { refreshUserData, loginUser, signUpUser };
+export { loginUser, signUpUser, getUserProfile, refreshUserData };
