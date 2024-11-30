@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "components/table";
+import { Table } from "components/Table";
 
 const ListTable = (props) => {
   const { post, isLoading, toggleEdit, toggleDelete } = props;

@@ -1,9 +1,11 @@
-import CustomForm from "components/form/Form";
+import CustomForm from "components/Form/Form";
 import React from "react";
+import useSignUp from "./useSignup";
 
 export default function SignUpForm() {
+  const { handleSignUp, error, success } = useSignUp();
   return (
-    <CustomForm onSubmit={(data) => console.log(data)} className="max-w-md md:ml-auto w-full">
+    <CustomForm onSubmit={handleSignUp} className="max-w-md md:ml-auto w-full">
       <h3 className="text-gray-800 text-3xl font-extrabold mb-8">Sign up</h3>
       <div className="space-y-4">
         <div>
