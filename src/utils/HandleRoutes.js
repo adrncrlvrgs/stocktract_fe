@@ -3,14 +3,12 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
 
 const HandleRoutes = ({ routes }) => {
-  // Assuming `useAuth` returns `isAuth` to indicate if the user is authenticated
   const { isAuth } = useAuth();
- 
+
   const renderRoutes = (routes) => {
     return routes.map((route, index) => {
       const { path, component: Component, access, subRoutes } = route;
 
-      // Handle authentication checks
       if (access === "private" && !isAuth) {
         return <Route key={index} path={path} element={<Navigate to="/" />} />;
       }

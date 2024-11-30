@@ -1,23 +1,19 @@
 import { api } from "instance/instance";
 
 const loginUser = async (data) => {
-  const response = await api("POST", `/auth/login`, data);
-  return response.data;
+  return await api("POST", `/auth/login`, data);
 };
 
 const signUpUser = async (data) => {
-  const response = await api("POST", `/auth/signup`, data);
-  return response.data;
+  return await api("POST", `/auth/signup`, data);
 };
 
 const getUserProfile = async () => {
-  const response = await api("GET", `/auth/profile`);
-  return response.data;
+  return await api("GET", `/auth/profile`);
 };
 
 const refreshUserData = async (token) => {
-  const response = await api("GET", `/auth/refresh`);
-  return response.data;
+  return await api("GET", `/auth/refresh`);
 };
 
 export { loginUser, signUpUser, getUserProfile, refreshUserData };
