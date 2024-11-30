@@ -1,5 +1,5 @@
 import Dashboard from "views/dashboard";
-
+import UserManagement from "views/user-management"
 const dashboardRoutes = [
   {
     path: "/dashboard",
@@ -18,6 +18,11 @@ const dashboardRoutes = [
     //   },
     // ],
   },
+  {
+    path: '/user-management',
+    component: UserManagement,
+    access: "private"
+  }
 ];
 
 export default dashboardRoutes;

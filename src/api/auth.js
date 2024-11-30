@@ -6,7 +6,7 @@ const loginUser = async (data) => {
 };
 
 const signUpUser = async (data) => {
-  const response = await api("POST", `/user/signup`, data);
+  const response = await api("POST", `/auth/signup`, data);
   return response.data;
 };
 

@@ -6,7 +6,8 @@ import signupRoutes from "./signup";
 const routes = [
   ...loginRoutes,
   ...signupRoutes,        
-  ...dashboardRoutes,  
+  ...dashboardRoutes,
+  
 ];
 
 export default routes;

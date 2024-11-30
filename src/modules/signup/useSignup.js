@@ -10,7 +10,7 @@ const useSignUp = () => {
     try {
       await signUpUser(data);
       setSuccess("Successfully signed up");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       setError("Error signing up. Please try again.");
     }

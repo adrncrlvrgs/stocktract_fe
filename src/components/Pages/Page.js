@@ -7,17 +7,11 @@ import PageSideBar from "./PageSideBar";
 export default function Page(props) {
   const { children } = props;
 
-  const navItems = [
-    { label: "Dashboard", icon: "home" },
-    { label: "User Management", icon: "user" },
-    { label: "Settings", icon: "cog" },
-    // { label: "Logout", icon: "right-from-bracket" },
-  ]; //temp
   return (
     <div className="min-h-screen flex flex-col">
       <PageHeader />
       <div className="flex flex-1">
-        <PageSideBar navItems={navItems} />
+        <PageSideBar />
         <PageMain>{children}</PageMain>
       </div>
       <PageFooter />
