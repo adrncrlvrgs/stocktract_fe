@@ -18,11 +18,8 @@ const refreshUserData = async (token) => {
 
 export { loginUser, signUpUser, getUserProfile, refreshUserData };
 
-
-// userID
 // add meta
 // get users
 // add user
 // delete user
 // update user
-// password comparison

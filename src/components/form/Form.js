@@ -1,44 +1,48 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import serialize from "form-serialize";
-
 
 const usePostForm = (onSubmit, validate) => {
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
 
-    if (form.checkValidity() === false) {
+    if (!form.checkValidity()) {
       form.classList.add("was-validated");
-      return false;
+      return;
     }
 
     const serializedData = serialize(form, { hash: true });
-    const validationErrors = validate(serializedData);
-
-    if (Object.keys(validationErrors).length > 0) {
-      // If there are validation errors, update the error state
-      setErrors(validationErrors);
-    } else {
-      // If no validation errors, clear errors and submit form data
-      setErrors({});
-      onSubmit(serializedData);
+    if (validate) {
+      const validationErrors = await validate(serializedData);
+      if (Object.keys(validationErrors).length) {
+        setErrors(validationErrors);
+        return;
+      }
     }
+    setErrors({});
+    onSubmit(serializedData);
   };
 
   return { handleSubmit, errors };
 };
 
+const isFormInputComponent = (child) => {
+  if (typeof child.type === "string") {
+    return ["input", "textarea", "select"].includes(child.type);
+  }
+
+  return child.props?.name !== undefined;
+};
+
 const CustomForm = ({ onSubmit, validate, children, ...props }) => {
-  const { handleSubmit, errors} = usePostForm(onSubmit, validate);
+  const { handleSubmit, errors } = usePostForm(onSubmit, validate);
 
   return (
     <form onSubmit={handleSubmit} {...props}>
       {React.Children.map(children, (child) => {
-        // Add errors prop to each Input field if it's an Input component
-        if (child.type === "Input") {
-          console.log("ytue")
+        if (child.props && child.props.name && isFormInputComponent(child)) {
           return React.cloneElement(child, { error: errors[child.props.name] });
         }
         return child;

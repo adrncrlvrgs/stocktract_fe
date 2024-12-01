@@ -1,36 +1,32 @@
-import CustomForm from "components/Form/Form";
 import React, { useState } from "react";
-import useSignUp from "./useSignup";
-import Input from "components/Input/Input"; // Adjust the import path if needed
+import * as Yup from "yup";
+import CustomForm from "components/Form/Form"; 
+import Input from "components/Input/Input"; 
+import useSignUp from "./useSignup"; 
+import { validateForm } from "utils/validate"; 
 
 export default function SignUpForm() {
   const { handleSignUp, error, success } = useSignUp();
   const [errors, setErrors] = useState({});
 
-  // Validation function
-  const validate = (data) => {
-    const validationErrors = {}; // Use this object to collect errors
+ 
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Full Name is required."),
+    email: Yup.string()
+      .email("Email is invalid.")
+      .required("Email is required."),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters long.")
+      .required("Password is required."),
+    role: Yup.string().required("Role is required."),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Confirm Password is required."),
+  });
 
-    // Validation checks
-    if (!data.name) {
-      validationErrors.name = "Full Name is required.";
-    }
-    if (!data.email) {
-      validationErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(data.email)) {
-      validationErrors.email = "Email is invalid.";
-    }
-    if (!data.password) {
-      validationErrors.password = "Password is required.";
-    } else if (data.password.length < 6) {
-      validationErrors.password = "Password must be at least 6 characters long.";
-    }
-    if (!data.role) {
-      validationErrors.role = "Role is required.";
-    }
 
-    setErrors(validationErrors); // Set the errors state after validation
-    return validationErrors; // Return the validation errors
+  const validate = async (data) => {
+    return await validateForm(data, validationSchema, setErrors);
   };
 
   return (
@@ -41,44 +37,52 @@ export default function SignUpForm() {
     >
       <h3 className="text-gray-800 text-3xl font-extrabold mb-8">Sign up</h3>
       <div className="space-y-4">
-        {/* Full Name Input Field */}
+
         <Input
           name="name"
           type="text"
           autoComplete="name"
           placeholder="Full Name"
           required
-         
+          error={errors.name}
         />
-        {/* Email Input Field */}
+
         <Input
           name="email"
           type="email"
           autoComplete="email"
           placeholder="Email address"
           required
-          
+          error={errors.email}
         />
-        {/* Password Input Field */}
+
         <Input
           name="password"
           type="password"
           autoComplete="new-password"
           placeholder="Password"
           required
-          error={errors.password} // Pass the error message for password field
+          error={errors.password}
         />
-        {/* Role Input Field */}
+
+        <Input
+          name="confirmPassword"
+          type="password"
+          autoComplete="new-password"
+          placeholder="Confirm Password"
+          required
+          error={errors.confirmPassword}
+        />
+
         <Input
           name="role"
           type="text"
           placeholder="Role (e.g. Manager)"
           required
-          error={errors.role} // Pass the error message for role field
+          error={errors.role}
         />
       </div>
 
-      {/* Submit Button */}
       <div className="!mt-8">
         <button
           type="submit"
@@ -88,7 +92,6 @@ export default function SignUpForm() {
         </button>
       </div>
 
-      {/* Log in Link */}
       <p className="text-sm text-gray-600 mt-4">
         Already have an account?{" "}
         <a href="/" className="text-blue-600 hover:text-blue-500 font-semibold">
