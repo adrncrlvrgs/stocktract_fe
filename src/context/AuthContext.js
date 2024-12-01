@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { refreshUserData, getUserProfile } from "api/auth";
+import { Spinner } from "components/Spinner";
 
 const AuthContext = createContext({});
 
@@ -61,6 +62,10 @@ const AuthProvider = (props) => {
     setIsAuth(false);
     setUser(null);
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <AuthContext.Provider
