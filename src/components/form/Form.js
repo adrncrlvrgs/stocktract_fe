@@ -1,8 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 import serialize from "form-serialize";
 
 
-const usePostForm = (onSubmit) => {
+const usePostForm = (onSubmit, validate) => {
+  const [errors, setErrors] = useState({});
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -13,18 +15,34 @@ const usePostForm = (onSubmit) => {
     }
 
     const serializedData = serialize(form, { hash: true });
-    onSubmit(serializedData);
+    const validationErrors = validate(serializedData);
+
+    if (Object.keys(validationErrors).length > 0) {
+      // If there are validation errors, update the error state
+      setErrors(validationErrors);
+    } else {
+      // If no validation errors, clear errors and submit form data
+      setErrors({});
+      onSubmit(serializedData);
+    }
   };
 
-  return handleSubmit;
+  return { handleSubmit, errors };
 };
 
-const CustomForm = ({ onSubmit, children, ...props }) => {
-  const handleSubmit = usePostForm(onSubmit);
+const CustomForm = ({ onSubmit, validate, children, ...props }) => {
+  const { handleSubmit, errors} = usePostForm(onSubmit, validate);
 
   return (
     <form onSubmit={handleSubmit} {...props}>
-      {children}
+      {React.Children.map(children, (child) => {
+        // Add errors prop to each Input field if it's an Input component
+        if (child.type === "Input") {
+          console.log("ytue")
+          return React.cloneElement(child, { error: errors[child.props.name] });
+        }
+        return child;
+      })}
     </form>
   );
 };
