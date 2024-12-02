@@ -3,7 +3,7 @@ import { Table } from "components/Table";
 
 const UsersTable = (props) => {
   const { users, isLoading, toggleEdit, toggleDelete } = props;
-  console.log(users)
+  
   const tableHeaders = ["Name", "Role", "Email", "Status", "Actions"];
 
   return (

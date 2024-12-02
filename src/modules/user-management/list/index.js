@@ -2,7 +2,7 @@ import React from "react";
 import UsersTable from "./UsersTable";
 import useGetUsers from "./useGetUsers";
 
-function index() {
+function Index() {
   const { users, isloading, refetch } = useGetUsers();
   console.log(users); 
   return (
@@ -13,4 +13,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;
