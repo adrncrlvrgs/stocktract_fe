@@ -1,39 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Spinner } from "components/Spinner";
 
-function Table({ heads, children, isLoading = false }) {
+function Table(props) {
+  const { heads, children, isLoading } = props;
   return (
     <div className="overflow-x-auto w-full p-6 border rounded-lg bg-white shadow-lg">
       {isLoading ? (
-        <div className="flex justify-center items-center h-40">
-          <div className="flex flex-col items-center">
-            {/* Animated Spinner */}
-            <svg
-              className="animate-spin h-8 w-8 text-blue-500"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8H4z"
-              ></path>
-            </svg>
-            <p className="mt-4 text-gray-500 text-sm">
-              Loading data, please wait...
-            </p>
-          </div>
-        </div>
-      ) : heads?.length > 0 ? (
+        <Spinner />
+      ) : children?.length > 0 ? (
         <table className="min-w-full border-collapse bg-white text-left text-sm text-gray-700">
           <thead className="bg-gray-50 text-gray-600 text-sm uppercase font-semibold">
             <tr>
@@ -73,14 +48,10 @@ function Table({ heads, children, isLoading = false }) {
 }
 
 Table.propTypes = {
-  heads: PropTypes.arrayOf(PropTypes.string), 
-  children: PropTypes.node.isRequired, 
+  heads: PropTypes.arrayOf(PropTypes.string),
+  children: PropTypes.node,
   isLoading: PropTypes.bool,
 };
 
-Table.defaultProps = {
-  heads: [],
-  isLoading: false, 
-};
 
 export default Table;

@@ -1,12 +1,13 @@
-import React from 'react'
-import ListTable from '../list/ListTable'
+import React from "react";
+import ListTable from "../list/UsersTable";
+import UsersTable from "../list"
 
 function Index() {
   return (
     <React.Fragment>
-      <ListTable/>
+      <UsersTable />
     </React.Fragment>
-  )
+  );
 }
 
-export default Index
+export default Index;
