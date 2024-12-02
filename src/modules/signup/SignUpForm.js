@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import CustomForm from "components/Form/Form"; 
-import Input from "components/Input/Input"; 
-import useSignUp from "./useSignup"; 
-import { validateForm } from "utils/validate"; 
+import CustomForm from "components/Form/Form";
+import Input from "components/Input/Input";
+import useSignUp from "./useSignup";
+import { validateForm } from "utils/validate";
 
 export default function SignUpForm() {
   const { handleSignUp, error, success } = useSignUp();
   const [errors, setErrors] = useState({});
 
- 
   const validationSchema = Yup.object({
     name: Yup.string().required("Full Name is required."),
     email: Yup.string()
@@ -24,7 +23,6 @@ export default function SignUpForm() {
       .required("Confirm Password is required."),
   });
 
-
   const validate = async (data) => {
     return await validateForm(data, validationSchema, setErrors);
   };
@@ -37,7 +35,6 @@ export default function SignUpForm() {
     >
       <h3 className="text-gray-800 text-3xl font-extrabold mb-8">Sign up</h3>
       <div className="space-y-4">
-
         <Input
           name="name"
           type="text"
@@ -46,7 +43,6 @@ export default function SignUpForm() {
           required
           error={errors.name}
         />
-
         <Input
           name="email"
           type="email"
@@ -55,7 +51,6 @@ export default function SignUpForm() {
           required
           error={errors.email}
         />
-
         <Input
           name="password"
           type="password"
@@ -64,7 +59,6 @@ export default function SignUpForm() {
           required
           error={errors.password}
         />
-
         <Input
           name="confirmPassword"
           type="password"
@@ -73,7 +67,6 @@ export default function SignUpForm() {
           required
           error={errors.confirmPassword}
         />
-
         <Input
           name="role"
           type="text"
@@ -82,7 +75,6 @@ export default function SignUpForm() {
           error={errors.role}
         />
       </div>
-
       <div className="!mt-8">
         <button
           type="submit"
@@ -91,7 +83,6 @@ export default function SignUpForm() {
           Sign Up
         </button>
       </div>
-
       <p className="text-sm text-gray-600 mt-4">
         Already have an account?{" "}
         <a href="/" className="text-blue-600 hover:text-blue-500 font-semibold">
