@@ -19,7 +19,7 @@ const refreshUserData = async (token) => {
 export { loginUser, signUpUser, getUserProfile, refreshUserData };
 
 // add meta
-// get users
 // add user
 // delete user
 // update user
+// spinner size

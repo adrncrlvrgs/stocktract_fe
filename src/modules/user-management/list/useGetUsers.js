@@ -4,14 +4,14 @@ import { getUsers } from "api/user";
 const useGetUsers = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const hasFetched = useRef(false);  // To ensure data fetch happens only once
+  const hasFetched = useRef(false);
 
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await getUsers();  // Make sure this returns the data correctly
-      console.log("Fetched users:", response); // Debugging
-      setUsers(response);  // Assuming response contains the correct user data
+      const response = await getUsers();
+
+      setUsers(response);
     } catch (err) {
       console.error("Error fetching users:", err);
     } finally {
@@ -21,7 +21,7 @@ const useGetUsers = () => {
 
   useEffect(() => {
     if (!hasFetched.current) {
-      fetchUsers();  // Fetch data only once when the component mounts
+      fetchUsers();
       hasFetched.current = true;
     }
   }, [fetchUsers]);

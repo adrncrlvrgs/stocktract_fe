@@ -3,13 +3,11 @@ import { Table } from "components/Table";
 
 const UsersTable = (props) => {
   const { users, isLoading, toggleEdit, toggleDelete } = props;
-  
   const tableHeaders = ["Name", "Role", "Email", "Status", "Actions"];
-
   return (
     <Table heads={tableHeaders} isLoading={isLoading}>
       {users?.map((user) => (
-        <tr key={user.id} className="hover:bg-gray-50">
+        <tr key={user.userID} className="hover:bg-gray-50">
           <td className="px-4 py-2 border-b border-gray-200">{user.name}</td>
           <td className="px-4 py-2 border-b border-gray-200">{user.role}</td>
           <td className="px-4 py-2 border-b border-gray-200">{user.email}</td>
