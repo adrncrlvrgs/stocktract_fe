@@ -9,9 +9,9 @@ const useGetUsers = () => {
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await getUsers();
+      const {data,meta} = await getUsers();
 
-      setUsers(response);
+      setUsers(data);
     } catch (err) {
       console.error("Error fetching users:", err);
     } finally {

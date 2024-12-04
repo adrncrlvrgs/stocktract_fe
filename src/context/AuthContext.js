@@ -51,7 +51,6 @@ const AuthProvider = (props) => {
   };
 
   const login = (token, userData) => {
-    console.log(userData);
     Cookies.set("token", token);
     setIsAuth(true);
     setUser(userData);
