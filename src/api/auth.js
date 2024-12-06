@@ -12,14 +12,9 @@ const getUserProfile = async () => {
   return await api("GET", `/auth/profile`);
 };
 
-const refreshUserData = async (token) => {
+const refreshUserData = async () => {
   return await api("GET", `/auth/refresh`);
 };
 
 export { loginUser, signUpUser, getUserProfile, refreshUserData };
 
-// add meta
-// add user
-// delete user
-// update user
-// spinner size
