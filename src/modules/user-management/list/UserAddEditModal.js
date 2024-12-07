@@ -1,58 +1,93 @@
+import React, { useState } from "react";
+import * as Yup from "yup";
 import CustomForm from "components/Form/Form";
 import Input from "components/Input/Input";
+import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
-
-import React from "react";
 
 const UserAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit } = props;
-  const { userID, status, email, name, role } = data || {};
+  const { userID, status, email, name, role, password } = data || {};
+  const [errors, setErrors] = useState({});
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Full Name is required."),
+    email: Yup.string()
+      .email("Email is invalid.")
+      .required("Email is required."),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters long.")
+      .required("Password is required."),
+  });
+
+  const validate = async (data) => {
+    return await validateForm(data, validationSchema, setErrors);
+  };
+
   const header = data ? "Edit User" : "Add User";
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
-      <ModalHeader toggle={() => toggle()}></ModalHeader>
+      <ModalHeader toggle={() => toggle()}>{header}</ModalHeader>
       <ModalBody>
         <CustomForm
-          onSubmit={handleSignUp}
+          onSubmit={onSubmit}
+          validate={validate}
           className="max-w-md md:ml-auto w-full"
         >
-          <h3 className="text-gray-800 text-3xl font-extrabold mb-8">
-            Sign up
-          </h3>
           <div className="space-y-4">
             <Input
               name="name"
               type="text"
               autoComplete="name"
-              placeholder="Full Name"
               defaultValue={name}
+              placeholder="Full Name"
               required
+              error={errors.name}
             />
-            {data && (
-              <Input
-                name="status"
-                type="text"
-                placeholder="Status"
-                defaultValue={status}
-                required
-              />
-            )}
             <Input
               name="email"
               type="email"
               autoComplete="email"
-              placeholder="Email address"
               defaultValue={email}
+              placeholder="Email address"
               required
+              error={errors.email}
             />
 
             <Input
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              placeholder="Password"
+              required
+              defaultValue={password}
+              error={errors.password}
+            />
+            {/* <Input
+              name="password"
+              type="password"
+             defaultValue={}
+
+              placeholder="Password"
+              required
+              error={errors.password}
+            /> */}
+            {/* <Input
+              name="confirmPassword"
+              type="password"
+              autoComplete="new-password"
+              placeholder="Confirm Password"
+              required
+              error={errors.confirmPassword}
+            /> */}
+            {/* <Input
               name="role"
               type="text"
-              placeholder="Role (e.g. Manager)"
               defaultValue={role}
+              placeholder="Role (e.g. Manager)"
               required
-            />
+              error={errors.role}
+            /> */}
           </div>
           <div className="!mt-8">
             <button

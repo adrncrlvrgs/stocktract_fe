@@ -2,7 +2,6 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { refreshUserData, getUserProfile } from "api/auth";
 import { Spinner } from "components/Spinner";
-
 const AuthContext = createContext({});
 
 const AuthProvider = (props) => {
@@ -62,15 +61,17 @@ const AuthProvider = (props) => {
     setUser(null);
   };
 
-  if (loading) {
-    return <Spinner />;
-  }
-
   return (
     <AuthContext.Provider
       value={{ isAuth, login, logout, user, loading, fetchProfile }}
     >
-      {children}
+      {loading ? (
+        <div className="flex justify-center items-center min-h-screen">
+          <Spinner />
+        </div>
+      ) : (
+        children
+      )}
     </AuthContext.Provider>
   );
 };

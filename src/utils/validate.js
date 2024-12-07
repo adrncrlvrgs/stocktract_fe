@@ -8,7 +8,7 @@ export const validateForm = async (data, schema, setErrors) => {
   try {
     await schema.validate(data, { abortEarly: false });
     setErrors({});
-    return {};
+    return true;
   } catch (err) {
     const validationErrors = err.inner.reduce((acc, currErr) => {
       acc[currErr.path] = currErr.message;

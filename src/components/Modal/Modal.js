@@ -72,7 +72,7 @@ export const Modal = ({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50",
+        "fixed inset-0 z-50  flex items-center justify-center",
         fade ? "transition-opacity duration-300 ease-in-out" : "",
         isOpen ? "opacity-100" : "opacity-0"
       )}

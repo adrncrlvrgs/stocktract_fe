@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Spinner() {
   return (
-    <section className="dark:bg-dark h-screen w-full flex items-center justify-center">
+    <section className="dark:bg-dark h-full w-full flex items-center justify-center">
       <div className=" flex items-center justify-center container">
         <div className="flex flex-wrap items-center gap-4">
         <div>
