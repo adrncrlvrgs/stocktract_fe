@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "components/Table";
+import { data } from "react-router-dom";
 
 const UsersTable = (props) => {
   const { users, isLoading, toggleEdit, toggleDelete } = props;
@@ -23,7 +24,7 @@ const UsersTable = (props) => {
             </span>
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <button className="text-blue-500 hover:underline">Edit</button>
+            <button className="text-blue-500 hover:underline" onClick={()=> toggleEdit(user.userID)}>Edit</button>
             <button className="text-red-500 hover:underline ml-4">
               Delete
             </button>
