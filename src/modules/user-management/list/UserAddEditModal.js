@@ -10,6 +10,7 @@ const UserAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
   const { userID, status, email, name, role, password } = data || {};
   const [errors, setErrors] = useState({});
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Full Name is required."),
@@ -18,7 +19,16 @@ const UserAddEditModal = (props) => {
       .required("Email is required."),
     password: Yup.string()
       .min(6, "Password must be at least 6 characters long.")
-      .required("Password is required."),
+      .when("isNewUser", {
+        is: true,
+        then: Yup.string().required("Password is required."),
+      }),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .when("isNewUser", {
+        is: true,
+        then: Yup.string().required("Please confirm your password."),
+      }),
   });
 
   const validate = async (data) => {
@@ -26,6 +36,9 @@ const UserAddEditModal = (props) => {
   };
 
   const header = data ? "Edit User" : "Add User";
+
+  const handlePasswordToggle = () => setPasswordVisible(!passwordVisible);
+
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
       <ModalHeader toggle={() => toggle()}>{header}</ModalHeader>
@@ -57,13 +70,25 @@ const UserAddEditModal = (props) => {
               />
               <Input
                 name="password"
-                type="password"
-                placeholder="Password"
-                required
-                defaultValue={password}
+                type={passwordVisible ? "text" : "password"}
+                placeholder="New Password (Leave empty to keep current password)"
                 error={errors.password}
               />
-              {/* can be more */}
+              <Input
+                name="confirmPassword"
+                type={passwordVisible ? "text" : "password"}
+                placeholder="Confirm Password"
+                error={errors.confirmPassword}
+              />
+              <div className="flex justify-between items-center">
+                <button
+                  type="button"
+                  className="text-sm text-blue-600"
+                  onClick={handlePasswordToggle}
+                >
+                  {passwordVisible ? "Hide Password" : "Show Password"}
+                </button>
+              </div>
             </div>
             <div className="!mt-8">
               <button

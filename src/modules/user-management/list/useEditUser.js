@@ -13,12 +13,11 @@ function useEditUser(triggerRefetch) {
   const { isOpen, id } = item;
 
   function toggleOpen(userID) {
-    
     if (typeof userID === "number") {
       setItems({ isOpen: true, id: userID });
     } else {
       setItems({ isOpen: false, id: null });
-      setData({}); 
+      setData({});
     }
   }
 
@@ -39,7 +38,14 @@ function useEditUser(triggerRefetch) {
   const editUser = async (formData) => {
     setIdEditing(true);
     try {
-      await updateUser(id, formData);
+      const { password, ...rest } = formData;
+      const payload = {
+        ...rest,
+        ...(password ? { password } : {}),
+      };
+
+      console.log(id)
+      await updateUser(id, payload);
       triggerRefetch();
       toggleOpen(null);
       toast.success("Post updated successfully!");
