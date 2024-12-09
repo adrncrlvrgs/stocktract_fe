@@ -24,8 +24,16 @@ const UsersTable = (props) => {
             </span>
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <button className="text-blue-500 hover:underline" onClick={()=> toggleEdit(user.userID)}>Edit</button>
-            <button className="text-red-500 hover:underline ml-4">
+            <button
+              className="text-blue-500 hover:underline"
+              onClick={() => toggleEdit(user.userID)}
+            >
+              Edit
+            </button>
+            <button
+              className="text-red-500 hover:underline ml-4"
+              onClick={() => toggleDelete(user.userID)}
+            >
               Delete
             </button>
           </td>

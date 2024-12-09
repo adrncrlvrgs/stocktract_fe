@@ -71,7 +71,11 @@ const UserAddEditModal = (props) => {
               <Input
                 name="password"
                 type={passwordVisible ? "text" : "password"}
-                placeholder="New Password (Leave empty to keep current password)"
+                placeholder={
+                  data
+                    ? "New Password (Leave empty to keep current password)"
+                    : "Password"
+                }
                 error={errors.password}
               />
               <Input

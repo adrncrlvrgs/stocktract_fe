@@ -1,7 +1,6 @@
 import { api } from "instance/instance";
 
 const addUser = async (data) => {
-  console.log(data)
   return await api("POST", `/users/addUser`, data);
 };
 

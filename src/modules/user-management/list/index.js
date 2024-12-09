@@ -1,13 +1,16 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 import useCreateUser from "./useCreateUser";
+import useGetUsers from "./useGetUsers";
 import useEditUser from "./useEditUser";
+import useDeleteUser from "./useDeleteUser";
 
 import UsersTable from "./UsersTable";
-import useGetUsers from "./useGetUsers";
-import { ToastContainer } from "react-toastify";
 import UserAddEditModal from "./UserAddEditModal";
 import UserCreate from "./UserCreateAction";
+import UserDeleteModal from "./UserDeleteModal";
+
 
 
 function Index() {
@@ -16,6 +19,7 @@ function Index() {
     useCreateUser(refetch);
   const { data, onEdit, isFetching, isEditing, isEditOpen, toggleEdit } =
     useEditUser(refetch);
+  const {id, onDelete, isDeleting, isDeleteOpen,toggleDelete} = useDeleteUser(refetch)
 
   return (
     <div className="p-6">
@@ -27,7 +31,7 @@ function Index() {
       /> */}
       <h1 className="text-2xl font-semibold mb-4">User Management</h1>
       <UserCreate toggle={toggleCreate} />
-      <UsersTable users={users} isLoading={isLoading} toggleEdit={toggleEdit} />
+      <UsersTable users={users} isLoading={isLoading} toggleEdit={toggleEdit} toggleDelete={toggleDelete} />
       <UserAddEditModal
         isOpen={isCreateOpen}
         toggle={toggleCreate}
@@ -39,6 +43,12 @@ function Index() {
         isFetching={isFetching}
         toggle={toggleEdit}
         onSubmit={onEdit}
+      />
+      <UserDeleteModal
+        id={id}
+        isOpen={isDeleteOpen}
+        toggleDelete={toggleDelete}
+        onDelete={onDelete}
       />
     </div>
   );
