@@ -10,8 +10,11 @@ import UsersTable from "./UsersTable";
 import UserAddEditModal from "./UserAddEditModal";
 import UserCreate from "./UserCreateAction";
 import UserDeleteModal from "./UserDeleteModal";
-
-
+import {
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+} from "components/Pagination";
 
 function Index() {
   const { users, meta, isLoading, refetch } = useGetUsers();
@@ -19,7 +22,8 @@ function Index() {
     useCreateUser(refetch);
   const { data, onEdit, isFetching, isEditing, isEditOpen, toggleEdit } =
     useEditUser(refetch);
-  const {id, onDelete, isDeleting, isDeleteOpen,toggleDelete} = useDeleteUser(refetch)
+  const { id, onDelete, isDeleting, isDeleteOpen, toggleDelete } =
+    useDeleteUser(refetch);
 
   return (
     <div className="p-6">
@@ -31,7 +35,12 @@ function Index() {
       /> */}
       <h1 className="text-2xl font-semibold mb-4">User Management</h1>
       <UserCreate toggle={toggleCreate} />
-      <UsersTable users={users} isLoading={isLoading} toggleEdit={toggleEdit} toggleDelete={toggleDelete} />
+      <UsersTable
+        users={users}
+        isLoading={isLoading}
+        toggleEdit={toggleEdit}
+        toggleDelete={toggleDelete}
+      />
       <UserAddEditModal
         isOpen={isCreateOpen}
         toggle={toggleCreate}
@@ -50,6 +59,38 @@ function Index() {
         toggleDelete={toggleDelete}
         onDelete={onDelete}
       />
+      <div className="mt-5">
+      <Pagination>
+        <PaginationItem>
+          <PaginationLink first href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" previous />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">4</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">5</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" next />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" last />
+        </PaginationItem>
+      </Pagination>
+      </div>
+
     </div>
   );
 }
