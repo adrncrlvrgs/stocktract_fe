@@ -1,11 +1,11 @@
 import { api } from "instance/instance";
-
+import qs from "qs";
 const addUser = async (data) => {
   return await api("POST", `/users/addUser`, data);
 };
 
-const getUsers = async () => {
-  return await api("GET", `/users`);
+const getUsers = async (params) => {
+  return await api("GET", `/users`, qs.parse(params));
 };
 
 const getUser = async (userID) => {

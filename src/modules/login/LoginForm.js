@@ -2,7 +2,7 @@ import CustomForm from "components/Form/Form";
 import useLogin from "./useLogin";
 import React from "react";
 import { useAuth } from "context/AuthContext";
-import Input from "components/Input/Input"; 
+import { Input } from "components/Input";
 
 export default function LoginForm() {
   const { login } = useAuth();

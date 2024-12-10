@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
 import CustomForm from "components/Form/Form";
-import Input from "components/Input/Input";
+import { Input } from "components/Input";
 import useSignUp from "./useSignup";
 import { validateForm } from "utils/validate";
 

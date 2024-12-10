@@ -1,16 +1,17 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getUsers } from "api/user";
+import usePagination from "components/Pagination/usePagination";
 
 const useGetUsers = () => {
+  const { searchParams } = usePagination();
   const [users, setUsers] = useState([]);
   const [meta, setMeta] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const hasFetched = useRef(false);
 
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
     try {
-      const { data, meta } = await getUsers();
+      const { data, meta } = await getUsers(searchParams);
       setUsers(data);
       setMeta(meta);
     } catch (err) {
@@ -18,14 +19,13 @@ const useGetUsers = () => {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
-    if (!hasFetched.current) {
+    if (searchParams) {
       fetchUsers();
-      hasFetched.current = true;
     }
-  }, [fetchUsers]);
+  }, [searchParams, fetchUsers]);
 
   return { users, isLoading, refetch: fetchUsers, meta };
 };

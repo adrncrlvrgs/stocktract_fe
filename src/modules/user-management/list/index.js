@@ -15,6 +15,7 @@ import {
   PaginationItem,
   PaginationLink,
 } from "components/Pagination";
+import PaginationComponent from "components/Pagination/PaginationComponent";
 
 function Index() {
   const { users, meta, isLoading, refetch } = useGetUsers();
@@ -60,37 +61,8 @@ function Index() {
         onDelete={onDelete}
       />
       <div className="mt-5">
-      <Pagination>
-        <PaginationItem>
-          <PaginationLink first href="#" />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" previous />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">2</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">4</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">5</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" next />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" last />
-        </PaginationItem>
-      </Pagination>
+        <PaginationComponent meta={meta} />
       </div>
-
     </div>
   );
 }
