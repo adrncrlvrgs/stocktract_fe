@@ -1,12 +1,13 @@
 import React from "react";
+import { Button } from "components/Button";
 
 function createUser(props){
   const {toggle} =  props;
   return(
     <div>
-      <button onClick={toggle}>
+      <Button color="primary" onClick={toggle} className="p-2">
         Add User
-      </button>
+      </Button>
     </div>
   );
 }
