@@ -1,6 +1,5 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-
 import useCreateUser from "./useCreateUser";
 import useGetUsers from "./useGetUsers";
 import useEditUser from "./useEditUser";
@@ -10,12 +9,9 @@ import UsersTable from "./UsersTable";
 import UserAddEditModal from "./UserAddEditModal";
 import UserCreate from "./UserCreateAction";
 import UserDeleteModal from "./UserDeleteModal";
-import {
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-} from "components/Pagination";
+
 import PaginationComponent from "components/Pagination/PaginationComponent";
+import { InputSearch } from "components/SearchBar";
 
 function Index() {
   const { users, meta, isLoading, refetch } = useGetUsers();
@@ -35,6 +31,7 @@ function Index() {
         closeOnClick
       /> */}
       <h1 className="text-2xl font-semibold mb-4">User Management</h1>
+      <InputSearch />
       <UserCreate toggle={toggleCreate} />
       <UsersTable
         users={users}
@@ -46,11 +43,13 @@ function Index() {
         isOpen={isCreateOpen}
         toggle={toggleCreate}
         onSubmit={onCreate}
+        isLoading={isCreating}
       />
       <UserAddEditModal
         data={data}
         isOpen={isEditOpen}
         isFetching={isFetching}
+        isLoading={isEditing}
         toggle={toggleEdit}
         onSubmit={onEdit}
       />

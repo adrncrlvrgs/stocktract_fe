@@ -20,14 +20,14 @@ const usePagination = (defaultLimit = 10, defaultPage = 1) => {
     updateUrlParams(limit, defaultPage);
   };
 
-  const queryString = qs.stringify({ limit, page });
+  const queryString = { limit, page };
 
   return {
     page,
     limit,
     handlePageChange,
     handleLimitChange,
-    searchParams: queryString,
+    paginationParams: queryString,
   };
 };
 
