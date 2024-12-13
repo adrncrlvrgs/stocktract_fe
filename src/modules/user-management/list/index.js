@@ -11,9 +11,10 @@ import UserCreate from "./UserCreateAction";
 import UserDeleteModal from "./UserDeleteModal";
 
 import PaginationComponent from "components/Pagination/PaginationComponent";
-import { InputSearch } from "components/SearchBar";
+import { InputSearch, useSearch } from "components/SearchBar";
 
 function Index() {
+  const { search, handleSearchInputChange } = useSearch("", "userSearch");
   const { users, meta, isLoading, refetch } = useGetUsers();
   const { onCreate, isCreating, isCreateOpen, toggleCreate } =
     useCreateUser(refetch);
@@ -31,7 +32,10 @@ function Index() {
         closeOnClick
       /> */}
       <h1 className="text-2xl font-semibold mb-4">User Management</h1>
-      <InputSearch />
+      <InputSearch
+        value={search}
+        onChange={handleSearchInputChange}
+      />
       <UserCreate toggle={toggleCreate} />
       <UsersTable
         users={users}

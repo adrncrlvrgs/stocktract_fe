@@ -10,18 +10,17 @@ const InputSearch = ({
   className = "",
   ...props
 }) => {
-  const { search, handleSearchInputChange } = useSearch();
   return (
     <Input
       type="text"
-      defaultValue={search}
-      onChange={handleSearchInputChange}
+      defaultValue={value}
+      onChange={onChange}
       placeholder={placeholder}
       className={cn(
         "border-gray-300 focus:ring-blue-500 focus:border-blue-500",
         className
       )}
-      {...props}
+      {...props} 
     />
   );
 };

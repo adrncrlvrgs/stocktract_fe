@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom";
-import qs from "qs";
 
 const usePagination = (defaultLimit = 10, defaultPage = 1) => {
   const [searchParams, setSearchParams] = useSearchParams();
