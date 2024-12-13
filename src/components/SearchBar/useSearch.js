@@ -2,7 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import { useCallback, useRef } from "react";
 import { debounce } from "lodash";
 
-const useSearch = (defaultSearch,searchKey) => {
+const useSearch = (searchKey, defaultSearch) => {
+  console.log(searchKey);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get("search") || defaultSearch;
   const isFirstRender = useRef(true);
@@ -16,11 +17,11 @@ const useSearch = (defaultSearch,searchKey) => {
     debounce((searchQuery) => {
       if (isFirstRender.current) {
         isFirstRender.current = false;
+        updateUrlParams(searchQuery);
         return;
       }
-
       updateUrlParams(searchQuery);
-    }, 300),
+    }, 500),
     []
   );
 
@@ -29,7 +30,7 @@ const useSearch = (defaultSearch,searchKey) => {
     handleSearchChange(searchQuery);
   };
 
-  const queryString = { search };
+  const queryString = { [searchKey]: search };
 
   return {
     searchKey,

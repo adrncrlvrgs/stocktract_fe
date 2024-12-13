@@ -14,7 +14,7 @@ import PaginationComponent from "components/Pagination/PaginationComponent";
 import { InputSearch, useSearch } from "components/SearchBar";
 
 function Index() {
-  const { search, handleSearchInputChange } = useSearch("", "userSearch");
+  const { search, handleSearchInputChange } = useSearch();
   const { users, meta, isLoading, refetch } = useGetUsers();
   const { onCreate, isCreating, isCreateOpen, toggleCreate } =
     useCreateUser(refetch);

@@ -6,7 +6,7 @@ import qs from "qs";
 
 const useGetUsers = () => {
   const { paginationParams } = usePagination();
-  const { queryString, searchKey } = useSearch();
+  const { queryString, searchKey } = useSearch("userSearch");
   const [users, setUsers] = useState([]);
   const [meta, setMeta] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -14,8 +14,8 @@ const useGetUsers = () => {
   const prevQueryParams = useRef(null);
   const queryParams = useMemo(() => {
     const params = { ...paginationParams };
-    if (queryString?.search) {
-      params.searchKey = queryString.search;
+    if (queryString[searchKey]) {
+      params.search = queryString[searchKey];
     }
     return params;
   }, [paginationParams, queryString]);
