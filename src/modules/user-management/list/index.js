@@ -7,11 +7,11 @@ import useDeleteUser from "./useDeleteUser";
 
 import UsersTable from "./UsersTable";
 import UserAddEditModal from "./UserAddEditModal";
-import UserCreate from "./UserCreateAction";
 import UserDeleteModal from "./UserDeleteModal";
 
 import PaginationComponent from "components/Pagination/PaginationComponent";
-import { InputSearch, useSearch } from "components/SearchBar";
+import { useSearch } from "components/SearchBar";
+import UsersHeader from "./UsersHeader";
 
 function Index() {
   const { search, handleSearchInputChange } = useSearch();
@@ -31,12 +31,12 @@ function Index() {
         hideProgressBar={false}
         closeOnClick
       /> */}
-      <h1 className="text-2xl font-semibold mb-4">User Management</h1>
-      <InputSearch
-        value={search}
-        onChange={handleSearchInputChange}
+      <UsersHeader
+        search={search}
+        handleSearchInputChange={handleSearchInputChange}
+        toggleCreate={toggleCreate}
       />
-      <UserCreate toggle={toggleCreate} />
+
       <UsersTable
         users={users}
         isLoading={isLoading}
