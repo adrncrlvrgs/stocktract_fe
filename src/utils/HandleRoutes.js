@@ -9,6 +9,7 @@ const HandleRoutes = ({ routes }) => {
     return routes.map((route, index) => {
       const { path, component: Component, access, subRoutes } = route;
 
+      // Handle access control (private vs public routes)
       if (access === "private" && !isAuth) {
         return <Route key={index} path={path} element={<Navigate to="/" />} />;
       }
@@ -23,12 +24,32 @@ const HandleRoutes = ({ routes }) => {
         );
       }
 
+      // If route doesn't have a component (like /products), render sub-routes
+      if (!Component) {
+        return (
+          <Route
+            key={index}
+            path={path}
+            element={
+              <React.Fragment>
+                {/* Render sub-routes */}
+                {subRoutes && subRoutes.length > 0 && (
+                  <Routes>{renderRoutes(subRoutes)}</Routes>
+                )}
+              </React.Fragment>
+            }
+          />
+        );
+      }
+
+      // Default case: Render the component for routes with a component
       return (
         <Route
           key={index}
           path={path}
           element={
             <Component>
+              {/* Render sub-routes */}
               {subRoutes && subRoutes.length > 0 && (
                 <Routes>{renderRoutes(subRoutes)}</Routes>
               )}

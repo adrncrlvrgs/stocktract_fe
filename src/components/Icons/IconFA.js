@@ -9,10 +9,28 @@ import {
   faBars,
   faCog,
   faRightFromBracket,
-  faSearch
+  faSearch,
+  faBox,
+  faList,
+  faBagShopping,
+  faChevronUp,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHome, faUser, faCoffee, faBars, faCog, faRightFromBracket, faSearch);
+library.add(
+  faHome,
+  faUser,
+  faCoffee,
+  faBars,
+  faCog,
+  faRightFromBracket,
+  faSearch,
+  faBox,
+  faList,
+  faBagShopping,
+  faChevronUp,
+  faChevronDown
+);
 
 class IconFA extends React.Component {
   static defaultProps = {
