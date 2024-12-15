@@ -1,21 +1,15 @@
 import Products from "views/products";
-import UserManagement from "views/user-management";
+import Items from "views/items";
 const products = [
   {
-    path: "/products", 
+    path: "/products/category",
+    component: Products,
     access: "private",
-    subRoutes: [
-      {
-        path: "/products/category", 
-        component: UserManagement, 
-        access: "private",
-      },
-      {
-        path: "/products/items", 
-        component: UserManagement, 
-        access: "private",
-      },
-    ],
+  },
+  {
+    path: "/products/items",
+    component: Items,
+    access: "private",
   },
 ];
 
