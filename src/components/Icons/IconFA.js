@@ -9,9 +9,10 @@ import {
   faBars,
   faCog,
   faRightFromBracket,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHome, faUser, faCoffee, faBars, faCog, faRightFromBracket);
+library.add(faHome, faUser, faCoffee, faBars, faCog, faRightFromBracket, faSearch);
 
 class IconFA extends React.Component {
   static defaultProps = {
