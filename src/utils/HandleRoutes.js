@@ -33,7 +33,6 @@ const HandleRoutes = ({ routes }) => {
             </ProtectedRoute>
           }
         >
-          {/* Recursively render subRoutes */}
           {subRoutes && renderRoutes(subRoutes)}
         </Route>
       );
