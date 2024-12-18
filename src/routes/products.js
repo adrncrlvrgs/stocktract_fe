@@ -1,9 +1,9 @@
-import Products from "views/products";
+import Categories from "views/category";
 import Items from "views/items";
 const products = [
   {
     path: "/products/category",
-    component: Products,
+    component: Categories,
     access: "private",
   },
   {

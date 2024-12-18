@@ -1,6 +1,5 @@
 import React from "react";
 import { Table } from "components/Table";
-import { data } from "react-router-dom";
 
 const UsersTable = (props) => {
   const { users, isLoading, toggleEdit, toggleDelete } = props;

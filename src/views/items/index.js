@@ -1,12 +1,13 @@
 import { Page } from "components/Pages";
 import React from "react";
+import ItemsPage from "modules/products/items/view";
 
 function index() {
   return (
     <Page>
-      <div>items</div>
+      <ItemsPage />
     </Page>
   );
 }
 
-export default index
+export default index;

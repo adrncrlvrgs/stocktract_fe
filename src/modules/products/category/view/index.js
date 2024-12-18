@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import CategoryTable from "../list";
 
-function index() {
+function Index() {
   return (
-    <div>category</div>
-  )
+    <React.Fragment>
+      <CategoryTable />
+    </React.Fragment>
+  );
 }
 
-export default index
+export default Index;

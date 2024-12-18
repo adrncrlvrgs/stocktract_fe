@@ -1,11 +1,11 @@
 import { Page } from "components/Pages";
-import UsersManagementPage from "modules/user-management/view";
 import React from "react";
+import CategoryPage from "modules/products/category/view";
 
 function index() {
   return (
     <Page>
-      <UsersManagementPage />
+      <CategoryPage />
     </Page>
   );
 }
