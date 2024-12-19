@@ -6,7 +6,6 @@ const ItemsTable = (props) => {
   const tableHeaders = [
     "CategoryID",
     "Name",
-    "Image",
     "Status",
     "Created At",
     "Updated At",

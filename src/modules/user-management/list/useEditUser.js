@@ -5,7 +5,7 @@ import { getUser, updateUser } from "api/user";
 function useEditUser(triggerRefetch) {
   const [data, setData] = useState({});
   const [isEditing, setIdEditing] = useState(false);
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [item, setItems] = useState({
     isOpen: false,
     id: null,
@@ -28,7 +28,7 @@ function useEditUser(triggerRefetch) {
       setData(data);
     } catch (error) {
       toast.error(
-        "Failed to update post: " + (error.message || "An error occurred.")
+        "Failed to get user: " + (error.message || "An error occurred.")
       );
     } finally {
       setIsLoading(false);
@@ -64,7 +64,7 @@ function useEditUser(triggerRefetch) {
 
   return {
     onEdit: editUser,
-    isFetching: isloading,
+    isFetching: isLoading,
     isEditing,
     data,
     isEditOpen: isOpen,
