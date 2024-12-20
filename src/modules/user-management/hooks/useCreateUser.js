@@ -4,7 +4,7 @@ import { addUser } from "api/user";
 import generateUserId from "utils/generateID";
 
 function useCreateUser(triggerRefetch) {
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => setIsOpen(!isOpen);
@@ -29,7 +29,7 @@ function useCreateUser(triggerRefetch) {
 
   return {
     onCreate: createUser,
-    isCreating: isloading,
+    isCreating: isLoading,
     isCreateOpen: isOpen,
     toggleCreate: toggleOpen,
   };

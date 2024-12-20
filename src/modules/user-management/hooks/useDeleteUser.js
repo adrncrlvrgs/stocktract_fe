@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { deleteUser } from "api/user";
 
@@ -19,11 +19,11 @@ function useDeleteUser(triggerRefetch) {
     }
   }
 
-  const deleteUserHandle = async () =>{
+  const deleteUserHandle = async () => {
     const { id } = item;
     setIsLoading(true);
-    try{
-      await deleteUser(id)
+    try {
+      await deleteUser(id);
       triggerRefetch();
       toggleOpen();
       toast.success("User deleted successfully!");
@@ -34,7 +34,7 @@ function useDeleteUser(triggerRefetch) {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
   const { id, isOpen } = item;
   return {
     isDeleteOpen: isOpen,
@@ -45,4 +45,4 @@ function useDeleteUser(triggerRefetch) {
   };
 }
 
-export default useDeleteUser
+export default useDeleteUser;

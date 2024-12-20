@@ -4,7 +4,7 @@ import { getUser, updateUser } from "api/user";
 
 function useEditUser(triggerRefetch) {
   const [data, setData] = useState({});
-  const [isEditing, setIdEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [item, setItems] = useState({
     isOpen: false,
@@ -15,9 +15,11 @@ function useEditUser(triggerRefetch) {
   function toggleOpen(userID) {
     if (typeof userID === "number") {
       setItems({ isOpen: true, id: userID });
+      setIsLoading(false);
     } else {
       setItems({ isOpen: false, id: null });
       setData({});
+      setIsLoading(false);
     }
   }
 
@@ -36,7 +38,7 @@ function useEditUser(triggerRefetch) {
   };
 
   const editUser = async (formData) => {
-    setIdEditing(true);
+    setIsEditing(true);
     try {
       const { password, ...rest } = formData;
       const payload = {
@@ -44,7 +46,6 @@ function useEditUser(triggerRefetch) {
         ...(password ? { password } : {}),
       };
 
-      console.log(id)
       await updateUser(id, payload);
       triggerRefetch();
       toggleOpen(null);
@@ -55,6 +56,7 @@ function useEditUser(triggerRefetch) {
       );
     } finally {
       setIsLoading(false);
+      setIsEditing(false);
     }
   };
 
