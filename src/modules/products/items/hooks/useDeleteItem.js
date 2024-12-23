@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { deleteCategory } from "api/category";
+import { deleteItem } from "api/item";
 
-function useDeleteCategory(triggerRefetch) {
+function useDeleteItem(triggerRefetch) {
+
   const [isLoading, setIsLoading] = useState(false);
   const [item, setItems] = useState({
     isOpen: false,
@@ -19,17 +20,17 @@ function useDeleteCategory(triggerRefetch) {
     }
   }
 
-  const deleteCategoryHandle = async () => {
+  const deleteItemHandle = async () => {
     const { id } = item;
     setIsLoading(true);
     try {
-      await deleteCategory(id);
+      await deleteItem(id);
       triggerRefetch();
       toggleOpen();
-      toast.success("Category deleted successfully!");
+      toast.success("Item deleted successfully!");
     } catch (error) {
       toast.error(
-        "Failed to delete category: " + (error.message || "An error occurred.")
+        "Failed to delete item: " + (error.message || "An error occurred.")
       );
     } finally {
       setIsLoading(false);
@@ -41,8 +42,8 @@ function useDeleteCategory(triggerRefetch) {
     id: id,
     isDeleting: isLoading,
     toggleDelete: toggleOpen,
-    onDelete: deleteCategoryHandle,
+    onDelete: deleteItemHandle,
   };
 }
 
-export default useDeleteCategory;
+export default useDeleteItem;

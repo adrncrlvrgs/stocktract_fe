@@ -6,7 +6,7 @@ function ItemCreateAction(props) {
   return (
     <div>
       <Button color="primary" onClick={toggle} className="p-2">
-        Add Category
+        Add Item
       </Button>
     </div>
   );

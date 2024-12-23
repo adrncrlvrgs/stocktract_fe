@@ -7,10 +7,7 @@ const ItemHeader = ({ search, handleSearchInputChange, toggleCreate }) => {
   return (
     <div className="mb-2">
       <h1 className="text-2xl font-semibold mb-1">Product-item Management</h1>
-      <p className="text-gray-500 text-sm mb-4">
-        Manage the users of the system, create new users, or search existing
-        users.
-      </p>
+      <p className="text-gray-400">Manage your product items here</p>
 
       <div className="flex justify-between items-center my-4">
         <div className="w-1/4">
