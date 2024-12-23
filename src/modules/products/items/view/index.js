@@ -60,9 +60,9 @@ function Index() {
       <ItemDeleteModal
         id={id}
         isOpen={isDeleteOpen}
-        toggle={toggleDelete}
+        toggleDelete={toggleDelete}
+        isLoading={isDeleting}
         onDelete={onDelete}
-        isDeleting={isDeleting}
       />
       <PaginationComponent meta={meta} refetch={refetch} />
     </div>

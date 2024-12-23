@@ -5,6 +5,7 @@ import { Input } from "components/Input";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
+import { CategoryDropdown } from "components/Input/category-dropdown";
 
 const ItemAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -50,12 +51,10 @@ const ItemAddEditModal = (props) => {
                 placeholder="Quantity"
                 error={errors.quantity}
               />
-              <Input
+              <CategoryDropdown
                 name="category"
-                type="text"
-                defaultValue={category}
-                placeholder="Category"
                 error={errors.category}
+                defaultValue={category}
               />
             </div>
             <div className="!mt-8">

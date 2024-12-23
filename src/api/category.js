@@ -4,7 +4,7 @@ const addCategory = async (data) => {
   return await api("POST", `/category/addCategory`, data);
 };
 
-const getCategories = async (params) => {
+const getCategories = async (params = {}) => {
   return await api("GET", `/category`, qs.parse(params));
 };
 
