@@ -9,5 +9,13 @@ export const navItems = [
       { label: "Product Items", path: "/products/items", icon: "shopping-bag" },
     ],
   },
+  {
+    label: "Sales",
+    icon: "box",
+    subItems: [
+      { label: "Sales Management", path: "/sales/sales-management", icon: "list" },
+      { label: "Product Items", path: "/sales/report", icon: "shopping-bag" },
+    ],
+  },
   { label: "Settings", icon: "cog", path: "/settings" },
 ];
