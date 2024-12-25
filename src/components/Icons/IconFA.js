@@ -15,6 +15,8 @@ import {
   faBagShopping,
   faChevronUp,
   faChevronDown,
+  faChartLine,
+  faDolly
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -29,7 +31,9 @@ library.add(
   faList,
   faBagShopping,
   faChevronUp,
-  faChevronDown
+  faChevronDown,
+  faChartLine,
+  faDolly
 );
 
 class IconFA extends React.Component {

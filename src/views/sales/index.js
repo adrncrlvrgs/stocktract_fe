@@ -1,12 +1,13 @@
 import { Page } from "components/Pages";
 import React from "react";
+import SalesPage from "modules/sales";
 
 function index() {
   return (
     <Page>
-      <div>products</div>
+      <SalesPage />
     </Page>
   );
 }
 
-export default index
+export default index;

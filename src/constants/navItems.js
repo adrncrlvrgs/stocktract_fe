@@ -3,7 +3,7 @@ export const navItems = [
   { label: "User Management", icon: "user", path: "/user-management" },
   {
     label: "Products",
-    icon: "box",
+    icon: "dolly",
     subItems: [
       { label: "Categories", path: "/products/category", icon: "list" },
       { label: "Product Items", path: "/products/items", icon: "shopping-bag" },
@@ -11,7 +11,7 @@ export const navItems = [
   },
   {
     label: "Sales",
-    icon: "box",
+    icon: "chart-line",
     subItems: [
       { label: "Sales Management", path: "/sales/sales-management", icon: "list" },
       { label: "Product Items", path: "/sales/report", icon: "shopping-bag" },
