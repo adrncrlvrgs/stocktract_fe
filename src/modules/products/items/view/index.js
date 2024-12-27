@@ -64,7 +64,9 @@ function Index() {
         isLoading={isDeleting}
         onDelete={onDelete}
       />
-      <PaginationComponent meta={meta}/>
+      <div className="mt-5">
+        <PaginationComponent meta={meta} />
+      </div>
     </div>
   );
 }

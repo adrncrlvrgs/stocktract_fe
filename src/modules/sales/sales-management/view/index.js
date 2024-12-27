@@ -20,7 +20,7 @@ function Index() {
   const { id, onDelete, isDeleting, isDeleteOpen, toggleDelete } =
     useDeleteSale(refetch);
   return (
-    <div className="p-6">
+    <div className="">
       <div className="flex justify-between items-center my-4">
         <div className="w-1/4">
           <InputSearch value={search} onChange={handleSearchInputChange} />
@@ -47,7 +47,9 @@ function Index() {
         isLoading={isDeleting}
         onDelete={onDelete}
       />
-      <PaginationComponent meta={meta} />
+      <div className="mt-5">
+        <PaginationComponent meta={meta} />
+      </div>
     </div>
   );
 }
