@@ -64,7 +64,7 @@ function Index() {
         isLoading={isDeleting}
         onDelete={onDelete}
       />
-      <PaginationComponent meta={meta} refetch={refetch} />
+      <PaginationComponent meta={meta}/>
     </div>
   );
 }
