@@ -1,7 +1,7 @@
 export const navItems = [
   { label: "Dashboard", icon: "home", path: "/dashboard" },
   { label: "User Management", icon: "user", path: "/user-management" },
-  { label: "Stocks", icon: "truck-ramp-box,", path: "/stocks" },
+  { label: "Stocks", icon: "truck-ramp-box", path: "/stocks" },
   {
     label: "Products",
     icon: "dolly",

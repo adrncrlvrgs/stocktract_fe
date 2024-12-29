@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "components/Table";
 
 const ItemsTable = (props) => {
-  const { items, isLoading, toggleEdit} = props;
+  const { items, isLoading, toggleCreate} = props;
   const tableHeaders = [
     "Item ID",
     "Name",
@@ -38,7 +38,7 @@ const ItemsTable = (props) => {
           <td className="px-4 py-2 border-b border-gray-200">
             <button
               className="text-blue-500 hover:underline"
-              onClick={() => toggleEdit(item.itemID)}
+              onClick={() => toggleCreate(item.itemID)}
             >
               Add Sale
             </button>

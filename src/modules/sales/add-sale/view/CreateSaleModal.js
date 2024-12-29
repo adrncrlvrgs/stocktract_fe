@@ -34,6 +34,10 @@ const CreateSaleModal = (props) => {
             className="max-w-md md:ml-auto w-full"
           >
             <div className="space-y-4">
+            <div>
+                <label>Item Id: </label>
+                <span>{itemID}</span>
+              </div>
               <div>
                 <label>Name: </label>
                 <span>{name}</span>

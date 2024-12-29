@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { addSale } from "api/sale";
+import { addSale } from "api/sales";
 import { getItem } from "api/item";
 import generateSaleId from "utils/generateID";
 
@@ -44,7 +44,12 @@ function useCreateSale() {
 
     try {
       const saleID = generateSaleId();
-      const saleData = { ...formData, saleID: saleID };
+      const saleData = {
+        ...formData,
+        saleID: saleID,
+        item: data?.name,
+        totalAmount: "10.00",
+      };
       await addSale(saleData);
       setIsLoading(false);
       toggleOpen();

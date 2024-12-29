@@ -5,9 +5,10 @@ import useCreateSale from "../hooks/useCreateSale";
 import useGetItems from "modules/products/items/hooks/useGetItems";
 
 import ItemsTable from "./ItemsTable";
+import CreateSaleModal from "./CreateSaleModal";
 import PaginationComponent from "components/Pagination/PaginationComponent";
 import { useSearch, InputSearch } from "components/SearchBar";
-import useCreateSale from "../hooks/useCreateSale";
+
 
 function Index() {
   const { search, handleSearchInputChange } = useSearch();
@@ -39,7 +40,15 @@ function Index() {
           <InputSearch value={search} onChange={handleSearchInputChange} />
         </div>
       </div>
-      <ItemsTable items={items} isLoading={isLoading} />
+      <ItemsTable items={items} isLoading={isLoading} toggleCreate={toggleCreate} />
+      <CreateSaleModal
+        data={data}
+        isOpen={isCreatingOpen}
+        isFetching={isFetching}
+        isLoading={isCreating}
+        toggle={toggleCreate}
+        onSubmit={onCreate}
+      />
 
       <div className="mt-5">
         <PaginationComponent meta={meta} />
