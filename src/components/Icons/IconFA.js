@@ -16,7 +16,8 @@ import {
   faChevronUp,
   faChevronDown,
   faChartLine,
-  faDolly
+  faDolly,
+  faTruckRampBox
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -33,7 +34,8 @@ library.add(
   faChevronUp,
   faChevronDown,
   faChartLine,
-  faDolly
+  faDolly,
+  faTruckRampBox
 );
 
 class IconFA extends React.Component {
