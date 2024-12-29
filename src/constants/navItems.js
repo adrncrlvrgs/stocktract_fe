@@ -1,7 +1,18 @@
 export const navItems = [
   { label: "Dashboard", icon: "home", path: "/dashboard" },
   { label: "User Management", icon: "user", path: "/user-management" },
-  { label: "Stocks", icon: "truck-ramp-box", path: "/stocks" },
+  {
+    label: "Stocks",
+    icon: "truck-ramp-box",
+    subItems: [
+      {
+        label: "Stocks Management",
+        path: "/stocks/stocks-management",
+        icon: "list",
+      },
+      { label: "Stats", path: "/stocks/stats", icon: "chart-line" },
+    ],
+  },
   {
     label: "Products",
     icon: "dolly",

@@ -5,6 +5,7 @@ import userManagement from "./user-management";
 import products from "./products";
 import tablesRoutes from "./testRoutes";
 import sales from "./sales";
+import stocks from "./stocks";
 
 const routes = [
   ...loginRoutes,
@@ -14,6 +15,7 @@ const routes = [
   ...products,
   ...tablesRoutes,
   ...sales,
+  ...stocks,
 ];
 
 export default routes;
