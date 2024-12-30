@@ -10,7 +10,7 @@ export const navItems = [
         path: "/stocks/stocks-management",
         icon: "list",
       },
-      { label: "Stats", path: "/stocks/stats", icon: "chart-line" },
+      { label: "Stocks-report", path: "/stocks/report", icon: "chart-line" },
     ],
   },
   {
