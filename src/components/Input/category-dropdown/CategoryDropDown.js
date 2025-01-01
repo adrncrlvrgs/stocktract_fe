@@ -1,6 +1,5 @@
 import React from "react";
 import Input from "../Input";
-
 import useCategories from "./useGetCategories";
 
 const CategoryDropdown = ({ name, error, defaultValue = "", ...props }) => {
@@ -13,18 +12,20 @@ const CategoryDropdown = ({ name, error, defaultValue = "", ...props }) => {
       type="select"
       name={name}
       error={error}
-      defaultValue={defaultValue}
+      defaultValue={defaultValue} 
       {...props}
     >
       {isLoading ? (
-        <option value="" disabled>
+        <option value="">
           Loading categories...
         </option>
       ) : (
         <>
-          <option value="">Select a category</option>
+          <option value="" disabled>
+            Select a category
+          </option>
           {categories.map((category) => (
-            <option key={category.id} value={category.id}>
+            <option key={category.categoryID} value={category.name}>
               {category.name}
             </option>
           ))}

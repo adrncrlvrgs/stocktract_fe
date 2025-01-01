@@ -1,5 +1,6 @@
 import Categories from "views/category";
 import Items from "views/items";
+import AddItem from "modules/products/add-item/view";
 import ItemManagement from "modules/products/items/view";
 const products = [
   {
@@ -8,12 +9,12 @@ const products = [
     access: "private",
   },
   {
-    path: "/products/items",
+    path: "/products",
     component: Items,
     access: "private",
     subRoutes: [
       { path: "/products/items", component: ItemManagement, access: "private" },
-      // { path: "/products/addItem", component: AddSale, access: "private" },
+      { path: "/products/addItem", component: AddItem, access: "private" },
     ],
   },
 ];

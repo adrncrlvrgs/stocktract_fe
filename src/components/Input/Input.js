@@ -23,6 +23,7 @@ const Input = ({
   const handleBlur = () => {
     setIsOpen(false);
   };
+
   return (
     <React.Fragment>
       {type === "select" ? (

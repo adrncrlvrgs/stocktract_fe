@@ -1,13 +1,12 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 
-import useCreateItem from "../hooks/useCreateItem";
 import useGetItems from "../hooks/useGetItems";
 import useEditItem from "../hooks/useEditItem";
 import useDeleteItem from "../hooks/useDeleteItem";
 
 import ItemsTable from "./ItemsTable";
-import ItemAddEditModal from "./ItemAddEditModal";
+import ItemEditModal from "./ItemEditModal";
 import ItemDeleteModal from "./ItemDeleteModal";
 
 import PaginationComponent from "components/Pagination/PaginationComponent";
@@ -17,8 +16,6 @@ import ItemHeader from "./ItemHeader";
 function Index() {
   const { search, handleSearchInputChange } = useSearch();
   const { items, meta, isLoading, refetch } = useGetItems();
-  const { onCreate, isCreating, isCreateOpen, toggleCreate } =
-    useCreateItem(refetch);
   const { data, onEdit, isFetching, isEditing, isEditOpen, toggleEdit } =
     useEditItem(refetch);
   const { id, onDelete, isDeleting, isDeleteOpen, toggleDelete } =
@@ -35,7 +32,6 @@ function Index() {
       <ItemHeader
         search={search}
         handleSearchInputChange={handleSearchInputChange}
-        toggleCreate={toggleCreate}
       />
       <ItemsTable
         items={items}
@@ -43,13 +39,8 @@ function Index() {
         toggleEdit={toggleEdit}
         toggleDelete={toggleDelete}
       />
-      <ItemAddEditModal
-        isOpen={isCreateOpen}
-        toggle={toggleCreate}
-        onSubmit={onCreate}
-        isLoading={isCreating}
-      />
-      <ItemAddEditModal
+
+      <ItemEditModal
         data={data}
         isOpen={isEditOpen}
         isFetching={isFetching}

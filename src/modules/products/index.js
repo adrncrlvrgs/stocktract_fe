@@ -12,15 +12,15 @@ function Index() {
         <ul className="flex border-b">
           <li
             className={`mr-1 ${
-              location.pathname === "/sales/sales-management"
+              location.pathname === "/products/items"
                 ? "border-b-2 border-blue-500"
                 : ""
             }`}
           >
             <Link
-              to="/sales/sales-management"
+              to="/products/items"
               className={`inline-block py-2 px-4 ${
-                location.pathname === "/sales/sales-management"
+                location.pathname === "/products/items"
                   ? "text-blue-500"
                   : "text-gray-500 hover:text-blue-500"
               }`}
@@ -30,15 +30,15 @@ function Index() {
           </li>
           <li
             className={`mr-1 ${
-              location.pathname === "/sales/addSale"
+              location.pathname === "/products/addItem"
                 ? "border-b-2 border-blue-500"
                 : ""
             }`}
           >
             <Link
-              to="/sales/addSale"
+              to="/products/addItem"
               className={`inline-block py-2 px-4 ${
-                location.pathname === "/sales/addSale"
+                location.pathname === "/products/addItem"
                   ? "text-blue-500"
                   : "text-gray-500 hover:text-blue-500"
               }`}

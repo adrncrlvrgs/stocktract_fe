@@ -1,9 +1,7 @@
 import React from "react";
 import { InputSearch } from "components/SearchBar";
 
-import ItemCreateAction from "./ItemCreateAction";
-
-const ItemHeader = ({ search, handleSearchInputChange, toggleCreate }) => {
+const ItemHeader = ({ search, handleSearchInputChange }) => {
   return (
     <div className="mb-2">
       <h1 className="text-2xl font-semibold mb-1">Product-item Management</h1>
@@ -13,7 +11,6 @@ const ItemHeader = ({ search, handleSearchInputChange, toggleCreate }) => {
         <div className="w-1/4">
           <InputSearch value={search} onChange={handleSearchInputChange} />
         </div>
-        <ItemCreateAction toggle={toggleCreate} />
       </div>
     </div>
   );
