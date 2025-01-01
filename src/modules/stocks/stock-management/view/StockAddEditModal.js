@@ -5,17 +5,19 @@ import { Input } from "components/Input";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
+import { CategoryDropdown } from "components/Input/category-dropdown";
 
 const StockAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
-  const { stockID, supplier, item, category, quantity, totalCost } = data || {};
+  const { stockID, supplier, item, totalQuantity, totalCost } = data || {};
   const [errors, setErrors] = useState({});
+  const [categoryValue, setCategoryValue] = useState("");
 
   const validationSchema = Yup.object({
     supplier: Yup.string().required("Supplier is required."),
     item: Yup.string().required("Item is required."),
     category: Yup.string().required("Category is required."),
-    quantity: Yup.number().required("Quantity is required."),
+    totalQuantity: Yup.number().required("Quantity is required."),
     totalCost: Yup.number().required("Total Cost is required."),
   });
 
@@ -52,19 +54,19 @@ const StockAddEditModal = (props) => {
                 placeholder="Item"
                 error={errors.item}
               />
-              <Input
+
+              <CategoryDropdown
                 name="category"
-                type="text"
-                defaultValue={category}
-                placeholder="Category"
                 error={errors.category}
+                value={categoryValue} // Ensure this matches the option value
+                onChange={(e) => setCategoryValue(e.target.value)} // Handle the change
               />
               <Input
-                name="quantity"
+                name="totalQuantity"
                 type="number"
-                defaultValue={quantity}
+                defaultValue={totalQuantity}
                 placeholder="Quantity"
-                error={errors.quantity}
+                error={errors.totalQuantity}
               />
               <Input
                 name="totalCost"

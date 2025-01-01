@@ -12,13 +12,11 @@ const CategoryDropdown = ({ name, error, defaultValue = "", ...props }) => {
       type="select"
       name={name}
       error={error}
-      defaultValue={defaultValue} 
+      defaultValue={defaultValue}
       {...props}
     >
       {isLoading ? (
-        <option value="">
-          Loading categories...
-        </option>
+        <option value="">Loading categories...</option>
       ) : (
         <>
           <option value="" disabled>
