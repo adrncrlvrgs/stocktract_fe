@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "components/Table";
 
-const StockTable = (props) => {
+const StocksTable = (props) => {
   const { stocks, isLoading, toggleEdit, toggleDelete } = props;
   const tableHeaders = [
     "Stock ID",
@@ -18,11 +18,13 @@ const StockTable = (props) => {
     <Table heads={tableHeaders} isLoading={isLoading}>
       {stocks?.map((stock) => (
         <tr key={stock.stockID} className="hover:bg-gray-50">
-          <td className="px-4 py-2 border-b border-gray-200">{stock.stockID}</td>
-          <td className="px-4 py-2 border-b border-gray-200">{stock.supplier}</td>
           <td className="px-4 py-2 border-b border-gray-200">
-            {stock.item}
+            {stock.stockID}
           </td>
+          <td className="px-4 py-2 border-b border-gray-200">
+            {stock.supplier}
+          </td>
+          <td className="px-4 py-2 border-b border-gray-200">{stock.item}</td>
           <td className="px-4 py-2 border-b border-gray-200">
             {stock.category}
           </td>
@@ -61,4 +63,6 @@ const StockTable = (props) => {
       ))}
     </Table>
   );
-}
+};
+
+export default StocksTable;

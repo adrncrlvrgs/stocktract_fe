@@ -1,5 +1,5 @@
 import Stocks from "views/stocks";
-import SalesManagement from "modules/sales/sales-management/view";
+import StockManagement from "modules/stocks/stock-management/view";
 import AddSale from "modules/sales/add-sale/view";  
 const sales = [
   {
@@ -7,7 +7,7 @@ const sales = [
     component: Stocks,
     access: "private",
     subRoutes: [
-      { path: "/stocks/stocks-management", component: SalesManagement, access: "private" },
+      { path: "/stocks/stocks-management", component: StockManagement, access: "private" },
       { path: "/stocks/stats", component: AddSale, access: "private" },
     ],
   },

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { getStock, updateStock } from "api/stock";
+import { getStock, updateStock } from "api/stocks";
 
 function useEditStock(triggerRefetch) {
   const [data, setData] = useState({});
@@ -58,7 +58,7 @@ function useEditStock(triggerRefetch) {
   }, [id]);
 
   return {
-    onEdit: editItem,
+    onEdit: editStock,
     isFetching: isLoading,
     isEditing,
     data,

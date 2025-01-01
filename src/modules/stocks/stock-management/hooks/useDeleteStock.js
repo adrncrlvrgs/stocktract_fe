@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { deleteStock } from "api/stock";
+import { deleteStock } from "api/stocks";
 
 function useDeleteStock(triggerRefetch) {
   const [isLoading, setIsLoading] = useState(false);

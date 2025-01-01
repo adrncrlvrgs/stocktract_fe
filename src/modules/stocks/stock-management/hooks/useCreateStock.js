@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { addStock } from "api/stock";
+import { addStock } from "api/stocks";
 import generateStockId from "utils/generateID";
 
 function useCreateStock(triggerRefetch) {
