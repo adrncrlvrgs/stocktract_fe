@@ -9,9 +9,9 @@ import { CategoryDropdown } from "components/Input/category-dropdown";
 
 const StockAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
-  const { stockID, supplier, item, totalQuantity, totalCost } = data || {};
+  const { stockID, supplier, item, totalQuantity, category, totalCost } =
+    data || {};
   const [errors, setErrors] = useState({});
-  const [categoryValue, setCategoryValue] = useState("");
 
   const validationSchema = Yup.object({
     supplier: Yup.string().required("Supplier is required."),
@@ -58,15 +58,14 @@ const StockAddEditModal = (props) => {
               <CategoryDropdown
                 name="category"
                 error={errors.category}
-                value={categoryValue} // Ensure this matches the option value
-                onChange={(e) => setCategoryValue(e.target.value)} // Handle the change
+                defaultValue={category}
               />
               <Input
                 name="totalQuantity"
                 type="number"
                 defaultValue={totalQuantity}
                 placeholder="Quantity"
-                error={errors.totalQuantity}
+                error={errors.quantity}
               />
               <Input
                 name="totalCost"

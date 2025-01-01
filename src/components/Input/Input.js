@@ -31,7 +31,7 @@ const Input = ({
           <select
             name={name}
             required={required}
-            value={defaultValue}
+            defaultValue={defaultValue}
             onFocus={handleFocus}
             onBlur={handleBlur}
             className={cn(
