@@ -88,6 +88,6 @@ const StockAddEditModal = (props) => {
       </ModalBody>
     </Modal>
   );
-}
+};
 
 export default StockAddEditModal;
