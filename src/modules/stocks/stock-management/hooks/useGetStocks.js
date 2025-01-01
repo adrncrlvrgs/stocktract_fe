@@ -48,4 +48,3 @@ const useGetStocks = () => {
 
 export default useGetStocks;
 
-//happy new year
