@@ -25,7 +25,7 @@ function Index() {
     useDeleteItem(refetch);
 
   return (
-    <div className="p-6">
+    <div className="">
       {/* <ToastContainer
         position="top-right"
         autoClose={3000}
