@@ -4,7 +4,7 @@ import { addItem } from "api/item";
 import { getStock } from "api/stocks";
 import generateItemId from "utils/generateID";
 
-function useCreateItem() {
+function useCreateItem(triggerRefetch) {
   const [data, setData] = useState({});
   const [isCreating, setIsCreating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +54,7 @@ function useCreateItem() {
       await addItem(itemData);
       setIsLoading(false);
       toggleOpen();
+      triggerRefetch();
       toast.success("Item created successfully!");
     } catch (error) {
       toast.error(
