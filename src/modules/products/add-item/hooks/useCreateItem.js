@@ -46,9 +46,9 @@ function useCreateItem() {
       const itemID = generateItemId();
       const itemData = {
         ...formData,
-        stockID: data?.stockID,
-        name: data?.item,
         ...data,
+        availableQuantity: data?.totalQuantity,
+        stockID: data?.stockID,
         itemID: itemID,
       };
       await addItem(itemData);

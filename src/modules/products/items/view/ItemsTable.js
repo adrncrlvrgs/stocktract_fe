@@ -17,7 +17,7 @@ const ItemsTable = (props) => {
       {items?.map((item) => (
         <tr key={item.itemID} className="hover:bg-gray-50">
           <td className="px-4 py-2 border-b border-gray-200">{item.itemID}</td>
-          <td className="px-4 py-2 border-b border-gray-200">{item.name}</td>
+          <td className="px-4 py-2 border-b border-gray-200">{item.item}</td>
           <td className="px-4 py-2 border-b border-gray-200">
             {item.category}
           </td>
