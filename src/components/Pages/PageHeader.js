@@ -1,34 +1,95 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useAuth } from "context/AuthContext";
+import { Avatar } from "components/Avatar";
 
 export default function PageHeader() {
+  const { user, logout } = useAuth();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    setIsDropdownOpen(false); 
+  };
+
   return (
-    <header className="bg-blue-600 text-white shadow-md w-full">
-      <div className="flex justify-between items-center py-4 px-6">
-        <div className="text-lg font-semibold">StocksTract</div>
-        <nav>
-          <ul className="flex space-x-4">
-            <li>
-              <a href="#" className="hover:underline">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </nav>
+    <header className="bg-gradient-to-r from-blue-600 to-indigo-600 animate-gradient-x text-white shadow-lg w-full">
+      <div className="bg-white bg-opacity-10 backdrop-blur-md border-b border-white border-opacity-20">
+        <div className="flex justify-between items-center py-4 px-6 mx-auto">
+
+          <div className="text-2xl font-bold tracking-tight flex items-center space-x-2">
+            {/* <img
+              src="/logo.png" 
+              alt="StocksTract Logo"
+              className="h-8 w-8"
+            /> */}
+            <span>StocksTract</span>
+          </div>
+
+          <div className="flex-grow mx-5 px-10 max-w-2xl">
+            <input
+              type="text"
+              placeholder="Search stocks..."
+              className="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white"
+            />
+          </div>
+
+          <div className="relative flex items-center space-x-4" ref={dropdownRef}>
+            <button className="p-2 text-white hover:bg-white hover:bg-opacity-10 rounded-full transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
+              </svg>
+            </button>
+
+            <div className="text-sm font-medium">{user.userData.name}</div>
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="focus:outline-none"
+            >
+              <Avatar
+                src={user.userData.profileImageUrl}
+                className="w-10 h-10 border-2 border-white rounded-full cursor-pointer hover:opacity-80 transition-opacity"
+              />
+            </button>
+
+            {isDropdownOpen && (
+              <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                <div className="py-1">
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </header>
   );
