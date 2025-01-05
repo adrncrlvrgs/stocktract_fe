@@ -72,6 +72,7 @@ export default function PageHeader() {
             >
               <Avatar
                 src={user.userData.profileImageUrl}
+                alt="avatar"
                 className="w-10 h-10 border-2 border-white rounded-full cursor-pointer hover:opacity-80 transition-opacity"
               />
             </button>

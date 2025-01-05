@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { addUser } from "api/user";
 import generateUserId from "utils/generateID";
+import fileToBase64 from "utils/fileToBase64";
 
 function useCreateUser(triggerRefetch) {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +14,19 @@ function useCreateUser(triggerRefetch) {
     setIsLoading(true);
    
     try {
-      const userID = generateUserId()
-      const userData = { ...formData, userID: userID };
+      const { profileImagePath, ...rest } = formData;
+
+      let profileImageBase64 = "";
+      if (profileImagePath instanceof File) {
+        profileImageBase64 = await fileToBase64(profileImagePath);
+      }
+
+      const userID = generateUserId();
+      const userData = {
+        ...rest,
+        userID,
+        profileImage: profileImageBase64, 
+      };
       await addUser(userData);
       setIsLoading(false);
       toggleOpen();

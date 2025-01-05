@@ -4,11 +4,12 @@ import CustomForm from "components/Form/Form";
 import { Input } from "components/Input";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
+import { AvatarUpload } from "components/Input/AvatarUpload";
 import { Spinner } from "components/Spinner";
 
 const UserAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
-  const { userID, status, email, name, role, password } = data || {};
+  const { userID, status, email, name, role, password,profileImageUrl } = data || {};
   const [errors, setErrors] = useState({});
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -52,6 +53,14 @@ const UserAddEditModal = (props) => {
             className="max-w-md md:ml-auto w-full"
           >
             <div className="space-y-4">
+              <div className="flex justify-center">
+                <AvatarUpload
+                  name="profileImagePath" 
+                  initialImage={profileImageUrl} 
+                  size="w-32 h-32" 
+                  className="mb-4" 
+                />
+              </div>
               <Input
                 name="name"
                 type="text"

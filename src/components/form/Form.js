@@ -14,6 +14,16 @@ const usePostForm = (onSubmit, validate) => {
     }
 
     const serializedData = serialize(form, { hash: true });
+
+    const fileInputs = form.querySelectorAll('input[type="file"]');
+    fileInputs.forEach((input) => {
+      if (input.files && input.files[0]) {
+        serializedData[input.name] = input.files[0]; 
+      }
+    });
+
+    console.log("Serialized data:", serializedData);
+
     if (validate) {
       const validationErrors = await validate(serializedData);
       if (Object.keys(validationErrors).length) {
