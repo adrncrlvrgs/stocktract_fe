@@ -22,8 +22,6 @@ const usePostForm = (onSubmit, validate) => {
       }
     });
 
-    console.log("Serialized data:", serializedData);
-
     if (validate) {
       const validationErrors = await validate(serializedData);
       if (Object.keys(validationErrors).length) {

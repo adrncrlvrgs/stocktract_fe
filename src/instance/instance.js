@@ -16,6 +16,10 @@ instance.interceptors.request.use((request) => {
   if (getToken()) {
     request.headers.Authorization = `Bearer ${getToken()}`;
   }
+
+  if (request.data instanceof FormData) {
+    delete request.headers["Content-Type"];
+  }
   return request;
 });
 
@@ -33,6 +37,10 @@ export async function api(method, url, data, options) {
     _options.params = data;
   } else {
     _options.data = data;
+
+    if (data instanceof FormData) {
+      delete _options.headers?.["Content-Type"];
+    }
   }
 
   const response = await instance(_options);
