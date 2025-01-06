@@ -40,13 +40,23 @@ function useEditUser(triggerRefetch) {
   const editUser = async (formData) => {
     setIsEditing(true);
     try {
-      const { password, ...rest } = formData;
-      const payload = {
-        ...rest,
-        ...(password ? { password } : {}),
-      };
+      const { password, profileImagePath, ...rest } = formData;
 
-      await updateUser(id, payload);
+      const formDataToSend = new FormData();
+
+      Object.entries(rest).forEach(([key, value]) => {
+        formDataToSend.append(key, value);
+      });
+
+      if (password) {
+        formDataToSend.append("password", password);
+      }
+
+      if (profileImagePath instanceof File) {
+        formDataToSend.append("profileImagePath", profileImagePath);
+      }
+
+      await updateUser(id, formDataToSend);
       triggerRefetch();
       toggleOpen(null);
       toast.success("Post updated successfully!");

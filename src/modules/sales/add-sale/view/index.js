@@ -12,6 +12,7 @@ import { useSearch, InputSearch } from "components/SearchBar";
 
 function Index() {
   const { search, handleSearchInputChange } = useSearch();
+  const { items, meta, isLoading, refetch } = useGetItems();
   const {
     data,
     onCreate,
@@ -19,8 +20,7 @@ function Index() {
     isCreating,
     isCreatingOpen,
     toggleCreate,
-  } = useCreateSale();
-  const { items, meta, isLoading } = useGetItems();
+  } = useCreateSale(refetch);
 
   return (
     <div className="">

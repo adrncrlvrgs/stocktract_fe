@@ -4,7 +4,7 @@ import { addSale } from "api/sales";
 import { getItem } from "api/item";
 import generateSaleId from "utils/generateID";
 
-function useCreateSale() {
+function useCreateSale(triggerRefetch) {
   const [data, setData] = useState({});
   const [isCreating, setIsCreating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,12 +47,14 @@ function useCreateSale() {
       const saleData = {
         ...formData,
         saleID: saleID,
-        item: data?.name,
+        item: data?.item,
+        itemID: data?.itemID,
         totalAmount: "10.00",
       };
       await addSale(saleData);
       setIsLoading(false);
       toggleOpen();
+      triggerRefetch();
       toast.success("Sale created successfully!");
     } catch (error) {
       toast.error(
