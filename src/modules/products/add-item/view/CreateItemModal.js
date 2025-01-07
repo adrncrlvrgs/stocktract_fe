@@ -14,7 +14,7 @@ const CreateItemModal = (props) => {
 
   const validationSchema = Yup.object({
     quantity: Yup.number().required("Quantity is required."),
-    images: Yup.array()
+    itemImages: Yup.array()
       .required("At least one image is required.")
       .min(1, "At least one image is required.")
       .max(5, "You can upload a maximum of 5 images.")
@@ -72,7 +72,7 @@ const CreateItemModal = (props) => {
               <div>
                 <label>Upload Images (Max 5):</label>
                 <ImageUpload
-                  name="images"
+                  name="itemImages"
                   multiple={true} 
                   maxImages={5} 
                   error={errors.images} 
