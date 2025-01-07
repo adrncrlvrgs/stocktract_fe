@@ -5,6 +5,7 @@ import { Input } from "components/Input";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
+import { ImageUpload } from "components/Input/ImageUpload";
 
 const CreateItemModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -13,6 +14,14 @@ const CreateItemModal = (props) => {
 
   const validationSchema = Yup.object({
     quantity: Yup.number().required("Quantity is required."),
+    images: Yup.array()
+      .required("At least one image is required.")
+      .min(1, "At least one image is required.")
+      .max(5, "You can upload a maximum of 5 images.")
+      .test("fileSize", "Each image must be less than 2MB", (value) => {
+        if (!value || value.length === 0) return false;
+        return value.every((file) => file.size <= 2 * 1024 * 1024);
+      }),
   });
 
   const validate = async (data) => {
@@ -51,13 +60,31 @@ const CreateItemModal = (props) => {
                 <span>{category}</span>
               </div>
 
+              {/* Quantity Input */}
               <Input
                 name="quantity"
                 type="number"
                 placeholder="Quantity"
                 error={errors.quantity}
               />
+
+              {/* Image Upload Component */}
+              <div>
+                <label>Upload Images (Max 5):</label>
+                <ImageUpload
+                  name="images"
+                  multiple={true} 
+                  maxImages={5} 
+                  error={errors.images} 
+                />
+                {errors.images && (
+                  <div className="text-red-500 text-xs mt-1">
+                    {errors.images}
+                  </div>
+                )}
+              </div>
             </div>
+
             <div className="!mt-8">
               <button
                 type="submit"

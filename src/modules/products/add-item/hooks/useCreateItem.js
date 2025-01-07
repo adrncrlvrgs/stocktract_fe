@@ -43,15 +43,30 @@ function useCreateItem(triggerRefetch) {
     setIsCreating(true);
 
     try {
+      const { images, ...rest } = formData; 
+
       const itemID = generateItemId();
       const itemData = {
-        ...formData,
+        ...rest,
         ...data,
         availableQuantity: data?.totalQuantity,
         stockID: data?.stockID,
         itemID: itemID,
       };
-      await addItem(itemData);
+
+      const formDataToSend = new FormData();
+      Object.entries(itemData).forEach(([key, value]) => {
+        formDataToSend.append(key, value);
+      });
+
+      if (images && Array.isArray(images)) {
+        images.forEach((image, index) => {
+          formDataToSend.append(`images[${index}]`, image); 
+        });
+      }
+
+      // Send the FormData to the server
+      await addItem(formDataToSend);
       setIsLoading(false);
       toggleOpen();
       triggerRefetch();

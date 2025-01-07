@@ -17,8 +17,12 @@ const usePostForm = (onSubmit, validate) => {
 
     const fileInputs = form.querySelectorAll('input[type="file"]');
     fileInputs.forEach((input) => {
-      if (input.files && input.files[0]) {
-        serializedData[input.name] = input.files[0]; 
+      if (input.files && input.files.length > 0) {
+        if (input.multiple) {
+          serializedData[input.name] = Array.from(input.files);
+        } else {
+          serializedData[input.name] = input.files[0];
+        }
       }
     });
 
