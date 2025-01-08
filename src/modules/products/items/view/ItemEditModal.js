@@ -6,16 +6,25 @@ import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
 import { CategoryDropdown } from "components/Input/category-dropdown";
+import { ImageUpload } from "components/Input/ImageUpload";
 
 const ItemEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
-  const { itemID, name, quantity, category } = data || {};
+  const { itemID, item, quantity, category, imageUrls } = data || {};
   const [errors, setErrors] = useState({});
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Item Name is required."),
+    item: Yup.string().required("Item Name is required."),
     quantity: Yup.number().required("Quantity is required."),
     category: Yup.string().required("Category is required."),
+    itemImages: Yup.array()
+      .required("At least one image is required.")
+      .min(1, "At least one image is required.")
+      .max(5, "You can upload a maximum of 5 images.")
+      .test("fileSize", "Each image must be less than 2MB", (value) => {
+        if (!value || value.length === 0) return false;
+        return value.every((file) => file.size <= 2 * 1024 * 1024);
+      }),
   });
 
   const validate = async (data) => {
@@ -38,11 +47,11 @@ const ItemEditModal = (props) => {
           >
             <div className="space-y-4">
               <Input
-                name="name"
+                name="item"
                 type="text"
-                defaultValue={name}
+                defaultValue={item}
                 placeholder="Item Name"
-                error={errors.name}
+                error={errors.item}
               />
               <Input
                 name="quantity"
@@ -55,6 +64,13 @@ const ItemEditModal = (props) => {
                 name="category"
                 error={errors.category}
                 defaultValue={category}
+              />
+              <ImageUpload
+                name="itemImages"
+                multiple={true}
+                maxImages={5}
+                error={errors.images}
+                initialImages={imageUrls}
               />
             </div>
             <div className="!mt-8">

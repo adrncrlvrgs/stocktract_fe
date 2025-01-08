@@ -31,6 +31,12 @@ const ImageUpload = ({
     setImages((prev) => prev.filter((_, i) => i !== index));
   };
 
+  // Function to get both initial and current images
+  const getImages = () => {
+    // Return both initial and current images (if any)
+    return [...initialImages, ...images];
+  };
+
   return (
     <div className={cn("space-y-4", className)}>
       {/* Display uploaded images */}

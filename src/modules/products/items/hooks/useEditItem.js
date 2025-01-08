@@ -1,4 +1,4 @@
-import {useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getItem, updateItem } from "api/item";
 
@@ -38,9 +38,26 @@ function useEditItem(triggerRefetch) {
   };
 
   const editItem = async (formData) => {
+    console.log(formData);
     setIsEditing(true);
     try {
-      await updateItem(id, formData);
+      const { itemImages,  ...rest } = formData;
+      const itemData = {
+        ...rest,
+      };
+
+      const formDataToSend = new FormData();
+      Object.entries(itemData).forEach(([key, value]) => {
+        formDataToSend.append(key, value);
+      });
+
+      if (itemImages && Array.isArray(itemImages)) {
+        itemImages.forEach((image) => {
+          formDataToSend.append("itemImages", image);
+        });
+      }
+
+      await updateItem(id, formDataToSend);
       triggerRefetch();
       toggleOpen(null);
       toast.success("Item updated successfully!");
@@ -52,11 +69,11 @@ function useEditItem(triggerRefetch) {
       setIsLoading(false);
       setIsEditing(false);
     }
-  }
+  };
   useEffect(() => {
     if (id) getData();
   }, [id]);
-  
+
   return {
     onEdit: editItem,
     isFetching: isLoading,
@@ -68,6 +85,3 @@ function useEditItem(triggerRefetch) {
 }
 
 export default useEditItem;
-
-
-
