@@ -9,25 +9,25 @@ const AvatarUpload = ({
 }) => {
   const [image, setImage] = useState(initialImage);
 
-  // Handle file input change (for preview only)
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result); // Set the image preview
+        setImage(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
   const handleRemoveImage = () => {
-    setImage(""); // Clear the image preview
+    setImage("");
   };
 
   return (
-    <div className={`relative flex items-center justify-center ${size} ${className}`}>
- 
+    <div
+      className={`relative flex items-center justify-center ${size} ${className}`}
+    >
       <div
         className={`w-full h-full rounded-full overflow-hidden border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-100 transition-all duration-300`}
       >
@@ -47,7 +47,7 @@ const AvatarUpload = ({
           type="button"
           onClick={handleRemoveImage}
           className="absolute top-0 right-0 p-1 bg-red-500 rounded-full text-white hover:bg-red-600 transition-colors"
-          style={{ transform: "translate(25%, -25%)" }} 
+          style={{ transform: "translate(25%, -25%)" }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,6 @@ const AvatarUpload = ({
           </svg>
         </button>
       )}
-
 
       <Input
         name={name}

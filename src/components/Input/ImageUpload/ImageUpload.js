@@ -8,9 +8,10 @@ const ImageUpload = ({
   multiple = false,
   initialImages = [],
   className = "",
-  error, // Add error prop
+  error,
+  onChange,
 }) => {
-  const [images, setImages] = useState(initialImages);
+  const [images, setImages] = useState(initialImages || []);
 
   const handleFileChange = (event) => {
     const files = event.target.files;
@@ -18,28 +19,28 @@ const ImageUpload = ({
       const newImages = Array.from(files).slice(0, maxImages - images.length);
       const imagePreviews = newImages.map((file) => URL.createObjectURL(file));
 
-      if (multiple) {
-        setImages((prev) => [...prev, ...imagePreviews]);
-      } else {
-        setImages(imagePreviews.slice(0, 1));
+      const updatedImages = multiple ? [...images, ...imagePreviews] : imagePreviews.slice(0, 1);
+      setImages(updatedImages);
+
+      // Pass the updated images to the parent component
+      if (onChange) {
+        onChange(updatedImages);
       }
     }
   };
 
-  // Handle removing an image
   const handleRemoveImage = (index) => {
-    setImages((prev) => prev.filter((_, i) => i !== index));
-  };
+    const updatedImages = images.filter((_, i) => i !== index);
+    setImages(updatedImages);
 
-  // Function to get both initial and current images
-  const getImages = () => {
-    // Return both initial and current images (if any)
-    return [...initialImages, ...images];
+    // Pass the updated images to the parent component
+    if (onChange) {
+      onChange(updatedImages);
+    }
   };
 
   return (
     <div className={cn("space-y-4", className)}>
-      {/* Display uploaded images */}
       <div className="flex flex-wrap gap-4">
         {images.map((image, index) => (
           <div key={index} className="relative group">
@@ -72,7 +73,6 @@ const ImageUpload = ({
           </div>
         ))}
 
-        {/* Upload Button (if max images not reached) */}
         {images.length < maxImages && (
           <div className="relative">
             <div className="w-24 h-24 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer">
@@ -85,15 +85,14 @@ const ImageUpload = ({
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              multiple={multiple} // Allow multiple files if enabled
+              multiple={multiple}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              error={error} // Pass error prop to Input
+              error={error}
             />
           </div>
         )}
       </div>
 
-      {/* Max Images Warning */}
       {images.length >= maxImages && (
         <p className="text-sm text-gray-500">
           Maximum of {maxImages} images reached.

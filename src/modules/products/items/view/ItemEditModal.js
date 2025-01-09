@@ -12,23 +12,22 @@ const ItemEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
   const { itemID, item, quantity, category, imageUrls } = data || {};
   const [errors, setErrors] = useState({});
+  const [itemImages, setItemImages] = useState(imageUrls || []);
 
   const validationSchema = Yup.object({
     item: Yup.string().required("Item Name is required."),
     quantity: Yup.number().required("Quantity is required."),
     category: Yup.string().required("Category is required."),
-    itemImages: Yup.array()
-      .required("At least one image is required.")
-      .min(1, "At least one image is required.")
-      .max(5, "You can upload a maximum of 5 images.")
-      .test("fileSize", "Each image must be less than 2MB", (value) => {
-        if (!value || value.length === 0) return false;
-        return value.every((file) => file.size <= 2 * 1024 * 1024);
-      }),
+   
   });
 
   const validate = async (data) => {
     return await validateForm(data, validationSchema, setErrors);
+  };
+
+  const handleSubmit = (formData) => {
+    const updatedData = { ...formData, itemImages };
+    onSubmit(updatedData);
   };
 
   const header = data ? "Edit Item" : "Add Item";
@@ -41,7 +40,7 @@ const ItemEditModal = (props) => {
           <Spinner />
         ) : (
           <CustomForm
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
             validate={validate}
             className="max-w-md md:ml-auto w-full"
           >
@@ -69,8 +68,9 @@ const ItemEditModal = (props) => {
                 name="itemImages"
                 multiple={true}
                 maxImages={5}
-                error={errors.images}
+                error={errors.itemImages}
                 initialImages={imageUrls}
+                onChange={(updatedImages) => setItemImages(updatedImages)} // Update images state
               />
             </div>
             <div className="!mt-8">
