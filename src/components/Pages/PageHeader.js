@@ -65,13 +65,13 @@ export default function PageHeader() {
               </svg>
             </button>
 
-            <div className="text-sm font-medium">{user.userData.name}</div>
+            <div className="text-sm font-medium">{user?.userData.name}</div>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="focus:outline-none"
             >
               <Avatar
-                src={user.userData.profileImageUrl}
+                src={user?.userData.profileImageUrl}
                 alt="avatar"
                 className="w-10 h-10 border-2 border-white rounded-full cursor-pointer hover:opacity-80 transition-opacity"
               />

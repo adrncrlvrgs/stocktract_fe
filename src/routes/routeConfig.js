@@ -3,7 +3,6 @@ import dashboardRoutes from "./dashboard";
 import signupRoutes from "./signup";
 import userManagement from "./user-management";
 import products from "./products";
-import tablesRoutes from "./testRoutes";
 import sales from "./sales";
 import stocks from "./stocks";
 
@@ -13,7 +12,6 @@ const routes = [
   ...dashboardRoutes,
   ...userManagement,
   ...products,
-  ...tablesRoutes,
   ...sales,
   ...stocks,
 ];
