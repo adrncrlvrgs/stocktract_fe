@@ -1,5 +1,5 @@
 import Categories from "views/category";
-import Items from "views/items";
+import Items from "views/products";
 import AddItem from "modules/products/add-item/view";
 import ItemManagement from "modules/products/items/view";
 const products = [
