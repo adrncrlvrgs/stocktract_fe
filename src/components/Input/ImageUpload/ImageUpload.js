@@ -22,7 +22,6 @@ const ImageUpload = ({
       const updatedImages = multiple ? [...images, ...imagePreviews] : imagePreviews.slice(0, 1);
       setImages(updatedImages);
 
-      // Pass the updated images to the parent component
       if (onChange) {
         onChange(updatedImages);
       }
@@ -73,7 +72,7 @@ const ImageUpload = ({
           </div>
         ))}
 
-        {images.length < maxImages && (
+        {images.length <= maxImages && (
           <div className="relative">
             <div className="w-24 h-24 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer">
               <span className="text-gray-500 text-sm">

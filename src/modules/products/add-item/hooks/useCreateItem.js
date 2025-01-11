@@ -43,8 +43,7 @@ function useCreateItem(triggerRefetch) {
     setIsCreating(true);
 
     try {
-      const { itemImages, ...rest } = formData; 
-
+      const { itemImages, ...rest } = formData;
       const itemID = generateItemId();
       const itemData = {
         ...rest,
@@ -61,7 +60,7 @@ function useCreateItem(triggerRefetch) {
 
       if (itemImages && Array.isArray(itemImages)) {
         itemImages.forEach((image) => {
-          formDataToSend.append('itemImages', image);  
+          formDataToSend.append("itemImages", image);
         });
       }
 

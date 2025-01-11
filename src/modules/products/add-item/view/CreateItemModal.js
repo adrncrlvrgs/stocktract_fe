@@ -75,13 +75,9 @@ const CreateItemModal = (props) => {
                   name="itemImages"
                   multiple={true} 
                   maxImages={5} 
-                  error={errors.images} 
+                  error={errors.itemImages} 
                 />
-                {errors.images && (
-                  <div className="text-red-500 text-xs mt-1">
-                    {errors.images}
-                  </div>
-                )}
+              
               </div>
             </div>
 
