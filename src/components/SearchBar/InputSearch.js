@@ -12,17 +12,20 @@ const InputSearch = ({
   ...props
 }) => {
   return (
-    <div className={cn("relative flex items-center", className)}>
-      <span className="absolute left-3 text-gray-500">
-        <IconFA name="search" className="fa-sm" />
-      </span>
+    <div className={cn("flex items-center", className)}>
+      <div className="relative flex items-center">
+        <span className="absolute left-3 text-gray-500 z-50">
+          <IconFA name="search" className="fa-sm" />
+        </span>
+      </div>
+
       <Input
         type="text"
         defaultValue={value}
         onChange={onChange}
         placeholder={placeholder}
         className={cn(
-          "pl-10 border-gray-300 focus:ring-blue-500 focus:border-blue-500",
+          "w-full pl-10 border-gray-300 focus:ring-blue-500 focus:border-blue-500",
           className
         )}
         {...props}

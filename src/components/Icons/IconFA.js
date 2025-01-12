@@ -18,7 +18,8 @@ import {
   faChartLine,
   faDolly,
   faTruckRampBox,
-  faListCheck
+  faListCheck,
+  faClockRotateLeft
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -37,7 +38,8 @@ library.add(
   faChartLine,
   faDolly,
   faTruckRampBox,
-  faListCheck
+  faListCheck,
+  faClockRotateLeft
 );
 
 class IconFA extends React.Component {

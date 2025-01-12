@@ -19,7 +19,7 @@ const UsersTable = (props) => {
         <tr key={user.userID} className="hover:bg-gray-50">
           <td className="px-4 py-2 border-b border-gray-200">{user.userID}</td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <Avatar size="sm" src={user.profileImageUrl} alt={user.userID} />
+            <Avatar size="sm" src={user.profileImageUrl} alt={user.userID.toString()} />
           </td>
           <td className="px-4 py-2 border-b border-gray-200">{user.name}</td>
           <td className="px-4 py-2 border-b border-gray-200">{user.role}</td>

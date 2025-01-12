@@ -1,10 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useAuth } from "context/AuthContext";
 import { Avatar } from "components/Avatar";
+import { Input } from "components/Input";
+import { SearchStocks } from "components/SearchBar/SearchStock/SearchStocks";
+import { useSearchStocks } from "components/SearchBar/SearchStock/useSearchStocks";
 
 export default function PageHeader() {
   const { user, logout } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { searchTerm, setSearchTerm, suggestions, handleSearch } = useSearchStocks();
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -39,13 +43,12 @@ export default function PageHeader() {
             <span>StocksTract</span>
           </div>
 
-          <div className="flex-grow mx-5 px-10 max-w-2xl">
-            <input
-              type="text"
-              placeholder="Search stocks..."
-              className="w-full px-4 py-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-white"
-            />
-          </div>
+          <SearchStocks
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            handleSearch={handleSearch}
+            suggestions={suggestions}
+          />
 
           <div className="relative flex items-center space-x-4" ref={dropdownRef}>
             <button className="p-2 text-white hover:bg-white hover:bg-opacity-10 rounded-full transition-colors">

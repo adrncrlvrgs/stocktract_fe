@@ -35,8 +35,6 @@ const usePostForm = (onSubmit, validate) => {
     }
     setErrors({});
     onSubmit(serializedData);
-
-    console.log(serializedData)
   };
 
   return { handleSubmit, errors };
