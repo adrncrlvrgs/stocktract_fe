@@ -7,13 +7,17 @@ const LogsTable = (props) => {
 
   return (
     <Table heads={tableHeaders} isLoading={isLoading}>
-      <tr key={item.itemID} className="hover:bg-gray-50">
-        <td className="px-4 py-2 border-b border-gray-200">{logs.logID}</td>
-        <td className="px-4 py-2 border-b border-gray-200">{logs.userID}</td>
-        <td className="px-4 py-2 border-b border-gray-200">{logs.action}</td>
-        <td className="px-4 py-2 border-b border-gray-200">{logs.details}</td>
-        <td className="px-4 py-2 border-b border-gray-200">{logs.date}</td>
-      </tr>
+      {logs?.map((log) => (
+        <tr key={log.logID} className="hover:bg-gray-50">
+          <td className="px-4 py-2 border-b border-gray-200">{log.logID}</td>
+          <td className="px-4 py-2 border-b border-gray-200">{log.userID}</td>
+          <td className="px-4 py-2 border-b border-gray-200">{log.action}</td>
+          <td className="px-4 py-2 border-b border-gray-200">{log.details}</td>
+          {/* <td className="px-4 py-2 border-b border-gray-200">
+            {log.timestamp}
+          </td> */}
+        </tr>
+      ))}
     </Table>
   );
 };

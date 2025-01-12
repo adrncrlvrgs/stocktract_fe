@@ -21,11 +21,11 @@ const useGetLogs = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [paginationParams]);
+  }, [paginationParams]); 
 
   useEffect(() => {
     fetchLogs();
-  }, [paginationParams]);
+  }, []); 
 
   return {
     logs,

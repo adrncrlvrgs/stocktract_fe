@@ -33,6 +33,5 @@ export const navItems = [
       { label: "Product Items", path: "/sales/report", icon: "shopping-bag" },
     ],
   },
-  { label: "Activity Logs", icon: "list-check", path: "/settings" },
-  // { label: "Settings", icon: "cog", path: "/settings" },
+  { label: "Activity Logs", path: "/activity-logs", icon: "list-check" },
 ];

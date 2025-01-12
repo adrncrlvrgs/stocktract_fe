@@ -1,4 +1,4 @@
-import UserManagement from "views/user-management";
+import UserManagement from "views/user-management"
 const userManagement = [
   {
     path: "/user-management",
