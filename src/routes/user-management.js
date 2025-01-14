@@ -4,6 +4,7 @@ const userManagement = [
     path: "/user-management",
     component: UserManagement,
     access: "private",
+    requiredRole: ["admin"]
   },
 ];
 

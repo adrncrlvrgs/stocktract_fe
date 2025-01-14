@@ -1,8 +1,10 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-
+import { useAuth } from "context/AuthContext"; 
 function Index() {
   const location = useLocation();
+  const { user } = useAuth(); 
+
 
   return (
     <div className="p-6">
@@ -28,24 +30,27 @@ function Index() {
               Item-Management
             </Link>
           </li>
-          <li
-            className={`mr-1 ${
-              location.pathname === "/products/addItem"
-                ? "border-b-2 border-blue-500"
-                : ""
-            }`}
-          >
-            <Link
-              to="/products/addItem"
-              className={`inline-block py-2 px-4 ${
+
+          {user?.userData.role === "admin" && (
+            <li
+              className={`mr-1 ${
                 location.pathname === "/products/addItem"
-                  ? "text-blue-500"
-                  : "text-gray-500 hover:text-blue-500"
+                  ? "border-b-2 border-blue-500"
+                  : ""
               }`}
             >
-              Add Item
-            </Link>
-          </li>
+              <Link
+                to="/products/addItem"
+                className={`inline-block py-2 px-4 ${
+                  location.pathname === "/products/addItem"
+                    ? "text-blue-500"
+                    : "text-gray-500 hover:text-blue-500"
+                }`}
+              >
+                Add Item
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
       <div className="">

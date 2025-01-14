@@ -1,6 +1,6 @@
 export const navItems = [
   { label: "Dashboard", icon: "home", path: "/dashboard" },
-  { label: "User Management", icon: "user", path: "/user-management" },
+  { label: "User Management", icon: "user", path: "/user-management",  requiredRole: "admin" },
   {
     label: "Stocks",
     icon: "truck-ramp-box",
@@ -17,7 +17,7 @@ export const navItems = [
     label: "Products",
     icon: "dolly",
     subItems: [
-      { label: "Categories", path: "/products/category", icon: "list" },
+      { label: "Categories", path: "/products/category", icon: "list", requiredRole: "admin" },
       { label: "Product Items", path: "/products/items", icon: "shopping-bag" },
     ],
   },

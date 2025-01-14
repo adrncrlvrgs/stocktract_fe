@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { IconFA } from "components/Icons";
 import { useAuth } from "context/AuthContext";
-import { useNavItems } from "context/NavContext";
+import { useNavItems } from "context/NavContext"; // Import useNavItems
 import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [openAccordion, setOpenAccordion] = useState(null);
   const { logout } = useAuth();
-  const navItems = useNavItems();
+  const navItems = useNavItems(); // Get the filtered navItems
   const location = useLocation();
 
   const toggleSidebar = () => {

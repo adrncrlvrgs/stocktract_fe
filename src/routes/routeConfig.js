@@ -6,6 +6,7 @@ import products from "./products";
 import sales from "./sales";
 import stocks from "./stocks";
 import logs from "./logs";
+import unauthorized from "./unauthorize";
 
 const routes = [
   ...loginRoutes,
@@ -16,6 +17,7 @@ const routes = [
   ...sales,
   ...stocks,
   ...logs,
+  ...unauthorized
 ];
 
 export default routes;

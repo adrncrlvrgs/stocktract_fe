@@ -3,12 +3,29 @@ import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
 import { Page } from "components/Pages";
 
-const ProtectedRoute = ({ access, isAuth, redirectPath, children }) => {
+const ProtectedRoute = ({
+  access,
+  isAuth,
+  redirectPath,
+  requiredRole,
+  children,
+}) => {
+  const { user } = useAuth();
+
   if (access === "private" && !isAuth) {
     return <Navigate to={redirectPath} />;
   }
+
   if (access === "public" && isAuth) {
     return <Navigate to="/dashboard" />;
+  }
+
+  if (
+    access === "private" &&
+    requiredRole &&
+    !requiredRole.includes(user?.userData?.role)
+  ) {
+    return <Navigate to="/unauthorized" />;
   }
   return children ? children : <Outlet />;
 };
@@ -22,7 +39,13 @@ const HandleRoutes = ({ routes }) => {
     isSubroute = false
   ) => {
     return routes.map((route, index) => {
-      const { path, component: Component, access, subRoutes } = route;
+      const {
+        path,
+        component: Component,
+        access,
+        subRoutes,
+        requiredRole,
+      } = route;
 
       const isPrivate = access === "private" || isParentPrivate;
 
@@ -31,7 +54,12 @@ const HandleRoutes = ({ routes }) => {
           key={index}
           path={path}
           element={
-            <ProtectedRoute access={access} isAuth={isAuth} redirectPath="/">
+            <ProtectedRoute
+              access={access}
+              isAuth={isAuth}
+              redirectPath="/"
+              requiredRole={requiredRole}
+            >
               {isPrivate && !isSubroute ? (
                 <Page>
                   {Component && <Component />}

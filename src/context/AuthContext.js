@@ -21,12 +21,11 @@ const AuthProvider = (props) => {
 
   const fetchUserData = async (token) => {
     try {
-      const { token: newToken, ...userData } = await refreshUserData(token);
+      const { token: newToken, role, ...userData } = await refreshUserData(token);
       Cookies.set("token", newToken);
       setIsAuth(true);
-      setUser(userData);
+      setUser(...userData, role);
     } catch (error) {
-      console.error("Error fetching user data:", error);
       setIsAuth(false);
       Cookies.remove("token");
     } finally {

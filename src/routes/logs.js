@@ -4,6 +4,7 @@ const logs = [
     path: "/activity-logs",
     component: Logs,
     access: "private",
+    requiredRole: ["admin"]
   },
 ];
 

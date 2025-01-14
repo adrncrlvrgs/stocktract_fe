@@ -7,14 +7,24 @@ const products = [
     path: "/products/category",
     component: Categories,
     access: "private",
+    requiredRole: ["admin"],
   },
   {
     path: "/products",
     component: Items,
     access: "private",
     subRoutes: [
-      { path: "/products/items", component: ItemManagement, access: "private" },
-      { path: "/products/addItem", component: AddItem, access: "private" },
+      {
+        path: "/products/items",
+        component: ItemManagement,
+        access: "private",
+      },
+      {
+        path: "/products/addItem",
+        component: AddItem,
+        access: "private",
+        requiredRole: ["admin"],
+      },
     ],
   },
 ];
