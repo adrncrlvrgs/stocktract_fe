@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "context/AuthContext";
 import { Page } from "components/Pages";
+import NotFound from "views/not-found";
 
 const ProtectedRoute = ({
   access,
@@ -80,7 +81,12 @@ const HandleRoutes = ({ routes }) => {
     });
   };
 
-  return <Routes>{renderRoutes(routes)}</Routes>;
+  return (
+    <Routes>
+      {renderRoutes(routes)}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
 };
 
 export default HandleRoutes;
