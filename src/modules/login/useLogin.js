@@ -5,9 +5,9 @@ import { loginUser } from "api/auth";
 const useLogin = (login) => {
   const [error, setError] = useState("");
 
-  const handleLogin = async (data) => {
+  const handleLogin = async (data, role) => {
     try {
-      const { token, ...userData } = await loginUser(data);
+      const { token, ...userData } = await loginUser({ ...data, role });
       login(token, userData);
 
       toast.success("Login successfully!");

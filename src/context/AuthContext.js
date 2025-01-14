@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { refreshUserData, getUserProfile } from "api/auth";
+import { refreshUserData } from "api/auth";
 import { Spinner } from "components/Spinner";
 const AuthContext = createContext({});
 
@@ -33,21 +33,6 @@ const AuthProvider = (props) => {
     }
   };
 
-  const fetchProfile = async () => {
-    try {
-      const token = Cookies.get("token");
-      if (token) {
-        const { userData } = await getUserProfile(token); 
-        setUser({ userData }); 
-        setIsAuth(true);
-      }
-    } catch (error) {
-      console.error("Error fetching user profile:", error);
-      setIsAuth(false);
-      Cookies.remove("token");
-    }
-  };
-
   const login = (token, userData) => {
     Cookies.set("token", token);
     setIsAuth(true);
@@ -61,9 +46,7 @@ const AuthProvider = (props) => {
   };
 
   return (
-    <AuthContext.Provider
-      value={{ isAuth, login, logout, user, loading, fetchProfile }}
-    >
+    <AuthContext.Provider value={{ isAuth, login, logout, user, loading }}>
       {loading ? (
         <div className="flex justify-center items-center min-h-screen">
           <Spinner />
