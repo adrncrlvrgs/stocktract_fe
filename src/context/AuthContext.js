@@ -21,10 +21,10 @@ const AuthProvider = (props) => {
 
   const fetchUserData = async (token) => {
     try {
-      const { token: newToken, role, ...userData } = await refreshUserData(token);
+      const { token: newToken, userData } = await refreshUserData(token);
       Cookies.set("token", newToken);
       setIsAuth(true);
-      setUser(...userData, role);
+      setUser({ userData });
     } catch (error) {
       setIsAuth(false);
       Cookies.remove("token");
@@ -37,8 +37,8 @@ const AuthProvider = (props) => {
     try {
       const token = Cookies.get("token");
       if (token) {
-        const profileData = await getUserProfile(token);
-        setUser(profileData);
+        const { userData } = await getUserProfile(token); 
+        setUser({ userData }); 
         setIsAuth(true);
       }
     } catch (error) {

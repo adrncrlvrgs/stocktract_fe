@@ -1,6 +1,11 @@
 export const navItems = [
   { label: "Dashboard", icon: "home", path: "/dashboard" },
-  { label: "User Management", icon: "user", path: "/user-management",  requiredRole: "admin" },
+  {
+    label: "User Management",
+    icon: "user",
+    path: "/user-management",
+    requiredRole: "admin",
+  },
   {
     label: "Stocks",
     icon: "truck-ramp-box",
@@ -17,7 +22,12 @@ export const navItems = [
     label: "Products",
     icon: "dolly",
     subItems: [
-      { label: "Categories", path: "/products/category", icon: "list", requiredRole: "admin" },
+      {
+        label: "Categories",
+        path: "/products/category",
+        icon: "list",
+        requiredRole: "admin",
+      },
       { label: "Product Items", path: "/products/items", icon: "shopping-bag" },
     ],
   },
@@ -33,5 +43,10 @@ export const navItems = [
       { label: "Product Items", path: "/sales/report", icon: "shopping-bag" },
     ],
   },
-  { label: "Activity Logs", path: "/activity-logs", icon: "list-check" },
+  {
+    label: "Activity Logs",
+    path: "/activity-logs",
+    icon: "list-check",
+    requiredRole: "admin",
+  },
 ];
