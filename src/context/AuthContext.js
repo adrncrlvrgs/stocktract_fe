@@ -7,7 +7,7 @@ const AuthContext = createContext({});
 const AuthProvider = (props) => {
   const { children } = props;
   const [isAuth, setIsAuth] = useState(false);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const AuthProvider = (props) => {
     try {
       const { token: newToken, userData } = await refreshUserData(token);
       Cookies.set("token", newToken);
-      setUser({ userData });
+      setUser(userData);
       setIsAuth(true);
     } catch (error) {
       setIsAuth(false);
@@ -36,9 +36,7 @@ const AuthProvider = (props) => {
   const login = (token, userData) => {
     Cookies.set("token", token);
     setIsAuth(true);
-    setUser({ userData });
-
-    console.log(user)
+    setUser(userData);
   };
 
   const logout = () => {

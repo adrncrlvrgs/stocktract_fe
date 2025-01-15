@@ -7,24 +7,32 @@ const NavItemsContext = createContext();
 export const useNavItems = () => useContext(NavItemsContext);
 
 export const NavItemsProvider = ({ children }) => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  console.log(navItems);
 
   const filterNavItems = (items) => {
-    return items.filter((item) => {
+    const copiedItems = JSON.parse(JSON.stringify(items));
+    console.log(copiedItems);
+    return copiedItems.filter((item) => {
       if (item?.subItems) {
-        item.subItems = item?.subItems.filter((subItem) => {
+        const filteredSubItems = item.subItems.filter((subItem) => {
           if (subItem?.requiredRole) {
-            return subItem?.requiredRole === user?.userData?.role;
+            return subItem?.requiredRole === user?.role;
           }
           return true;
         });
 
-        return item.subItems.length > 0;
+        item.subItems = filteredSubItems;
+
+        return filteredSubItems.length > 0;
       }
 
+      // For items without subItems, check the requiredRole
       if (item.requiredRole) {
-        return item.requiredRole === user?.userData.role;
+        return item.requiredRole === user?.role;
       }
+
       return true;
     });
   };

@@ -7,7 +7,7 @@ const useLogin = (login) => {
 
   const handleLogin = async (data, role) => {
     try {
-      const { token, ...userData } = await loginUser({ ...data, role });
+      const { token, userData } = await loginUser({ ...data, role });
       login(token, userData);
 
       toast.success("Login successfully!");
