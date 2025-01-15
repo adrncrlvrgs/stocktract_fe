@@ -31,7 +31,7 @@ function Index() {
             </Link>
           </li>
 
-          {user?.userData.role === "admin" && (
+          {user?.role === "admin" && (
             <li
               className={`mr-1 ${
                 location.pathname === "/products/addItem"

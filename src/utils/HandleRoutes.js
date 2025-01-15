@@ -24,7 +24,7 @@ const ProtectedRoute = ({
   if (
     access === "private" &&
     requiredRole &&
-    !requiredRole.includes(user?.userData?.role)
+    !requiredRole.includes(user?.role)
   ) {
     return <Navigate to="/unauthorized" />;
   }
