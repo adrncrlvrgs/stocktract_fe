@@ -9,9 +9,23 @@ const useSignUp = () => {
   const navigate = useNavigate();
   const handleSignUp = async (data) => {
     try {
-      const userID = generateUserId(); 
-      const userData = { ...data, userID: userID }; 
-      await signUpUser(userData);
+      const { profileImagePath, ...rest } = data;
+
+      const userID = generateUserId();
+      const userData = { 
+        ...rest, 
+        userID 
+      };
+
+      const formDataToSend = new FormData();
+      Object.entries(userData).forEach(([key, value]) => {
+        formDataToSend.append(key, value);
+      });
+
+      if (profileImagePath instanceof File) {
+        formDataToSend.append("profileImagePath", profileImagePath);
+      }
+      await signUpUser(formDataToSend);
       setSuccess("Successfully signed up");
       navigate("/");
     } catch (error) {

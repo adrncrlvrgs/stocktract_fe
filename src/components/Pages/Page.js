@@ -7,8 +7,7 @@ import { useAuth } from "context/AuthContext";
 
 export default function Page(props) {
   const { children } = props;
-  const { loading } = useAuth();
-
+  
   return (
     <div className="min-h-screen flex flex-col justify-center content-center">
       <PageHeader />

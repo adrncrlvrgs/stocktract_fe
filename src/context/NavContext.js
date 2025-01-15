@@ -11,10 +11,10 @@ export const NavItemsProvider = ({ children }) => {
 
   const filterNavItems = (items) => {
     return items.filter((item) => {
-      if (item.subItems) {
-        item.subItems = item.subItems.filter((subItem) => {
-          if (subItem.requiredRole) {
-            return subItem.requiredRole === user?.userData.role;
+      if (item?.subItems) {
+        item.subItems = item?.subItems.filter((subItem) => {
+          if (subItem?.requiredRole) {
+            return subItem?.requiredRole === user?.userData?.role;
           }
           return true;
         });

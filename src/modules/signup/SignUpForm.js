@@ -4,6 +4,7 @@ import CustomForm from "components/Form/Form";
 import { Input } from "components/Input";
 import useSignUp from "./useSignup";
 import { validateForm } from "utils/validate";
+import { AvatarUpload } from "components/Input/AvatarUpload";
 
 export default function SignUpForm() {
   const { handleSignUp, error, success } = useSignUp();
@@ -17,7 +18,6 @@ export default function SignUpForm() {
     password: Yup.string()
       .min(6, "Password must be at least 6 characters long.")
       .required("Password is required."),
-    role: Yup.string().required("Role is required."),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required."),
@@ -35,6 +35,13 @@ export default function SignUpForm() {
     >
       <h3 className="text-gray-800 text-3xl font-extrabold mb-8">Sign up</h3>
       <div className="space-y-4">
+        <div className="flex justify-center">
+          <AvatarUpload
+            name="profileImagePath"
+            size="w-32 h-32"
+            className="mb-4"
+          />
+        </div>
         <Input
           name="name"
           type="text"
@@ -66,13 +73,6 @@ export default function SignUpForm() {
           placeholder="Confirm Password"
           required
           error={errors.confirmPassword}
-        />
-        <Input
-          name="role"
-          type="text"
-          placeholder="Role (e.g. Manager)"
-          required
-          error={errors.role}
         />
       </div>
       <div className="!mt-8">

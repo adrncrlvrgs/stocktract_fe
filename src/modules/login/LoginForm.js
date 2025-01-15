@@ -43,7 +43,7 @@ export default function LoginForm() {
               }`}
             >
               <h4 className="text-lg font-semibold">User</h4>
-              <p className="text-sm">Access your personal dashboard.</p>
+              <p className="text-sm">Access your personal items and sales.</p>
             </div>
 
             <div
