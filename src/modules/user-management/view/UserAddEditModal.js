@@ -9,12 +9,14 @@ import { Spinner } from "components/Spinner";
 
 const UserAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
-  const { userID, status, email, name, role, password,profileImageUrl } = data || {};
+  const { userID, status, email, name, role, password, profileImageUrl } =
+    data || {};
   const [errors, setErrors] = useState({});
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Full Name is required."),
+    firstName: Yup.string().required("First Name is required."),
+    lastName: Yup.string().required("Last Name is required."),
     email: Yup.string()
       .email("Email is invalid.")
       .required("Email is required."),
@@ -55,19 +57,27 @@ const UserAddEditModal = (props) => {
             <div className="space-y-4">
               <div className="flex justify-center">
                 <AvatarUpload
-                  name="profileImagePath" 
-                  initialImage={profileImageUrl} 
-                  size="w-32 h-32" 
-                  className="mb-4" 
+                  name="profileImagePath"
+                  initialImage={profileImageUrl}
+                  size="w-32 h-32"
+                  className="mb-4"
                 />
               </div>
               <Input
-                name="name"
+                name="firstName"
                 type="text"
-                defaultValue={name}
-                placeholder="Full Name"
+                autocomplete="given-name"
+                placeholder="First Name"
                 required
-                error={errors.name}
+                error={errors.firstName}
+              />
+              <Input
+                name="lastName"
+                type="text"
+                autocomplete="family-name"
+                placeholder="Last Name"
+                required
+                error={errors.lastName}
               />
               <Input
                 name="email"

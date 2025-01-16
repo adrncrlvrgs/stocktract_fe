@@ -11,7 +11,8 @@ export default function SignUpForm() {
   const [errors, setErrors] = useState({});
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Full Name is required."),
+    firstName: Yup.string().required("First Name is required."),
+    lastName: Yup.string().required("Last Name is required."),
     email: Yup.string()
       .email("Email is invalid.")
       .required("Email is required."),
@@ -43,12 +44,20 @@ export default function SignUpForm() {
           />
         </div>
         <Input
-          name="name"
+          name="firstName"
           type="text"
-          autoComplete="name"
-          placeholder="Full Name"
+          autocomplete="given-name"
+          placeholder="First Name"
           required
-          error={errors.name}
+          error={errors.firstName}
+        />
+        <Input
+          name="lastName"
+          type="text"
+          autocomplete="family-name"
+          placeholder="Last Name"
+          required
+          error={errors.lastName}
         />
         <Input
           name="email"
@@ -61,7 +70,7 @@ export default function SignUpForm() {
         <Input
           name="password"
           type="password"
-          autoComplete="new-password"
+          autoComplete="password"
           placeholder="Password"
           required
           error={errors.password}
