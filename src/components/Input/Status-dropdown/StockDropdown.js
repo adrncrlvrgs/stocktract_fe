@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Input from "../Input";
-import { STATUS_TYPE } from "constants/statuses";
+import { STOCK_TYPE } from "constants/statuses";
 
-const StatusDropdown = (props) => {
+const StockDropdown = (props) => {
   const { name, error, isLoading, defaultValue = "", ...rest } = props;
 
   const renderOptions = () => {
@@ -21,9 +21,9 @@ const StatusDropdown = (props) => {
       </option>
     );
 
-    const statusOptions = Object.entries(STATUS_TYPE).map(([key, value]) => (
-      <option key={value} value={value}>
-        {key}
+    const statusOptions = Object.entries(STOCK_TYPE).map(([key, value]) => (
+      <option key={key} value={value}>
+        {value}
       </option>
     ));
     if (!defaultValue) {
@@ -56,10 +56,10 @@ const StatusDropdown = (props) => {
   );
 };
 
-StatusDropdown.proTypes = {
+StockDropdown.proTypes = {
   name: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
   defaultValue: PropTypes.string.isRequired,
 };
 
-export default StatusDropdown;
+export default StockDropdown;

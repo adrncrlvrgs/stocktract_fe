@@ -3,3 +3,10 @@ export const STATUS_TYPE = {
   Inactive: "Inactive",
 };
 
+export const STOCK_TYPE = {
+  InStock: "In Stock", 
+  OutOfStock: "Out of Stock",
+  ToBeDelivered: "To be Delivered", 
+  OnOrder: "On Order",         
+}
+

@@ -76,10 +76,10 @@ const UserAddEditModal = (props) => {
                   name="profileImagePath"
                   initialImage={profileImageUrl}
                   size="w-32 h-32"
-                  className="mb-6"
+                  className="mb-2"
                 />
               </div>
-
+              {userID && <div className="flex justify-center text-lg font-bold">{userID}</div>}
               <div className="border-t border-gray-200"></div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

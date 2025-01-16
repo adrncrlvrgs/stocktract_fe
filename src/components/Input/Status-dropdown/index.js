@@ -1,2 +1,3 @@
 import StatusDropdown from "./StatusDropdown";
-export { StatusDropdown };
+import StockDropdown from "./StockDropdown";
+export { StatusDropdown,StockDropdown };
