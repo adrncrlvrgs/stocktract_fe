@@ -8,31 +8,42 @@ export const useNavItems = () => useContext(NavItemsContext);
 
 export const NavItemsProvider = ({ children }) => {
   const { user } = useAuth();
-  const [filteredNavItems, setFilteredNavItems] = useState([]);
+  const [filteredNavItems, setFilteredNavItems] = useState({});
 
   useEffect(() => {
     if (user) {
-      const filterNavItems = (items) => {
-        return items.filter((item) => {
-          if (item?.subItems) {
-            item.subItems = item?.subItems.filter((subItem) => {
-              if (subItem?.requiredRole) {
-                return subItem?.requiredRole === user?.role;
-              }
-              return true;
-            });
+      const filterNavItems = (items, userRole) => {
+        return Object.keys(items).reduce((acc, key) => {
+          const item = items[key];
 
-            return item.subItems.length > 0;
+          if (item.subItems) {
+            const filteredSubItems = Object.keys(item.subItems).reduce(
+              (subAcc, subKey) => {
+                const subItem = item.subItems[subKey];
+                if (
+                  !subItem.requiredRole ||
+                  subItem.requiredRole === userRole
+                ) {
+                  subAcc[subKey] = subItem;
+                }
+
+                return subAcc;
+              },
+              {}
+            );
+
+            if (Object.keys(filteredSubItems).length > 0) {
+              acc[key] = { ...item, subItems: filteredSubItems };
+            }
+          } else if (!item.requiredRole || item.requiredRole === userRole) {
+            acc[key] = item;
           }
 
-          if (item.requiredRole) {
-            return item.requiredRole === user?.role;
-          }
-          return true;
-        });
+          return acc;
+        }, {});
       };
 
-      const filteredItems = filterNavItems(navItems);
+      const filteredItems = filterNavItems(navItems, user.role);
       setFilteredNavItems(filteredItems);
     }
   }, [user]);

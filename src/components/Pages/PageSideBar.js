@@ -11,13 +11,13 @@ const Sidebar = () => {
   const { logout, loading } = useAuth();
   const navItems = useNavItems();
   const location = useLocation();
- 
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleAccordionToggle = (index) => {
-    setOpenAccordion(openAccordion === index ? null : index);
+  const handleAccordionToggle = (key) => {
+    setOpenAccordion(openAccordion === key ? null : key);
   };
 
   const isActive = (path) => location.pathname === path;
@@ -30,7 +30,6 @@ const Sidebar = () => {
         isOpen ? "w-64" : "w-16"
       } bg-gray-900 text-white h-screen flex flex-col transition-all duration-500 shadow-lg`}
     >
-      {/* Sidebar Header */}
       <div className="flex justify-between items-center p-4 border-b border-gray-700">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <IconFA
@@ -40,22 +39,23 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {/* Navigation Items */}
       <nav className="flex-1 overflow-y-auto">
         <ul className="space-y-2">
-          {navItems.map((item, index) => (
-            <React.Fragment key={index}>
+          {Object.entries(navItems).map(([key, item]) => (
+            <React.Fragment key={key}>
               {item.subItems ? (
                 <>
                   <li
                     className={`group p-4 flex items-center space-x-4 cursor-pointer transition-colors duration-200 hover:bg-gray-800 ${
-                      item.subItems.some((subItem) => isActive(subItem.path))
+                      Object.values(item.subItems).some((subItem) =>
+                        isActive(subItem.path)
+                      )
                         ? "bg-gray-800 text-white"
                         : ""
                     }`}
-                    onClick={() => handleAccordionToggle(index)}
-                    aria-expanded={openAccordion === index}
-                    aria-controls={`accordion-${index}`}
+                    onClick={() => handleAccordionToggle(key)}
+                    aria-expanded={openAccordion === key}
+                    aria-controls={`accordion-${key}`}
                   >
                     <IconFA
                       name={item.icon}
@@ -69,35 +69,35 @@ const Sidebar = () => {
                     {isOpen && (
                       <IconFA
                         name={
-                          openAccordion === index
-                            ? "chevron-up"
-                            : "chevron-down"
+                          openAccordion === key ? "chevron-up" : "chevron-down"
                         }
                         className="text-gray-400 group-hover:text-white transition-transform"
                       />
                     )}
                   </li>
 
-                  {openAccordion === index && isOpen && (
+                  {openAccordion === key && isOpen && (
                     <ul
-                      id={`accordion-${index}`}
+                      id={`accordion-${key}`}
                       className="pl-8 mt-2 space-y-2 border-l border-gray-700"
                     >
-                      {item.subItems.map((subItem, subIndex) => (
-                        <li key={subIndex}>
-                          <Link
-                            to={subItem.path}
-                            className={`p-3 flex items-center space-x-4 rounded-lg transition-colors duration-200 ${
-                              isActive(subItem.path)
-                                ? "bg-gray-700 text-white"
-                                : "text-gray-400 hover:text-white hover:bg-gray-800"
-                            }`}
-                          >
-                            <IconFA name={subItem.icon} />
-                            <span>{subItem.label}</span>
-                          </Link>
-                        </li>
-                      ))}
+                      {Object.entries(item.subItems).map(
+                        ([subKey, subItem]) => (
+                          <li key={subKey}>
+                            <Link
+                              to={subItem.path}
+                              className={`p-3 flex items-center space-x-4 rounded-lg transition-colors duration-200 ${
+                                isActive(subItem.path)
+                                  ? "bg-gray-700 text-white"
+                                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+                              }`}
+                            >
+                              <IconFA name={subItem.icon} />
+                              <span>{subItem.label}</span>
+                            </Link>
+                          </li>
+                        )
+                      )}
                     </ul>
                   )}
                 </>
