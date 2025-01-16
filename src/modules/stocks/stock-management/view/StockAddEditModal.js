@@ -5,7 +5,7 @@ import { Input } from "components/Input";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
-import { CategoryDropdown } from "components/Input/category-dropdown";
+import { CategoryDropdown } from "components/Input/Category-dropdown";
 
 const StockAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;

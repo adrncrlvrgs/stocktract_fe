@@ -35,7 +35,7 @@ const Input = ({
             onFocus={handleFocus}
             onBlur={handleBlur}
             className={cn(
-              "bg-gray-200 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+              "bg-gray-200 w-full text-sm text-gray-800 px-4 py-3 rounded-md outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
               "appearance-none pr-8",
               className
             )}

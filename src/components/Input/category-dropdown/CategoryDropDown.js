@@ -44,7 +44,6 @@ const CategoryDropdown = ({ name, error, defaultValue = "", ...props }) => {
     );
   };
 
-  // Return a clean UI with conditional rendering for errors
   return (
     <>
       {fetchError ? (
@@ -64,7 +63,6 @@ const CategoryDropdown = ({ name, error, defaultValue = "", ...props }) => {
   );
 };
 
-// Prop validation for better developer experience
 CategoryDropdown.propTypes = {
   name: PropTypes.string.isRequired,
   error: PropTypes.string,

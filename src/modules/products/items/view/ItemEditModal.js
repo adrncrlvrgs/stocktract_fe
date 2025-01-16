@@ -5,7 +5,7 @@ import { Input } from "components/Input";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
-import { CategoryDropdown } from "components/Input/category-dropdown";
+import { CategoryDropdown } from "components/Input/Category-dropdown";
 import { ImageUpload } from "components/Input/ImageUpload";
 
 const ItemEditModal = (props) => {
@@ -18,7 +18,6 @@ const ItemEditModal = (props) => {
     item: Yup.string().required("Item Name is required."),
     quantity: Yup.number().required("Quantity is required."),
     category: Yup.string().required("Category is required."),
-   
   });
 
   const validate = async (data) => {
