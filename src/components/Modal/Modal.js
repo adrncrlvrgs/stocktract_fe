@@ -118,7 +118,7 @@ export const ModalHeader = ({
     <h5 className="text-xl font-semibold">{children}</h5>
     <button
       onClick={toggle}
-      className="text-gray-500 hover:text-gray-700"
+      className="text-gray-500 hover:text-red-700"
       aria-label={closeAriaLabel}
     >
       &#x2715;

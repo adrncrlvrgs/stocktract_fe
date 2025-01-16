@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "components/Table";
 import { Avatar } from "components/Avatar";
+import StatusBadge from "components/Badges/StatusBadge";
 
 const UsersTable = (props) => {
   const { users, isLoading, toggleEdit, toggleDelete } = props;
@@ -19,21 +20,19 @@ const UsersTable = (props) => {
         <tr key={user.userID} className="hover:bg-gray-50">
           <td className="px-4 py-2 border-b border-gray-200">{user.userID}</td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <Avatar size="sm" src={user.profileImageUrl} alt={user.userID.toString()} />
+            <Avatar
+              size="sm"
+              src={user.profileImageUrl}
+              alt={user.userID.toString()}
+            />
           </td>
-          <td className="px-4 py-2 border-b border-gray-200">{user.name}</td>
+          <td className="px-4 py-2 border-b border-gray-200">
+            {`${user.firstName} ${user.lastName}`}
+          </td>
           <td className="px-4 py-2 border-b border-gray-200">{user.role}</td>
           <td className="px-4 py-2 border-b border-gray-200">{user.email}</td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <span
-              className={`inline-block px-2 py-1 text-xs font-semibold rounded ${
-                user.status === "Active"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-100 text-red-700"
-              }`}
-            >
-              {user.status}
-            </span>
+            <StatusBadge status={user.status} />
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <button

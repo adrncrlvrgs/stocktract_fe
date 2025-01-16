@@ -61,6 +61,7 @@ function Index() {
       <UserDeleteModal
         id={id}
         isOpen={isDeleteOpen}
+        isLoading={isDeleting}
         toggleDelete={toggleDelete}
         onDelete={onDelete}
       />

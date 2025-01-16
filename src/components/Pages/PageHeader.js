@@ -68,7 +68,7 @@ export default function PageHeader() {
               </svg>
             </button>
 
-            <div className="text-sm font-medium">{user?.name}</div>
+            <div className="text-sm font-medium">{user?.firstName}</div>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="focus:outline-none"

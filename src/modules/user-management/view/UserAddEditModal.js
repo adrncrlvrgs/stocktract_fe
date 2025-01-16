@@ -12,7 +12,16 @@ import { Button } from "components/Button";
 
 const UserAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
-  const { userID, firstName, lastName, status, email, role, password, profileImageUrl } = data || {};
+  const {
+    userID,
+    firstName,
+    lastName,
+    status,
+    email,
+    role,
+    password,
+    profileImageUrl,
+  } = data || {};
   const [errors, setErrors] = useState({});
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -93,13 +102,13 @@ const UserAddEditModal = (props) => {
                   </FormGroup>
                   <FormGroup
                     label="Last Name"
-                    defaultValue={lastName}
                     error={errors.lastName}
-                    isRequired
+                    isRequired={firstName ? false : true}
                   >
                     <Input
                       name="lastName"
                       type="text"
+                      defaultValue={lastName}
                       placeholder="Last Name"
                       className="w-full p-2 border rounded"
                     />
@@ -133,7 +142,10 @@ const UserAddEditModal = (props) => {
                     <h3 className="text-sm font-semibold text-gray-700">
                       Password
                     </h3>
-                    <FormGroup label="New Password" error={errors.password}>
+                    <FormGroup
+                      label={password ? "New Password" : "Password"}
+                      error={errors.password}
+                    >
                       <Input
                         name="password"
                         type={passwordVisible ? "text" : "password"}
