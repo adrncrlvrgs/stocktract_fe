@@ -1,6 +1,6 @@
 import Stocks from "views/stocks";
 import StockManagement from "modules/stocks/stock-management/view";
-import AddSale from "modules/sales/add-sale/view";
+import StockStats from "modules/stocks/stock-stats/view";
 const sales = [
   {
     path: "/stocks",
@@ -14,7 +14,7 @@ const sales = [
       },
       {
         path: "/stocks/stats",
-        component: AddSale,
+        component: StockStats,
         access: "private",
       },
     ],
