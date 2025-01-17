@@ -8,11 +8,11 @@ const useGetLogs = () => {
   const [logs, setLogs] = useState([]);
   const [meta, setMeta] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  const queryString = qs.stringify(paginationParams);
   const fetchLogs = useCallback(async () => {
     setIsLoading(true);
     try {
-      const queryString = qs.stringify(paginationParams);
+      
       const { data, meta } = await getLogs(queryString);
       setLogs(data);
       setMeta(meta);
@@ -21,11 +21,11 @@ const useGetLogs = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [paginationParams]); 
+  }, [queryString]); 
 
   useEffect(() => {
     fetchLogs();
-  }, []); 
+  }, [fetchLogs]); 
 
   return {
     logs,
