@@ -7,7 +7,6 @@ const StockTags = ({
   onChange,
   error,
   maxTags = 8,
-  minTags = 1,
 }) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -45,12 +44,7 @@ const StockTags = ({
         disabled={value.length >= maxTags}
       />
       {error && <p className="text-sm text-red-500">{error}</p>}
-      {value.length < minTags && (
-        <p className="text-sm text-red-500">
-          At least {minTags} tag is required.
-        </p>
-      )}
-
+    
       <div className="flex flex-wrap gap-2 mb-2 pt-2">
         {value.map((tag, index) => (
           <div

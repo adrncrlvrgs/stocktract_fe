@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "components/Table";
+import StockBadge from "components/Badges/StockBadge";
 
 const StocksTable = (props) => {
   const { stocks, isLoading, toggleCreate } = props;
@@ -35,15 +36,7 @@ const StocksTable = (props) => {
             {stock.totalCost}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <span
-              className={`inline-block px-2 py-1 text-xs font-semibold rounded ${
-                stock.status === "Active"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-100 text-red-700"
-              }`}
-            >
-              {stock.status}
-            </span>
+            <StockBadge status={stock.status} />
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <button

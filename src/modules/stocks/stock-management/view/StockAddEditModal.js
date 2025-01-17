@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import * as Yup from "yup";
 import CustomForm from "components/Form/Form";
 import FormGroup from "components/Form/FormGroup";
@@ -9,6 +9,7 @@ import { Spinner } from "components/Spinner";
 import { CategoryDropdown } from "components/Input/Category-dropdown";
 import { StockDropdown } from "components/Input/Status-dropdown";
 import { StockTags } from "components/Input/Tags";
+import { isEqual } from "lodash";
 
 const StockAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -30,13 +31,19 @@ const StockAddEditModal = (props) => {
   const [errors, setErrors] = useState({});
   const [tags, setTags] = useState(initialTags);
 
+  const memoizedInitialTags = useMemo(
+    () => initialTags,
+    [JSON.stringify(initialTags)]
+  );
+
   useEffect(() => {
     if (isOpen) {
-      setTags(initialTags); 
+      setTags(memoizedInitialTags);
     } else {
-      setTags([]); 
+      setTags([]);
     }
-  }, [isOpen, initialTags]);
+  }, [isOpen, memoizedInitialTags]);
+
   const validationSchema = Yup.object({
     supplier: Yup.string().required("Supplier is required."),
     item: Yup.string().required("Item is required."),
@@ -44,10 +51,8 @@ const StockAddEditModal = (props) => {
     totalQuantity: Yup.number().required("Quantity is required."),
     totalCost: Yup.number().required("Total Cost is required."),
     unit: Yup.string().required("Unit of Measurement is required."),
-    expirationDate: Yup.date().required("Expiration Date is required."),
     location: Yup.string().required("Location is required."),
     supplierContact: Yup.string().required("Supplier Contact is required."),
-    notes: Yup.string(),
     status: Yup.string().required("Status is required."),
     tags: Yup.array()
       .min(1, "At least 1 tag is required.")
@@ -182,13 +187,9 @@ const StockAddEditModal = (props) => {
                   Advanced Details
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FormGroup
-                    label="Expiration Date"
-                    error={errors.expirationDate}
-                    isRequired
-                  >
+                  <FormGroup label="Expected Date">
                     <Input
-                      name="expirationDate"
+                      name="expectedDate"
                       type="date"
                       defaultValue={expirationDate}
                       placeholder="Expiration Date"
@@ -225,13 +226,12 @@ const StockAddEditModal = (props) => {
                     <StockTags
                       name="tags"
                       value={tags}
-                      onChange={(newTags) => setTags(newTags)} // Update the local tags state
+                      onChange={(newTags) => setTags(newTags)}
                       maxTags={8}
-                      minTags={1}
                     />
                   </FormGroup>
                 </div>
-                <FormGroup label="Notes" error={errors.notes}>
+                <FormGroup label="Notes">
                   <Input
                     name="notes"
                     type="textarea"
