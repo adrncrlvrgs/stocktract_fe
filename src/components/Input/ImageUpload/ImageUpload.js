@@ -19,7 +19,9 @@ const ImageUpload = ({
       const newImages = Array.from(files).slice(0, maxImages - images.length);
       const imagePreviews = newImages.map((file) => URL.createObjectURL(file));
 
-      const updatedImages = multiple ? [...images, ...imagePreviews] : imagePreviews.slice(0, 1);
+      const updatedImages = multiple
+        ? [...images, ...imagePreviews]
+        : imagePreviews.slice(0, 1);
       setImages(updatedImages);
 
       if (onChange) {
@@ -31,8 +33,6 @@ const ImageUpload = ({
   const handleRemoveImage = (index) => {
     const updatedImages = images.filter((_, i) => i !== index);
     setImages(updatedImages);
-
-    // Pass the updated images to the parent component
     if (onChange) {
       onChange(updatedImages);
     }

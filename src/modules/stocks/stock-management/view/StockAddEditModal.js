@@ -21,7 +21,7 @@ const StockAddEditModal = (props) => {
     category,
     totalCost,
     unit,
-    expirationDate,
+    expectedDate,
     location,
     supplierContact,
     notes,
@@ -196,7 +196,7 @@ const StockAddEditModal = (props) => {
                     <Input
                       name="expectedDate"
                       type="date"
-                      defaultValue={expirationDate}
+                      defaultValue={expectedDate}
                       placeholder="Expiration Date"
                       className="w-full p-2 border rounded"
                     />
