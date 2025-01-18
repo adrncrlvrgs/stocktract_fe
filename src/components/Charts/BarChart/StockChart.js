@@ -6,14 +6,32 @@ import { getStocks } from "api/stocks";
 const StockChart = () => {
   const [stocks, setStocks] = useState([]);
 
-  // Transform data for ECharts
+  const pastelColors = [
+    "#A8D8EA", // Pastel Blue
+    "#AAEEDD", // Pastel Green
+    "#FFE6B5", // Pastel Yellow
+    "#FFB6B9", // Pastel Red
+    "#CABBE9", // Pastel Purple
+  ];
+
   const transformDataForECharts = (stocks) => {
-    const categories = stocks.map((stock) => stock.item);
-    const values = stocks.map((stock) => stock.totalQuantity);
+    if (stocks.length === 0) return { categories: [], values: [] };
+
+    const sortedStocks = [...stocks].sort((a, b) => b.totalQuantity - a.totalQuantity);
+    const top5 = sortedStocks.slice(0, 5);
+    const othersTotal = sortedStocks.slice(5).reduce((sum, stock) => sum + stock.totalQuantity, 0);
+
+    const categories = top5.map((stock) => stock.item);
+    const values = top5.map((stock) => stock.totalQuantity);
+
+    if (othersTotal > 0) {
+      categories.push("Others");
+      values.push(othersTotal);
+    }
+
     return { categories, values };
   };
 
-  // Fetch data on component mount
   useEffect(() => {
     const fetchStocks = async () => {
       const { data } = await getStocks();
@@ -25,19 +43,18 @@ const StockChart = () => {
 
   const { categories, values } = transformDataForECharts(stocks);
 
-  // Modern ECharts configuration
   const option = {
     xAxis: {
       type: "category",
       data: categories,
       axisLabel: {
-        rotate: 0,
-        color: "#666", // Dark gray for axis labels
-        fontSize: 14, // Slightly larger font size
+        rotate: 25,
+        color: "#666",
+        fontSize: 14,
       },
       axisLine: {
         lineStyle: {
-          color: "#ddd", // Light gray for axis line
+          color: "#ddd",
         },
       },
     },
@@ -45,62 +62,64 @@ const StockChart = () => {
       type: "value",
       name: "Quantity",
       nameTextStyle: {
-        color: "#666", // Dark gray for axis name
+        color: "#666",
         fontSize: 14,
       },
       axisLine: {
         lineStyle: {
-          color: "#ddd", // Light gray for axis line
+          color: "#ddd",
         },
       },
       splitLine: {
         lineStyle: {
-          color: "#eee", // Very light gray for split lines
+          color: "#eee",
         },
       },
     },
     series: [
       {
-        data: values,
+        data: values.map((value, index) => ({
+          value,
+          itemStyle: {
+            color:
+              categories[index] === "Others"
+                ? "#CCCCCC" // Gray for "Others"
+                : pastelColors[index % pastelColors.length], // Cycle through pastel colors
+            borderRadius: [6, 6, 0, 0],
+          },
+        })),
         type: "bar",
         showBackground: true,
         backgroundStyle: {
-          color: "rgba(180, 180, 180, 0.1)", // Lighter background
-          borderRadius: [6, 6, 0, 0], // Rounded corners for background
+          color: "rgba(180, 180, 180, 0.1)",
+          borderRadius: [6, 6, 0, 0],
         },
-        itemStyle: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: "#6a11cb" }, // Gradient start color
-            { offset: 1, color: "#2575fc" }, // Gradient end color
-          ]),
-          borderRadius: [6, 6, 0, 0], // Rounded corners for bars
-        },
-        barWidth: "60%", // Wider bars for a modern look
+        barWidth: "60%",
       },
     ],
     tooltip: {
       trigger: "axis",
-      backgroundColor: "rgba(0, 0, 0, 0.8)", // Dark tooltip background
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
       borderColor: "#333",
       textStyle: {
-        color: "#fff", // White text for tooltip
+        color: "#fff",
       },
     },
     title: {
       text: "Stock Quantity by Item",
       left: "center",
       textStyle: {
-        color: "#333", // Dark gray for title
+        color: "#333",
         fontSize: 18,
         fontWeight: "bold",
       },
     },
     grid: {
       containLabel: true,
-      left: "10%", // Add padding to the left
-      right: "10%", // Add padding to the right
-      bottom: "10%", // Add padding to the bottom
-      top: "20%", // Add padding to the top
+      left: "10%",
+      right: "10%",
+      bottom: "10%",
+      top: "20%",
     },
   };
 
@@ -110,16 +129,34 @@ const StockChart = () => {
         style={{
           marginBottom: "24px",
           fontSize: "14px",
-          color: "#666", // Gray for the description
+          color: "#666",
         }}
       >
         Visualize the stock quantities of different items in your inventory.
       </p>
-      <ReactECharts
-        option={option}
-        echarts={echarts}
-        style={{ height: "400px", width: "100%" }}
-      />
+      {stocks.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "400px",
+            backgroundColor: "#f9f9f9",
+            borderRadius: "12px",
+            color: "#999",
+            fontSize: "16px",
+            fontWeight: "500",
+          }}
+        >
+          No stock data available.
+        </div>
+      ) : (
+        <ReactECharts
+          option={option}
+          echarts={echarts}
+          style={{ height: "400px", width: "100%" }}
+        />
+      )}
     </div>
   );
 };
