@@ -9,7 +9,6 @@ import { Spinner } from "components/Spinner";
 import { CategoryDropdown } from "components/Input/Category-dropdown";
 import { StockDropdown } from "components/Input/Status-dropdown";
 import { StockTags } from "components/Input/Tags";
-import { isEqual } from "lodash";
 
 const StockAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -88,6 +87,12 @@ const StockAddEditModal = (props) => {
           >
             <div className="space-y-6">
               <div className="space-y-4">
+                {data && (
+                  <h3 className="text-lg font-semibold text-gray-800 ">
+                    Stock ID: {stockID}
+                  </h3>
+                )}
+
                 <h3 className="text-lg font-semibold text-gray-700 border-b pb-2">
                   Basic Information
                 </h3>

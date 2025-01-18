@@ -1,6 +1,7 @@
 import Stocks from "views/stocks";
 import StockManagement from "modules/stocks/stock-management/view";
 import StockStats from "modules/stocks/stock-stats/view";
+import StocksReport from "modules/stocks/stock-report/view";
 const sales = [
   {
     path: "/stocks",
@@ -18,6 +19,11 @@ const sales = [
         access: "private",
       },
     ],
+  },
+  {
+    path: "/stocks/report",
+    component: StocksReport,
+    access: "private",
   },
 ];
 
