@@ -44,12 +44,21 @@ function useCreateItem(triggerRefetch) {
 
     try {
       const { itemImages, ...rest } = formData;
+      const {
+        totalQuantity,
+        notes,
+        location,
+        status,
+        supplierContact,
+        totalCost,
+        createdAt,
+        updatedAt,
+        ...stocks
+      } = data;
       const itemID = generateItemId();
       const itemData = {
         ...rest,
-        ...data,
-        availableQuantity: data?.totalQuantity,
-        stockID: data?.stockID,
+        ...stocks,
         itemID,
       };
 

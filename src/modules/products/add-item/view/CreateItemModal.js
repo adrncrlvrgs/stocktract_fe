@@ -7,6 +7,7 @@ import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
 import { ImageUpload } from "components/Input/ImageUpload";
+import { PriceInput } from "components/Input/PriceInput";
 
 const AddItemToSaleModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -18,7 +19,7 @@ const AddItemToSaleModal = (props) => {
     supplier,
     unit,
     location,
-    expirationDate,
+    expectedDate,
     notes,
   } = data || {};
   const [errors, setErrors] = useState({});
@@ -108,8 +109,8 @@ const AddItemToSaleModal = (props) => {
                       <span className="text-black">{location}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Expiration Date:</span>
-                      <span className="text-black">{expirationDate}</span>
+                      <span className="text-gray-600">Expected Date:</span>
+                      <span className="text-black">{expectedDate}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Notes:</span>
@@ -137,12 +138,7 @@ const AddItemToSaleModal = (props) => {
                   />
                 </FormGroup>
                 <FormGroup label="Price" error={errors.price} isRequired>
-                  <Input
-                    name="price"
-                    type="number"
-                    placeholder="Enter the price"
-                    className="w-full p-2 border rounded"
-                  />
+                  <PriceInput name="price" placeholder="Enter the price" />
                 </FormGroup>
                 <FormGroup label="Description" error={errors.description}>
                   <Input

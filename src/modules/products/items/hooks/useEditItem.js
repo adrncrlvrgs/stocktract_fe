@@ -54,14 +54,15 @@ function useEditItem(triggerRefetch) {
       const existingImages = [];
       const newImages = [];
 
-
       if (itemImages && Array.isArray(itemImages)) {
+
+        console.log(itemImages)
         for (const image of itemImages) {
           if (typeof image === "string" && image.startsWith("http")) {
-            // Existing image URL
+
             existingImages.push(image);
           } else if (typeof image === "string" && image.startsWith("blob:")) {
-            // Convert blob URL to File object
+
             const response = await fetch(image);
             const blob = await response.blob();
             const file = new File([blob], "new-image.png", { type: blob.type });
@@ -70,15 +71,13 @@ function useEditItem(triggerRefetch) {
         }
       }
 
-      // Append existing image URLs
       existingImages.forEach((url, index) => {
         formDataToSend.append(`existingImages[${index}]`, url);
       });
 
-      // Append new image files
       if (newImages && Array.isArray(newImages)) {
         newImages.forEach((image) => {
-          formDataToSend.append('itemImages', image);  
+          formDataToSend.append("itemImages", image);
         });
       }
 
