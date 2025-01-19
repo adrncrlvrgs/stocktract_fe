@@ -11,19 +11,30 @@ const ItemsChart = () => {
   const transformDataForECharts = (items) => {
     if (items.length === 0) return [];
 
-    // Group items by category and sum the quantities
     const categoryQuantities = items.reduce((acc, item) => {
       const category = item.category;
-      acc[category] = (acc[category] || 0) + item.quantity; // Sum quantities
+      if (!acc[category]) {
+        acc[category] = {
+          name: category,
+          value: 0,
+          items: [],
+        };
+      }
+      acc[category].value += item.quantity;
+      acc[category].items.push({
+        name: item.item,
+        quantity: item.quantity,
+        supplier: item.supplier,
+      });
       return acc;
     }, {});
 
-    // Transform the data into the format required by ECharts
-    const data = Object.keys(categoryQuantities).map((category, index) => ({
-      name: category,
-      value: categoryQuantities[category],
+    const data = Object.values(categoryQuantities).map((category, index) => ({
+      name: category.name,
+      value: category.value,
+      items: category.items,
       itemStyle: {
-        color: pastelColors[index % pastelColors.length], // Cycle through pastel colors
+        color: pastelColors[index % pastelColors.length],
       },
     }));
 
@@ -44,7 +55,45 @@ const ItemsChart = () => {
   const option = {
     tooltip: {
       trigger: "item",
-      formatter: "{a} <br/>{b}: {c} ({d}%)",
+      formatter: (params) => {
+        const { name, value, items } = params.data;
+        let tooltipText = `
+          <div style="font-size: 14px; line-height: 1.5;">
+            <strong style="font-size: 16px;">${name}</strong><br/>
+            <span style="color: #666;">Total Quantity: ${value}</span><br/>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 8px 0;">
+            <strong style="font-size: 14px;">Items:</strong><br/>
+        `;
+      
+        const maxItemsToShow = 3;
+        const itemsToShow = items.slice(0, maxItemsToShow);
+        const remainingItemsCount = items.length - maxItemsToShow;
+      
+        itemsToShow.forEach((item) => {
+          tooltipText += `
+            <div style="margin-bottom: 8px;">
+              <strong style="font-size: 13px;">${item.name}</strong><br/>
+              <span style="color: #666; font-size: 12px;">
+                - Quantity: ${item.quantity}<br/>
+                - Supplier: ${item.supplier}<br/>
+              </span>
+            </div>
+          `;
+        });
+      
+        // Add "Others..." if there are more items
+        if (remainingItemsCount > 0) {
+          tooltipText += `
+            <div style="color: #666; font-size: 12px;">
+              ... and ${remainingItemsCount} more items
+            </div>
+          `;
+        }
+      
+        tooltipText += `</div>`;
+      
+        return tooltipText;
+      },
     },
     legend: {
       bottom: "10%",
@@ -64,7 +113,6 @@ const ItemsChart = () => {
     itemStyle: {
       borderRadius: 5,
     },
-
     series: [
       {
         name: "Items by Category",

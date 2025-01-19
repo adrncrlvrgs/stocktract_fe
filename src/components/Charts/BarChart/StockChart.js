@@ -45,7 +45,6 @@ const StockChart = () => {
     toolbox: {
       show: true,
       feature: {
-        dataView: { show: true, readOnly: true },
         restore: { show: true },
         saveAsImage: { show: true },
       },
