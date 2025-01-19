@@ -52,7 +52,8 @@ function useCreateSale(triggerRefetch) {
         itemID: data?.itemID,
         totalAmount: "10.00",
       };
-      await addSale(saleData);
+      // await addSale(saleData);
+      console.log(formData)
       setIsLoading(false);
       toggleOpen();
       triggerRefetch();

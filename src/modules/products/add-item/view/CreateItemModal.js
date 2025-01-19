@@ -69,7 +69,6 @@ const AddItemToSaleModal = (props) => {
             className="w-full max-w-4xl mx-auto"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Left Side: Stock Information */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-700 border-b pb-2">
                   Stock Information
@@ -120,7 +119,6 @@ const AddItemToSaleModal = (props) => {
                 )}
               </div>
 
-              {/* Right Side: Input Fields */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-700 border-b pb-2">
                   Sale Details
