@@ -32,6 +32,7 @@ function useEditSale(triggerRefetch) {
       toast.error(
         "Failed to get sale: " + (error.message || "An error occurred.")
       );
+      setIsLoading(true);
     } finally {
       setIsLoading(false);
     }
@@ -48,6 +49,8 @@ function useEditSale(triggerRefetch) {
       toast.error(
         "Failed to update sale: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
+      setIsEditing(false);
     } finally {
       setIsLoading(false);
       setIsEditing(false);

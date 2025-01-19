@@ -31,6 +31,7 @@ function useDeleteCategory(triggerRefetch) {
       toast.error(
         "Failed to delete category: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }

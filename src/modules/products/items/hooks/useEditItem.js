@@ -32,6 +32,7 @@ function useEditItem(triggerRefetch) {
       toast.error(
         "Failed to get item: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
@@ -55,14 +56,11 @@ function useEditItem(triggerRefetch) {
       const newImages = [];
 
       if (itemImages && Array.isArray(itemImages)) {
-
-        console.log(itemImages)
+        console.log(itemImages);
         for (const image of itemImages) {
           if (typeof image === "string" && image.startsWith("http")) {
-
             existingImages.push(image);
           } else if (typeof image === "string" && image.startsWith("blob:")) {
-
             const response = await fetch(image);
             const blob = await response.blob();
             const file = new File([blob], "new-image.png", { type: blob.type });
@@ -89,6 +87,8 @@ function useEditItem(triggerRefetch) {
       toast.error(
         "Failed to update item: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
+      setIsEditing(false);
     } finally {
       setIsLoading(false);
       setIsEditing(false);

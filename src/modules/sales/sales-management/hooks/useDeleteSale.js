@@ -31,6 +31,7 @@ function useDeleteSale(triggerRefetch) {
       toast.error(
         "Failed to delete sale: " + (error.message || "An error occurred.")
       );
+      setIsLoading(true);
     } finally {
       setIsLoading(false);
     }

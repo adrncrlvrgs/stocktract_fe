@@ -32,6 +32,7 @@ function useDeleteItem(triggerRefetch) {
       toast.error(
         "Failed to delete item: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }

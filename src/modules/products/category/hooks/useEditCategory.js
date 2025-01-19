@@ -32,6 +32,7 @@ function useEditCategory(triggerRefetch) {
       toast.error(
         "Failed to get category: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
@@ -48,15 +49,17 @@ function useEditCategory(triggerRefetch) {
       toast.error(
         "Failed to update category: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
+      setIsEditing(false);
     } finally {
       setIsLoading(false);
       setIsEditing(false);
     }
-  }
+  };
   useEffect(() => {
     if (id) getData();
   }, [id]);
-  
+
   return {
     onEdit: editCategory,
     isFetching: isLoading,

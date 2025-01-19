@@ -31,6 +31,7 @@ function useDeleteStock(triggerRefetch) {
       toast.error(
         "Failed to delete stock: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }

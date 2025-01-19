@@ -31,6 +31,7 @@ function useDeleteUser(triggerRefetch) {
       toast.error(
         "Failed to delete user: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }

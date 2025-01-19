@@ -82,6 +82,7 @@ function useCreateItem(triggerRefetch) {
       toast.error(
         "Failed to create item: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     } finally {
       setIsCreating(false);
     }

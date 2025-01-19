@@ -34,6 +34,7 @@ function useCreateSale(triggerRefetch) {
       toast.error(
         "Failed to get item: " + (error.message || "An error occurred.")
       );
+      setIsLoading(true);
     } finally {
       setIsLoading(false);
     }

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getItems } from "api/item";
+import { toast } from "react-toastify";
 import usePagination from "components/Pagination/usePagination";
 import useSearch from "components/SearchBar/useSearch";
 import qs from "qs";
@@ -28,7 +29,10 @@ const useGetItems = () => {
       setItems(data);
       setMeta(meta);
     } catch (err) {
-      console.error("Error fetching items:", err);
+      toast.error(
+        "Failed to fetch category: " + (err.message || "An error occurred.")
+      );
+      setIsLoading(true);
     } finally {
       setIsLoading(false);
     }

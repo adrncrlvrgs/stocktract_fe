@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getStocks } from "api/stocks";
+import { toast } from "react-toastify";
 import usePagination from "components/Pagination/usePagination";
 import useSearch from "components/SearchBar/useSearch";
 import qs from "qs";
@@ -28,7 +29,10 @@ const useGetStocks = () => {
       setStocks(data);
       setMeta(meta);
     } catch (err) {
-      console.error("Error fetching stocks:", err);
+      toast.error(
+        "Failed to Fetch Stocks: " + (err.message || "An error occurred.")
+      );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }

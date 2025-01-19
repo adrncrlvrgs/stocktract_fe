@@ -24,6 +24,7 @@ function useCreateCategory(triggerRefetch) {
       toast.error(
         "Failed to create category: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     }
   };
 

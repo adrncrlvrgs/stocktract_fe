@@ -32,6 +32,7 @@ function useEditUser(triggerRefetch) {
       toast.error(
         "Failed to get user: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
@@ -64,6 +65,8 @@ function useEditUser(triggerRefetch) {
       toast.error(
         "Failed to update post: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
+      setIsEditing(false)
     } finally {
       setIsLoading(false);
       setIsEditing(false);

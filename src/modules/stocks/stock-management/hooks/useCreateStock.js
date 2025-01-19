@@ -11,9 +11,9 @@ function useCreateStock(triggerRefetch) {
 
   const createStock = async (formData) => {
     setIsLoading(true);
-    
+
     try {
-      const stockID = generateStockId()
+      const stockID = generateStockId();
       const stockData = { ...formData, stockID: stockID };
       await addStock(stockData);
       setIsLoading(false);
@@ -24,6 +24,7 @@ function useCreateStock(triggerRefetch) {
       toast.error(
         "Failed to create stock: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     }
   };
 

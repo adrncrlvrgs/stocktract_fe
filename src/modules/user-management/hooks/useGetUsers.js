@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getUsers } from "api/user";
+import { toast } from "react-toastify";
 import usePagination from "components/Pagination/usePagination";
 import useSearch from "components/SearchBar/useSearch";
 import qs from "qs";
@@ -28,7 +29,10 @@ const useGetUsers = () => {
       setUsers(data);
       setMeta(meta);
     } catch (err) {
-      console.error("Error fetching users:", err);
+      toast.error(
+        "Failed to get Users: " + (err.message || "An error occurred.")
+      );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }

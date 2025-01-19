@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { getSales } from "api/sales";
+import { toast } from "react-toastify";
 import usePagination from "components/Pagination/usePagination";
 import useSearch from "components/SearchBar/useSearch";
 import qs from "qs";
@@ -28,7 +29,10 @@ const useGetSales = () => {
       setSales(data);
       setMeta(meta);
     } catch (err) {
-      console.error("Error fetching sales:", err);
+      toast.error(
+        "Failed to fetch Sales: " + (err.message || "An error occurred.")
+      );
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
@@ -44,6 +48,6 @@ const useGetSales = () => {
   }, [queryParams, fetchSales]);
 
   return { sales, isLoading, refetch: fetchSales, meta };
-}
+};
 
 export default useGetSales;

@@ -39,6 +39,7 @@ function useCreateUser(triggerRefetch) {
       toast.error(
         "Failed to create user: " + (error.message || "An error occurred.")
       );
+      setIsLoading(false);
     }
   };
 
