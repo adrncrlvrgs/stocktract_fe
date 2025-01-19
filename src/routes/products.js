@@ -1,6 +1,7 @@
 import Categories from "views/category";
 import Items from "views/products";
 import AddItem from "modules/products/add-item/view";
+import ItemStats from "modules/products/items-stats/view"
 import ItemManagement from "modules/products/items/view";
 const products = [
   {
@@ -24,6 +25,11 @@ const products = [
         component: AddItem,
         access: "private",
         requiredRole: ["admin"],
+      },
+      {
+        path: "/products/stats",
+        component: ItemStats,
+        access: "private",
       },
     ],
   },

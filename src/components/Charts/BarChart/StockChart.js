@@ -6,20 +6,18 @@ import { getStocks } from "api/stocks";
 const StockChart = () => {
   const [stocks, setStocks] = useState([]);
 
-  const pastelColors = [
-    "#A8D8EA", // Pastel Blue
-    "#AAEEDD", // Pastel Green
-    "#FFE6B5", // Pastel Yellow
-    "#FFB6B9", // Pastel Red
-    "#CABBE9", // Pastel Purple
-  ];
+  const pastelColors = ["#7FC7FF", "#7FE5C7", "#FFE082", "#FF9E9E", "#D4A5E9"];
 
   const transformDataForECharts = (stocks) => {
     if (stocks.length === 0) return { categories: [], values: [] };
 
-    const sortedStocks = [...stocks].sort((a, b) => b.totalQuantity - a.totalQuantity);
+    const sortedStocks = [...stocks].sort(
+      (a, b) => b.totalQuantity - a.totalQuantity
+    );
     const top5 = sortedStocks.slice(0, 5);
-    const othersTotal = sortedStocks.slice(5).reduce((sum, stock) => sum + stock.totalQuantity, 0);
+    const othersTotal = sortedStocks
+      .slice(5)
+      .reduce((sum, stock) => sum + stock.totalQuantity, 0);
 
     const categories = top5.map((stock) => stock.item);
     const values = top5.map((stock) => stock.totalQuantity);
@@ -44,6 +42,14 @@ const StockChart = () => {
   const { categories, values } = transformDataForECharts(stocks);
 
   const option = {
+    toolbox: {
+      show: true,
+      feature: {
+        dataView: { show: true, readOnly: true },
+        restore: { show: true },
+        saveAsImage: { show: true },
+      },
+    },
     xAxis: {
       type: "category",
       data: categories,

@@ -1,10 +1,9 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { useAuth } from "context/AuthContext"; 
+import { useAuth } from "context/AuthContext";
 function Index() {
   const location = useLocation();
-  const { user } = useAuth(); 
-
+  const { user } = useAuth();
 
   return (
     <div className="p-6">
@@ -51,6 +50,25 @@ function Index() {
               </Link>
             </li>
           )}
+
+          <li
+            className={`mr-1 ${
+              location.pathname === "/products/stats"
+                ? "border-b-2 border-blue-500"
+                : ""
+            }`}
+          >
+            <Link
+              to="/products/stats"
+              className={`inline-block py-2 px-4 ${
+                location.pathname === "/products/stats"
+                  ? "text-blue-500"
+                  : "text-gray-500 hover:text-blue-500"
+              }`}
+            >
+              Item Stats
+            </Link>
+          </li>
         </ul>
       </nav>
       <div className="">
