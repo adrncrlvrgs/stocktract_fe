@@ -39,7 +39,6 @@ function useEditItem(triggerRefetch) {
   };
 
   const editItem = async (formData) => {
-    console.log(formData);
     setIsEditing(true);
     try {
       const { itemImages, ...rest } = formData;

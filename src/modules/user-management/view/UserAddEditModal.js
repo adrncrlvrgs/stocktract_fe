@@ -79,7 +79,11 @@ const UserAddEditModal = (props) => {
                   className="mb-2"
                 />
               </div>
-              {userID && <div className="flex justify-center text-lg font-bold">{userID}</div>}
+              {userID && (
+                <div className="flex justify-center text-lg font-bold">
+                  {userID}
+                </div>
+              )}
               <div className="border-t border-gray-200"></div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -131,7 +135,11 @@ const UserAddEditModal = (props) => {
                         Status
                       </h3>
                       <FormGroup>
-                        <StatusDropdown name="status" defaultValue={status} />
+                        <StatusDropdown
+                          name="status"
+                          defaultValue={status}
+                          className="w-full p-2 border rounded"
+                        />
                       </FormGroup>
 
                       <div className="border-b border-gray-200"></div>

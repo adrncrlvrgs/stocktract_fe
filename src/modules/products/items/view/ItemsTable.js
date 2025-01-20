@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "components/Table";
+import ItemStatusBadge from "components/Badges/ItemStatusBadge";
 
 const ItemsTable = (props) => {
   const { items, isLoading, toggleEdit, toggleDelete } = props;
@@ -25,15 +26,7 @@ const ItemsTable = (props) => {
             {item.quantity}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <span
-              className={`inline-block px-2 py-1 text-xs font-semibold rounded ${
-                item.status === "Active"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-100 text-red-700"
-              }`}
-            >
-              {item.status}
-            </span>
+            <ItemStatusBadge status={item.status}/>
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <button

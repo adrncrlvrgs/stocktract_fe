@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "components/Table";
+import SaleBadge from "components/Badges/SaleBadge";
 
 const SalesTable = (props) => {
   const { sales, isLoading, toggleEdit, toggleDelete } = props;
@@ -17,23 +18,17 @@ const SalesTable = (props) => {
       {sales?.map((sale) => (
         <tr key={sale.saleID} className="hover:bg-gray-50">
           <td className="px-4 py-2 border-b border-gray-200">{sale.saleID}</td>
-          <td className="px-4 py-2 border-b border-gray-200">{sale.item}</td>
           <td className="px-4 py-2 border-b border-gray-200">
-            {sale.quantity}
+            {sale?.items.item}
+          </td>
+          <td className="px-4 py-2 border-b border-gray-200">
+            {sale.itemQuantity}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             {sale.totalAmount}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <span
-              className={`inline-block px-2 py-1 text-xs font-semibold rounded ${
-                sale.status === "Active"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-red-100 text-red-700"
-              }`}
-            >
-              {sale.status}
-            </span>
+            <SaleBadge status={sale.status} />
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <button

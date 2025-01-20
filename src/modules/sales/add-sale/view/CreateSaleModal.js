@@ -50,7 +50,7 @@ const CreateSaleModal = (props) => {
 
   const handleConfirmation = (confirmed) => {
     if (confirmed) {
-      onSubmit({ itemQuantity, totalPrice });
+      onSubmit({ itemQuantity });
     }
 
     setShowConfirmation(false);

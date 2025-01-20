@@ -5,10 +5,10 @@ import { Input } from "components/Input";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
-import { CategoryDropdown } from "components/Input/Category-dropdown";
 import { ImageUpload } from "components/Input/ImageUpload";
 import FormGroup from "components/Form/FormGroup";
 import { PriceInput } from "components/Input/PriceInput";
+import ItemStatusDropdown from "components/Input/Status-dropdown/ItemStatusDropdown";
 
 const ItemEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -89,10 +89,13 @@ const ItemEditModal = (props) => {
                     <span className="text-gray-600">Supplier:</span>
                     <span className="text-black">{supplier}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Status:</span>
-                    <span className="text-black">{status}</span>
-                  </div>
+                  <FormGroup label="Item Status">
+                    <ItemStatusDropdown
+                      name="status"
+                      defaultValue={status}
+                      className="w-full p-2 border rounded"
+                    />
+                  </FormGroup>
 
                   {/* tags here */}
                 </div>

@@ -45,15 +45,14 @@ function useCreateSale(triggerRefetch) {
 
     try {
       const saleID = generateSaleId();
+      const { ...items } = data;
       const saleData = {
         ...formData,
+        items,
         saleID: saleID,
-        item: data?.item,
-        itemID: data?.itemID,
-        totalAmount: "10.00",
       };
-      // await addSale(saleData);
-      console.log(formData)
+      await addSale(saleData);
+      console.log(formData);
       setIsLoading(false);
       toggleOpen();
       triggerRefetch();
