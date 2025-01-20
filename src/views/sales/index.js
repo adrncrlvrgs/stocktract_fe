@@ -46,6 +46,24 @@ function Index() {
               Add Sale
             </Link>
           </li>
+          <li
+            className={`mr-1 ${
+              location.pathname === "/sales/stats"
+                ? "border-b-2 border-blue-500"
+                : ""
+            }`}
+          >
+            <Link
+              to="/sales/stats"
+              className={`inline-block py-2 px-4 ${
+                location.pathname === "/sales/stats"
+                  ? "text-blue-500"
+                  : "text-gray-500 hover:text-blue-500"
+              }`}
+            >
+              Sale Stats
+            </Link>
+          </li>
         </ul>
       </nav>
       <div className="">
