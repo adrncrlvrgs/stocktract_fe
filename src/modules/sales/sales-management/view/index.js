@@ -26,6 +26,13 @@ function Index() {
           <InputSearch value={search} onChange={handleSearchInputChange} />
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnFocusLoss={false}
+      />
       <SalesTable
         sales={sales}
         isLoading={isLoading}

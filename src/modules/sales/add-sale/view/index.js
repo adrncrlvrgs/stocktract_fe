@@ -9,7 +9,6 @@ import CreateSaleModal from "./CreateSaleModal";
 import PaginationComponent from "components/Pagination/PaginationComponent";
 import { useSearch, InputSearch } from "components/SearchBar";
 
-
 function Index() {
   const { search, handleSearchInputChange } = useSearch();
   const { items, meta, isLoading, refetch } = useGetItems();
@@ -24,23 +23,23 @@ function Index() {
 
   return (
     <div className="">
-      {/* <ToastContainer
+      <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         closeOnClick
-      /> */}
-      {/* <ItemHeader
-        search={search}
-        handleSearchInputChange={handleSearchInputChange}
-        toggleCreate={toggleCreate}
-      /> */}
+        pauseOnFocusLoss={false}
+      />
       <div className="flex justify-between items-center my-4">
         <div className="w-1/4">
           <InputSearch value={search} onChange={handleSearchInputChange} />
         </div>
       </div>
-      <ItemsTable items={items} isLoading={isLoading} toggleCreate={toggleCreate} />
+      <ItemsTable
+        items={items}
+        isLoading={isLoading}
+        toggleCreate={toggleCreate}
+      />
       <CreateSaleModal
         data={data}
         isOpen={isCreatingOpen}

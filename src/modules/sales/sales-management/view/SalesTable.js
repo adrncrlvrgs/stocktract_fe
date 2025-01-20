@@ -25,7 +25,7 @@ const SalesTable = (props) => {
             {sale.itemQuantity}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
-            {sale.totalAmount}
+            ₱ {sale.totalAmount.toLocaleString()}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <SaleBadge status={sale.status} />

@@ -4,6 +4,7 @@ import HandleRoutes from "utils/HandleRoutes";
 import { routes } from "routes";
 import { AuthProvider } from "context/AuthContext";
 import { NavItemsProvider } from "context/NavContext";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (

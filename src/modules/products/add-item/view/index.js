@@ -20,21 +20,17 @@ function Index() {
     isCreatingOpen,
     toggleCreate,
   } = useCreateItem(refetch);
- 
 
   return (
     <div className="">
-      {/* <ToastContainer
+      <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         closeOnClick
-      /> */}
-      {/* <ItemHeader
-        search={search}
-        handleSearchInputChange={handleSearchInputChange}
-        toggleCreate={toggleCreate}
-      /> */}
+        pauseOnFocusLoss={false}
+      />
+      <p className="text-gray-500 text-sm">Add Item here from Stocks</p>
       <div className="flex justify-between items-center my-4">
         <div className="w-1/4">
           <InputSearch value={search} onChange={handleSearchInputChange} />

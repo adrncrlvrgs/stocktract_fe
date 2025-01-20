@@ -7,8 +7,8 @@ function Index() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Products</h1>
-      <p className="text-gray-400">Manage your Products here</p>
+      <h1 className="text-2xl font-bold mb-1">Products-item Management</h1>
+      <p className="text-gray-500 text-sm mb-4">Manage your product items here</p>
       <nav className="mb-6">
         <ul className="flex border-b">
           <li

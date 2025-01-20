@@ -149,7 +149,7 @@ const CreateSaleModal = (props) => {
         <ModalBody>
           <p>Are you sure you want to proceed with this sale?</p>
           <p>
-            <strong>Total Price:</strong> ${totalPrice.toFixed(2)}
+            <strong>Total Price:</strong> ₱{totalPrice.toFixed(2)}
           </p>
         </ModalBody>
         <ModalFooter>

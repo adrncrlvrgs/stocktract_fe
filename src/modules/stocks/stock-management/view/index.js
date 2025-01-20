@@ -26,12 +26,13 @@ function Index() {
 
   return (
     <div className="">
-      {/* <ToastContainer
+      <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         closeOnClick
-      /> */}
+        pauseOnFocusLoss={false}
+      />
 
       <StockHeader
         search={search}

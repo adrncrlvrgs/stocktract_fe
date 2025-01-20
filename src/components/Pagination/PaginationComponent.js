@@ -15,6 +15,42 @@ const PaginationComponent = (props) => {
   } = usePagination();
   const limitOptions = [10, 20, 50];
 
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5; 
+    const ellipsis = "...";
+
+    if (totalPages <= maxVisiblePages) {
+
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      const leftBound = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+      const rightBound = Math.min(totalPages, currentPage + Math.floor(maxVisiblePages / 2));
+
+      if (leftBound > 1) {
+        pages.push(1);
+        if (leftBound > 2) {
+          pages.push(ellipsis);
+        }
+      }
+
+      for (let i = leftBound; i <= rightBound; i++) {
+        pages.push(i);
+      }
+
+      if (rightBound < totalPages) {
+        if (rightBound < totalPages - 1) {
+          pages.push(ellipsis);
+        }
+        pages.push(totalPages);
+      }
+    }
+
+    return pages;
+  };
+
   return (
     <div className="flex justify-between items-center py-2 px-5">
       <div className="flex items-center">
@@ -44,13 +80,19 @@ const PaginationComponent = (props) => {
           />
         </PaginationItem>
 
-        {[...Array(totalPages)].map((_, i) => (
-          <PaginationItem active={i + 1 === currentPage} key={i}>
-            <PaginationLink onClick={() => handlePageChange(i + 1)}>
-              {i + 1}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
+        {getPageNumbers().map((page, index) =>
+          page === "..." ? (
+            <PaginationItem key={index} disabled>
+              <PaginationLink>{page}</PaginationLink>
+            </PaginationItem>
+          ) : (
+            <PaginationItem active={page === currentPage} key={index}>
+              <PaginationLink onClick={() => handlePageChange(page)}>
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          )
+        )}
 
         <PaginationItem disabled={currentPage === totalPages}>
           <PaginationLink
