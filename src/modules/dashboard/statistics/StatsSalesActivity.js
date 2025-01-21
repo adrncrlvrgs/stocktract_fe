@@ -30,15 +30,15 @@ const StatsCard = (props) => {
   const getColor = (title) => {
     switch (title) {
       case "Ordered":
-        return "bg-blue-50 text-blue-800";
+        return "bg-blue-50 text-blue-800 border-blue-200"; // Soft blue
       case "To be Packed":
-        return "bg-purple-50 text-purple-800";
+        return "bg-purple-50 text-purple-800 border-purple-200"; // Soft purple
       case "To be Delivered":
-        return "bg-yellow-50 text-yellow-800";
+        return "bg-orange-50 text-orange-800 border-orange-200"; // Soft orange
       case "Delivered":
-        return "bg-green-50 text-green-800";
+        return "bg-green-50 text-green-800 border-green-200"; // Soft green
       default:
-        return "bg-gray-50 text-gray-800";
+        return "bg-gray-50 text-gray-800 border-gray-200"; // Neutral gray
     }
   };
 
