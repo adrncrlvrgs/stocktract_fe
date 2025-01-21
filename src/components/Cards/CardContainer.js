@@ -5,7 +5,7 @@ const CardContainer = (props) => {
   const { title, content, footer, children, ...rest } = props;
   return (
     <div
-      className="bg-white shadow-md rounded-lg p-6 border border-gray-200"
+      className="bg-white shadow-md rounded-lg p-6 border border-gray-200 h-full"
       {...rest}
     >
       {title && (

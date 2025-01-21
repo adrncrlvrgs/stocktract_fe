@@ -4,10 +4,8 @@ import StatsItemDetails from "components/Charts/DoughnutChart/DoughnutChart";
 
 function StatsProductDetails() {
   return (
-    <div>
-      <CardContainer
-        title={<h2 className="text-2xl text-indigo-600">Inventory Summary</h2>}
-      >
+    <div className="h-full">
+      <CardContainer title={"Product Item Details"}>
         <StatsItemDetails />
       </CardContainer>
     </div>

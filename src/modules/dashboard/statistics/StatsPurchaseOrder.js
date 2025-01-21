@@ -3,7 +3,7 @@ import CardContainer from "components/Cards/CardContainer";
 
 function StatsPurchaseOrder() {
   return (
-    <div>
+    <div className="h-full">
       <CardContainer title={"Purchase Order"}>
         <div className="flex justify-center">
           <div className="text-4xl font-bold text-gray-800 self-center">

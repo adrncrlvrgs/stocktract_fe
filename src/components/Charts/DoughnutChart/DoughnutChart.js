@@ -88,7 +88,7 @@ const StatsItemDetails = () => {
         <ReactECharts
           option={option}
           echarts={echarts}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "150%" }}
         />
       </div>
     </div>
