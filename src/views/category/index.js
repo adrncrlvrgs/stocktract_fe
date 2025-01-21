@@ -60,8 +60,8 @@ function Index() {
       <CategoryDeleteModal
         id={id}
         isOpen={isDeleteOpen}
-        toggleDelete={toggleDelete}
         isLoading={isDeleting}
+        toggleDelete={toggleDelete}
         onDelete={onDelete}
       />
 

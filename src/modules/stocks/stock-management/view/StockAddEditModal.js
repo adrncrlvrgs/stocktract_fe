@@ -9,6 +9,7 @@ import { Spinner } from "components/Spinner";
 import { CategoryDropdown } from "components/Input/Category-dropdown";
 import { StockDropdown } from "components/Input/Status-dropdown";
 import { StockTags } from "components/Input/Tags";
+import { Button } from "components/Button";
 
 const StockAddEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -252,13 +253,13 @@ const StockAddEditModal = (props) => {
 
               {/* Submit Button */}
               <div className="mt-6">
-                <button
+                <Button
                   type="submit"
                   className="w-full py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                   disabled={isFetching || isLoading}
                 >
                   {isLoading ? "Submitting..." : header}
-                </button>
+                </Button>
               </div>
             </div>
           </CustomForm>

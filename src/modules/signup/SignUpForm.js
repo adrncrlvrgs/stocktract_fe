@@ -5,6 +5,7 @@ import { Input } from "components/Input";
 import useSignUp from "./useSignup";
 import { validateForm } from "utils/validate";
 import { AvatarUpload } from "components/Input/AvatarUpload";
+import { Button } from "components/Button";
 
 export default function SignUpForm() {
   const { handleSignUp, error, success } = useSignUp();
@@ -85,12 +86,12 @@ export default function SignUpForm() {
         />
       </div>
       <div className="!mt-8">
-        <button
+        <Button
           type="submit"
           className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
         >
           Sign Up
-        </button>
+        </Button>
       </div>
       <p className="text-sm text-gray-600 mt-4">
         Already have an account?{" "}

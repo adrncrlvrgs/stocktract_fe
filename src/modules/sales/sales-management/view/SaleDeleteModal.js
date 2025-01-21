@@ -9,16 +9,20 @@ const SaleDeleteModal = (props) => {
   return (
     <Modal isOpen={isOpen} toggle={toggleDelete}>
       <ModalHeader toggle={() => toggleDelete()}>Delete Sale</ModalHeader>
-      <ModalBody>Are you sure to delete sale: {id}?</ModalBody>
-      <ModalFooter>
-        <Button 
-          onClick={() => onDelete(id)} 
-          color="danger" 
-          className="p-2"
-        >
-          Delete
-        </Button>
-      </ModalFooter>
+      {isLoading ? (
+        <div className="p-4">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          <ModalBody>Are you sure to delete sale: {id}?</ModalBody>
+          <ModalFooter>
+            <Button onClick={() => onDelete(id)} color="danger" className="p-2">
+              Delete
+            </Button>
+          </ModalFooter>
+        </>
+      )}
     </Modal>
   );
 };

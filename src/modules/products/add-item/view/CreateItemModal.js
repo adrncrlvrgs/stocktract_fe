@@ -8,6 +8,7 @@ import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
 import { ImageUpload } from "components/Input/ImageUpload";
 import { PriceInput } from "components/Input/PriceInput";
+import { Button } from "components/Button";
 
 const AddItemToSaleModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -161,15 +162,14 @@ const AddItemToSaleModal = (props) => {
               </div>
             </div>
 
-            {/* Submit Button */}
             <div className="mt-6">
-              <button
+              <Button
                 type="submit"
                 className="w-full py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                 disabled={isFetching || isLoading}
               >
                 {isLoading ? "Submitting..." : header}
-              </button>
+              </Button>
             </div>
           </CustomForm>
         )}

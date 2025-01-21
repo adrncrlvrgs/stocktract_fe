@@ -3,6 +3,7 @@ import CustomForm from "components/Form/Form";
 import useLogin from "./useLogin";
 import { useAuth } from "context/AuthContext";
 import { Input } from "components/Input";
+import { Button } from "components/Button";
 
 export default function LoginForm() {
   const { login } = useAuth();
@@ -85,12 +86,12 @@ export default function LoginForm() {
       </div>
 
       <div className="!mt-8">
-        <button
+        <Button
           type="submit"
           className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
         >
           Log in
-        </button>
+        </Button>
       </div>
     </CustomForm>
   );

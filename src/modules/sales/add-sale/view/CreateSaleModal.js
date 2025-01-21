@@ -6,6 +6,7 @@ import FormGroup from "components/Form/FormGroup";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader, ModalFooter } from "components/Modal";
 import { Spinner } from "components/Spinner";
+import { Button } from "components/Button";
 
 const CreateSaleModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -127,13 +128,13 @@ const CreateSaleModal = (props) => {
               </div>
             </div>
             <div className="!mt-8">
-              <button
+              <Button
                 type="submit"
                 className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                 disabled={isFetching || isLoading}
               >
                 {isLoading ? "Submitting..." : header}
-              </button>
+              </Button>
             </div>
           </CustomForm>
         )}
@@ -153,18 +154,18 @@ const CreateSaleModal = (props) => {
           </p>
         </ModalBody>
         <ModalFooter>
-          <button
-            className="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded hover:bg-red-700 focus:outline-none"
+          <Button
+            className="px-4 py-2 pl-1 text-sm font-semibold text-white bg-red-600 rounded hover:bg-red-700 focus:outline-none"
             onClick={() => handleConfirmation(false)}
           >
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             className="px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none"
             onClick={() => handleConfirmation(true)}
           >
             Confirm
-          </button>
+          </Button>
         </ModalFooter>
       </Modal>
     </Modal>

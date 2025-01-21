@@ -9,6 +9,7 @@ import { ImageUpload } from "components/Input/ImageUpload";
 import FormGroup from "components/Form/FormGroup";
 import { PriceInput } from "components/Input/PriceInput";
 import ItemStatusDropdown from "components/Input/Status-dropdown/ItemStatusDropdown";
+import { Button } from "components/Button";
 
 const ItemEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -138,13 +139,13 @@ const ItemEditModal = (props) => {
               </div>
             </div>
             <div className="!mt-8">
-              <button
+              <Button
                 type="submit"
                 className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                 disabled={isFetching || isLoading}
               >
                 {isLoading ? "Submitting..." : header}
-              </button>
+              </Button>
             </div>
           </CustomForm>
         )}

@@ -4,6 +4,7 @@ import FormGroup from "components/Form/FormGroup";
 import { SaleDropdown } from "components/Input/Status-dropdown";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
+import { Button } from "components/Button";
 
 const SaleEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
@@ -73,13 +74,13 @@ const SaleEditModal = (props) => {
             </div>
 
             <div className="!mt-5">
-              <button
+              <Button
                 type="submit"
                 className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
                 disabled={isFetching || isLoading}
               >
                 {isLoading ? "Submitting..." : header}
-              </button>
+              </Button>
             </div>
           </CustomForm>
         )}

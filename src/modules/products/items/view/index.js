@@ -52,8 +52,8 @@ function Index() {
       <ItemDeleteModal
         id={id}
         isOpen={isDeleteOpen}
-        toggleDelete={toggleDelete}
         isLoading={isDeleting}
+        toggleDelete={toggleDelete}
         onDelete={onDelete}
       />
       <div className="mt-5">
