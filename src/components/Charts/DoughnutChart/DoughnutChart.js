@@ -1,121 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
+import { getItems } from "api/item";
 
-// const DoughnutChart = () => {
-//   // const option = {
-//   //   // title: {
-//   //   //   text: 'Doughnut Chart with Rounded Corners',
-//   //   //   subtext: 'Example with React ECharts',
-//   //   //   left: 'center',
-//   //   // },
-//   //   tooltip: {
-//   //     trigger: "item",
-//   //     formatter: "{a} <br/>{b}: {c} ({d}%)",
-//   //   },
-//   //   series: [
-//   //     {
-//   //       name: "Doughnut Chart",
-//   //       type: "pie",
-//   //       radius: ["40%", "70%"], // Set inner and outer radius to create a doughnut shape
-//   //       avoidLabelOverlap: false,
-//   //       itemStyle: {
-//   //         borderRadius: 10, // Rounded corners for the slices
-//   //       },
-//   //       label: {
-//   //         show: false,
-//   //       },
-//   //       emphasis: {
-//   //         label: {
-//   //           show: true,
-//   //           fontSize: "30",
-//   //           fontWeight: "bold",
-//   //         },
-//   //       },
-//   //       data: [
-//   //         { value: 335, name: "A" },
-//   //         { value: 310, name: "B" },
-//   //         { value: 234, name: "C" },
-//   //         { value: 135, name: "D" },
-//   //         { value: 1548, name: "E" },
-//   //       ],
-//   //     },
-//   //   ],
-//   // };
+const StatsItemDetails = () => {
+  const [items, setItems] = useState([]);
 
-//   const option = {
-//     tooltip: {
-//       trigger: "item",
-//     },
-//     legend: {
-//       top: "5%",
-//       left: "center",
-//     },
-//     series: [
-//       {
-//         name: "Access From",
-//         type: "pie",
-//         radius: ["40%", "70%"],
-//         avoidLabelOverlap: false,
-//         itemStyle: {
-//           borderRadius: 10,
-//         },
-//         label: {
-//           show: false,
-//           position: "center",
-//         },
-//         emphasis: {
-//           label: {
-//             show: true,
-//             fontSize: 40,
-//             fontWeight: "bold",
-//           },
-//         },
-//         labelLine: {
-//           show: false,
-//         },
-//         data: [
-//           { value: 1048, name: "Search Engine" },
-//           { value: 735, name: "Direct" },
-//           { value: 580, name: "Email" },
-//           { value: 484, name: "Union Ads" },
-//           { value: 300, name: "Video Ads" },
-//         ],
-//       },
-//     ],
-//   };
+  const pastelColors = ["#7FC7FF", "#7FE5C7", "#FFE082", "#FF9E9E", "#D4A5E9"];
 
-//   return (
-//     <div style={{ width: "100px", height: "100px" }}>
-//       <ReactECharts
-//         option={option}
-//         echarts={echarts}
-//         style={{ display: "flex" }}
-//       />
-//     </div>
-//   );
-// };
+  const transformDataForECharts = (items) => {
+    if (items.length === 0) return [];
 
-// export default DoughnutChart;
+    const sortedItems = [...items].sort((a, b) => b.quantity - a.quantity);
+    const top5 = sortedItems.slice(0, 5);
+    const othersTotal = sortedItems
+      .slice(5)
+      .reduce((sum, item) => sum + item.quantity, 0);
 
-const DoughnutChart = () => {
+    const data = top5.map((item) => ({
+      value: item.quantity,
+      name: item.item,
+    }));
+
+    if (othersTotal > 0) {
+      data.push({ value: othersTotal, name: "Others" });
+    }
+
+    return data;
+  };
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const { data } = await getItems();
+      setItems(data);
+    };
+
+    fetchItems();
+  }, []);
+
+  const data = transformDataForECharts(items);
+
   const option = {
     tooltip: {
       trigger: "item",
     },
     legend: {
-      orient: "vertical", 
-      top: "center", 
-      left: "start", 
+      orient: "vertical",
+      top: "center",
+      left: "start",
     },
     series: [
       {
-        name: "Access From",
         type: "pie",
         radius: ["40%", "70%"],
         avoidLabelOverlap: true,
         itemStyle: {
           borderRadius: 10,
+          color: (params) => {
+            return params.name === "Others"
+              ? "#CCCCCC"
+              : pastelColors[params.dataIndex % pastelColors.length];
+          },
         },
         label: {
           show: false,
@@ -131,16 +76,9 @@ const DoughnutChart = () => {
         labelLine: {
           show: false,
         },
-        data: [
-          { value: 1048, name: "Search Engine" },
-          { value: 735, name: "Direct" },
-          { value: 580, name: "Email" },
-          { value: 484, name: "Union Ads" },
-          { value: 300, name: "Video Ads" },
-        ],
+        data: data,
         left: "20%",
       },
-      
     ],
   };
 
@@ -157,4 +95,4 @@ const DoughnutChart = () => {
   );
 };
 
-export default DoughnutChart;
+export default StatsItemDetails;
