@@ -9,7 +9,6 @@ function StatsTopSellingItems() {
     const fetchTopSellingItems = async () => {
       const { data } = await getSales();
 
-      // Aggregate sales data by item
       const itemSalesMap = new Map();
       data.forEach((sale) => {
         const item = sale.items;

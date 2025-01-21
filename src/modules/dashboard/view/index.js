@@ -4,6 +4,7 @@ import StatsInventorySummary from "../statistics/StatsInventorySummary";
 import StatsProductDetails from "../statistics/StatsProductDetails";
 import StatsTopSellingItems from "../statistics/StatsTopSellingItems";
 import StatsPurchaseOrder from "../statistics/StatsPurchaseOrder";
+import StocksSummary from "../statistics/StocksSummary";
 
 function Index() {
   return (
@@ -32,7 +33,7 @@ function Index() {
             <StatsPurchaseOrder />
           </div>
           <div className="w-full sm:w-2/3">
-            <StatsTopSellingItems />
+            <StocksSummary />
           </div>
         </div>
       </div>

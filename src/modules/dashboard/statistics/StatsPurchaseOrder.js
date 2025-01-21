@@ -10,7 +10,6 @@ function StatsPurchaseOrder() {
     const fetchTotalRevenue = async () => {
       const { data } = await getSales();
 
-      // Filter for delivered orders and calculate total revenue
       const deliveredOrders = data.filter(
         (sale) => sale.status === "Delivered"
       );
