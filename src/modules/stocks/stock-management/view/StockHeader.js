@@ -8,7 +8,7 @@ const StockHeader = ({ search, handleSearchInputChange, toggleCreate }) => {
     <div className="mb-2">
       <div className="flex justify-between items-center my-4">
         <div className="w-1/4">
-          <InputSearch value={search} onChange={handleSearchInputChange} />
+          <InputSearch value={search} onChange={handleSearchInputChange} placeholder="Search Stock by name and Id.." />
         </div>
         <StockCreateAction toggle={toggleCreate} />
       </div>

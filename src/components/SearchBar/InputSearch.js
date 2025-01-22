@@ -1,6 +1,5 @@
 import React from "react";
 import { Input } from "components/Input";
-import useSearch from "./useSearch";
 import { cn } from "utils/cn";
 import { IconFA } from "components/Icons";
 

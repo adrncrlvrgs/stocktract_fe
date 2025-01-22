@@ -23,7 +23,7 @@ function Index() {
     <div className="">
       <div className="flex justify-between items-center my-4">
         <div className="w-1/4">
-          <InputSearch value={search} onChange={handleSearchInputChange} />
+          <InputSearch value={search} onChange={handleSearchInputChange} placeholder="Search Sale by name and Id.." />
         </div>
       </div>
       <ToastContainer

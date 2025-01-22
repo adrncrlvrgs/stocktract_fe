@@ -7,13 +7,6 @@ const LogsHeader = () => {
       <p className="text-gray-500 text-sm mb-4">
         View activity logs here.
       </p>
-
-      {/* <div className="flex justify-between items-center my-4">
-        <div className="w-1/4">
-          <InputSearch value={search} onChange={handleSearchInputChange} />
-        </div>
-        <CategoryCreateAction toggle={toggleCreate} />
-      </div> */}
     </div>
   );
 };

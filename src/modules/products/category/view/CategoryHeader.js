@@ -14,7 +14,7 @@ const CategoryHeader = ({ search, handleSearchInputChange, toggleCreate }) => {
 
       <div className="flex justify-between items-center my-4">
         <div className="w-1/4">
-          <InputSearch value={search} onChange={handleSearchInputChange} />
+          <InputSearch value={search} onChange={handleSearchInputChange} placeholder="Search Category by name and Id.." />
         </div>
         <CategoryCreateAction toggle={toggleCreate} />
       </div>
