@@ -23,6 +23,8 @@ import {
   faThLarge,
   faTable,
   faTableCells,
+  faChartColumn,
+  faChartBar,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -45,7 +47,9 @@ library.add(
   faClockRotateLeft,
   faThLarge,
   faTable,
-  faTableCells
+  faTableCells,
+  faChartColumn,
+  faChartBar
 );
 
 class IconFA extends React.Component {

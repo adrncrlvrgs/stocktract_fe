@@ -22,7 +22,7 @@ export const navItems = {
       stocksReport: {
         label: "Stocks Report",
         path: "/stocks/report",
-        icon: "chart-line",
+        icon: "chart-column",
       },
     },
   },
@@ -55,14 +55,14 @@ export const navItems = {
       salesReport: {
         label: "Sales Report",
         path: "/sales/report",
-        icon: "shopping-bag",
+        icon: "chart-bar",
       },
     },
   },
   activityLogs: {
     label: "Activity Logs",
     path: "/activity-logs",
-    icon: "list-check",
+    icon: "list",
     requiredRole: "admin",
   },
 };

@@ -4,6 +4,7 @@ import { useAuth } from "context/AuthContext";
 import { useNavItems } from "context/NavContext";
 import { Link, useLocation } from "react-router-dom";
 import { Spinner } from "components/Spinner";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -25,10 +26,11 @@ const Sidebar = () => {
   if (loading) return <Spinner />;
 
   return (
-    <aside
-      className={`${
-        isOpen ? "w-64" : "w-16"
-      } bg-gray-900 text-white h-screen flex flex-col transition-all duration-500 shadow-lg`}
+    <motion.aside
+      initial={{ width: isOpen ? 256 : 64 }}
+      animate={{ width: isOpen ? 256 : 64 }}
+      transition={{ duration: 0.3 }}
+      className={`bg-gray-900 text-white overflow-y-auto overflow-x-hidden flex flex-col shadow-lg`}
     >
       <div className="flex justify-between items-center p-4 border-b border-gray-700">
         <button onClick={toggleSidebar} aria-label="Toggle Sidebar">
@@ -39,13 +41,15 @@ const Sidebar = () => {
         </button>
       </div>
 
-      <nav className="flex-1 overflow-y-auto">
+      <nav className="flex-1">
         <ul className="space-y-2">
           {Object.entries(navItems).map(([key, item]) => (
             <React.Fragment key={key}>
               {item.subItems ? (
                 <>
-                  <li
+                  <motion.li
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     className={`group p-4 flex items-center space-x-4 cursor-pointer transition-colors duration-200 hover:bg-gray-800 ${
                       Object.values(item.subItems).some((subItem) =>
                         isActive(subItem.path)
@@ -74,35 +78,47 @@ const Sidebar = () => {
                         className="text-gray-400 group-hover:text-white transition-transform"
                       />
                     )}
-                  </li>
+                  </motion.li>
 
-                  {openAccordion === key && isOpen && (
-                    <ul
-                      id={`accordion-${key}`}
-                      className="pl-8 mt-2 space-y-2 border-l border-gray-700"
-                    >
-                      {Object.entries(item.subItems).map(
-                        ([subKey, subItem]) => (
-                          <li key={subKey}>
-                            <Link
-                              to={subItem.path}
-                              className={`p-3 flex items-center space-x-4 rounded-lg transition-colors duration-200 ${
-                                isActive(subItem.path)
-                                  ? "bg-gray-700 text-white"
-                                  : "text-gray-400 hover:text-white hover:bg-gray-800"
-                              }`}
+                  <AnimatePresence>
+                    {openAccordion === key && isOpen && (
+                      <motion.ul
+                        id={`accordion-${key}`}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="pl-8 mt-2 space-y-2 border-l border-gray-700"
+                      >
+                        {Object.entries(item.subItems).map(
+                          ([subKey, subItem]) => (
+                            <motion.li
+                              key={subKey}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
                             >
-                              <IconFA name={subItem.icon} />
-                              <span>{subItem.label}</span>
-                            </Link>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  )}
+                              <Link
+                                to={subItem.path}
+                                className={`p-3 flex items-center space-x-4 rounded-lg transition-colors duration-200 ${
+                                  isActive(subItem.path)
+                                    ? "bg-gray-700 text-white"
+                                    : "text-gray-400 hover:text-white hover:bg-gray-800"
+                                }`}
+                              >
+                                <IconFA name={subItem.icon} />
+                                <span>{subItem.label}</span>
+                              </Link>
+                            </motion.li>
+                          )
+                        )}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
                 </>
               ) : (
-                <li
+                <motion.li
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   className={`group p-4 hover:bg-gray-800 flex items-center space-x-4 ${
                     isActive(item.path) ? "bg-gray-800 text-white" : ""
                   }`}
@@ -118,13 +134,15 @@ const Sidebar = () => {
                     <IconFA name={item.icon} />
                     {isOpen && <span>{item.label}</span>}
                   </Link>
-                </li>
+                </motion.li>
               )}
             </React.Fragment>
           ))}
 
           {/* Logout Option */}
-          <li
+          <motion.li
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             className="p-4 hover:bg-gray-800 flex items-center space-x-4 cursor-pointer group"
             onClick={logout}
           >
@@ -137,10 +155,10 @@ const Sidebar = () => {
                 Logout
               </span>
             )}
-          </li>
+          </motion.li>
         </ul>
       </nav>
-    </aside>
+    </motion.aside>
   );
 };
 

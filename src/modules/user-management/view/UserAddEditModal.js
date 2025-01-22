@@ -18,7 +18,6 @@ const UserAddEditModal = (props) => {
     lastName,
     status,
     email,
-    role,
     password,
     profileImageUrl,
   } = data || {};
@@ -32,11 +31,11 @@ const UserAddEditModal = (props) => {
       .email("Email is invalid.")
       .required("Email is required."),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters long.")
-      .when("isNewUser", {
-        is: true,
-        then: Yup.string().required("Password is required."),
-      }),
+      .min(8, "Password must be at least 8 characters long.")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z@$!%*?&]{8,}$/,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one special character."
+      ),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .when("isNewUser", {

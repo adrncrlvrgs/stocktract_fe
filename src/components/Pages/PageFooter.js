@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function PageFooter() {
-  return (
-    <div>
-      test
-    </div>
-  )
+  return <div className="bg-slate-500">Footer</div>;
 }
 
-export default PageFooter
+export default PageFooter;
