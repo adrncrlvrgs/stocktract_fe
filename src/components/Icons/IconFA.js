@@ -19,7 +19,10 @@ import {
   faDolly,
   faTruckRampBox,
   faListCheck,
-  faClockRotateLeft
+  faClockRotateLeft,
+  faThLarge,
+  faTable,
+  faTableCells,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -39,7 +42,10 @@ library.add(
   faDolly,
   faTruckRampBox,
   faListCheck,
-  faClockRotateLeft
+  faClockRotateLeft,
+  faThLarge,
+  faTable,
+  faTableCells
 );
 
 class IconFA extends React.Component {

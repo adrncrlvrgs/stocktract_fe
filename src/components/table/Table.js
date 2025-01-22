@@ -24,7 +24,6 @@ function Table(props) {
       ) : (
         <div className="text-center py-6">
           <div className="text-gray-400 mb-2">
-            {/* Icon for empty state */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-12 w-12 mx-auto"

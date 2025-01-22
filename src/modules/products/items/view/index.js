@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import useGetItems from "../hooks/useGetItems";
@@ -21,6 +21,12 @@ function Index() {
   const { id, onDelete, isDeleting, isDeleteOpen, toggleDelete } =
     useDeleteItem(refetch);
 
+  const [viewMode, setViewMode] = useState("table");
+
+  const toggleViewMode = () => {
+    setViewMode(viewMode === "table" ? "grid" : "table");
+  };
+
   return (
     <div className="">
       <ToastContainer
@@ -31,10 +37,13 @@ function Index() {
         pauseOnFocusLoss={false}
       />
       <ItemHeader
+        viewMode={viewMode}
+        toggleViewMode={toggleViewMode}
         search={search}
         handleSearchInputChange={handleSearchInputChange}
       />
       <ItemsTable
+        viewMode={viewMode}
         items={items}
         isLoading={isLoading}
         toggleEdit={toggleEdit}
