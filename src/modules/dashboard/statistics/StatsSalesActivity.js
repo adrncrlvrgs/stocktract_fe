@@ -11,7 +11,7 @@ export const SALE_TYPE = {
 };
 
 const StatsCard = (props) => {
-  const { number, title, className, key } = props;
+  const { number, title, className, index } = props;
 
   const getEmoji = (title) => {
     switch (title) {
@@ -31,21 +31,21 @@ const StatsCard = (props) => {
   const getColor = (title) => {
     switch (title) {
       case "Ordered":
-        return "bg-blue-50 text-blue-800 border-blue-200"; // Soft blue
+        return "bg-blue-50 text-blue-800 border-blue-200"; 
       case "To be Packed":
-        return "bg-purple-50 text-purple-800 border-purple-200"; // Soft purple
+        return "bg-purple-50 text-purple-800 border-purple-200"; 
       case "To be Delivered":
-        return "bg-orange-50 text-orange-800 border-orange-200"; // Soft orange
+        return "bg-orange-50 text-orange-800 border-orange-200"; 
       case "Delivered":
-        return "bg-green-50 text-green-800 border-green-200"; // Soft green
+        return "bg-green-50 text-green-800 border-green-200"; 
       default:
-        return "bg-gray-50 text-gray-800 border-gray-200"; // Neutral gray
+        return "bg-gray-50 text-gray-800 border-gray-200";
     }
   };
 
   return (
     <div
-      key={key}
+      key={index}
       className={`flex flex-col items-center justify-center w-48 h-48 shadow-lg rounded-lg p-6 sm:w-72 ${getColor(
         title
       )} ${className} transition-all hover:shadow-lg hover:transform hover:-translate-y-1`}
@@ -98,6 +98,7 @@ const SalesActivity = () => {
         {stats.map((stat, index) => (
           <StatsCard
             key={index}
+            index={index}
             number={stat.number}
             title={stat.title}
             className="bg-blue-50 flex-shrink-0 lg:flex-shrink "

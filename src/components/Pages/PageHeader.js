@@ -32,20 +32,6 @@ export default function PageHeader() {
 
   return (
     <header className="relative w-full">
-      {/* Background Texture */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-20 -left-10 w-96 h-96 bg-blue-500 opacity-20 rounded-full"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ repeat: Infinity, duration: 5 }}
-        />
-        <motion.div
-          className="absolute -bottom-10 -right-20 w-80 h-80 bg-indigo-500 opacity-30 rounded-full"
-          animate={{ scale: [1, 1.3, 1] }}
-          transition={{ repeat: Infinity, duration: 6 }}
-        />
-      </div>
-
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

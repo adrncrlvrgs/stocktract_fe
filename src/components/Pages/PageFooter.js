@@ -2,36 +2,35 @@ import React from "react";
 import { motion } from "framer-motion";
 
 function PageFooter() {
-  const footerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
-
   return (
     <motion.footer
-      className="bg-gradient-to-r from-slate-700 to-slate-800 text-white py-4 shadow-lg"
+      className="flex justify-center items-center bg-gradient-to-r from-slate-700 to-slate-800 text-white py-4 shadow-lg"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      variants={footerVariants}
     >
-      <div className="container mx-auto px-4">
+      <div className="w-full px-2">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
           <motion.div
-            className="text-center md:text-left"
+            className="text-center sm:text-left"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             <h3 className="text-lg font-bold">Stocktract</h3>
-            <p className="text-sm text-slate-300">Inventory Management System</p>
+            <p className="text-sm text-slate-300">
+              Inventory Management System
+            </p>
           </motion.div>
 
           <motion.div
-            className="text-center"
+            className="text-center mt-4 pt-4 border-b border-slate-600"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <h3 className="text-lg font-bold">Developed by</h3>
+            <p className="text-sm text-slate-300">
+              &copy; {new Date().getFullYear()} Stocktract. All Rights Reserved.
+            </p>
+            <p className="text-sm font-bold">Developed by</p>
             <p className="text-sm text-slate-300">Adrian Vargas</p>
           </motion.div>
 
@@ -85,16 +84,6 @@ function PageFooter() {
             </a>
           </motion.div>
         </div>
-
-        <motion.div
-          className="text-center mt-4 pt-4 border-t border-slate-600"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <p className="text-sm text-slate-300">
-            &copy; {new Date().getFullYear()} Stocktract. All Rights Reserved.
-          </p>
-        </motion.div>
       </div>
     </motion.footer>
   );
