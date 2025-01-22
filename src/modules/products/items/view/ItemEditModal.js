@@ -98,7 +98,19 @@ const ItemEditModal = (props) => {
                     />
                   </FormGroup>
 
-                  {/* tags here */}
+                  <label className="block text-xs font-semibold text-gray-500">
+                    Tags:
+                  </label>
+                  <div className="flex flex-wrap gap-2 mb-2 ">
+                    {tags?.map((tag, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded"
+                      >
+                        {tag}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className="space-y-4">
@@ -133,7 +145,7 @@ const ItemEditModal = (props) => {
                     multiple={true}
                     maxImages={5}
                     initialImages={imageUrls}
-                    onChange={(updatedImages) => setItemImages(updatedImages)} // Update images state
+                    onChange={(updatedImages) => setItemImages(updatedImages)}
                   />
                 </FormGroup>
               </div>

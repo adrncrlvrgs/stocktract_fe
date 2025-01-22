@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Input from "../Input";
+import { Button } from "components/Button";
 
 const StockTags = ({
   name,
@@ -52,13 +53,13 @@ const StockTags = ({
             className="flex items-center bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded"
           >
             {tag}
-            <button
+            <Button
               type="button"
               className="ml-2 text-blue-800 hover:text-blue-900"
               onClick={() => removeTag(index)}
             >
               &times;
-            </button>
+            </Button>
           </div>
         ))}
       </div>
