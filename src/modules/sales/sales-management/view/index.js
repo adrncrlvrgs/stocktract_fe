@@ -32,6 +32,7 @@ function Index() {
         hideProgressBar={false}
         closeOnClick
         pauseOnFocusLoss={false}
+        pauseOnHover={false}
       />
       <SalesTable
         sales={sales}

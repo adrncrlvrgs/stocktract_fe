@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import SalesActivity from "../statistics/StatsSalesActivity";
 import StatsInventorySummary from "../statistics/StatsInventorySummary";
 import StatsProductDetails from "../statistics/StatsProductDetails";
@@ -9,6 +10,14 @@ import StocksSummary from "../statistics/StocksSummary";
 function Index() {
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnFocusLoss={false}
+        pauseOnHover={false}
+      />
       <div className="flex w-full border-b border-gray-300">
         <div className="w-full sm:w-3/5 border-r border-gray-300">
           <SalesActivity />

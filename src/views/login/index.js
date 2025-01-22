@@ -1,9 +1,18 @@
 import React from "react";
 import LoginForm from "../../modules/login/LoginForm";
+import { ToastContainer } from "react-toastify";
 
 export default function index() {
   return (
     <React.Fragment>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnFocusLoss={false}
+        pauseOnHover={false}
+      />
       <div className="font-[sans-serif]">
         <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
           <div className="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">

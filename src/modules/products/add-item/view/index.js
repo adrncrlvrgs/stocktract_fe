@@ -28,6 +28,7 @@ function Index() {
         autoClose={2000}
         hideProgressBar={false}
         closeOnClick
+        pauseOnHover={false}
         pauseOnFocusLoss={false}
       />
       <p className="text-gray-500 text-sm">Add Item here from Stocks</p>

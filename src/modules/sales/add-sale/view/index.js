@@ -28,6 +28,7 @@ function Index() {
         autoClose={2000}
         hideProgressBar={false}
         closeOnClick
+        pauseOnHover={false}
         pauseOnFocusLoss={false}
       />
       <div className="flex justify-between items-center my-4">

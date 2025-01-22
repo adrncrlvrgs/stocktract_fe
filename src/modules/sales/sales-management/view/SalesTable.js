@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "components/Table";
 import SaleBadge from "components/Badges/SaleBadge";
+import moment from "moment";
 
 const SalesTable = (props) => {
   const { sales, isLoading, toggleEdit, toggleDelete } = props;
@@ -10,6 +11,7 @@ const SalesTable = (props) => {
     "Quantity",
     "Total Amount",
     "Status",
+    "Added At",
     "Actions",
   ];
 
@@ -29,6 +31,14 @@ const SalesTable = (props) => {
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <SaleBadge status={sale.status} />
+          </td>
+          <td className="px-4 py-2 border-b border-gray-200">
+            {moment(
+              new Date(
+                sale?.createdAt?._seconds * 1000 +
+                  sale?.createdAt?._nanoseconds / 1e6
+              )
+            ).format("MM-DD-YYYY")}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <button

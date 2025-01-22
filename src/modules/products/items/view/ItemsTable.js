@@ -3,6 +3,7 @@ import { Table } from "components/Table";
 import ItemStatusBadge from "components/Badges/ItemStatusBadge";
 import { Carousel } from "components/Carousel";
 import { Spinner } from "components/Spinner";
+import moment from "moment";
 
 const ItemsTable = (props) => {
   const { items, isLoading, toggleEdit, toggleDelete, viewMode } = props;
@@ -13,6 +14,7 @@ const ItemsTable = (props) => {
     "Category",
     "Quantity",
     "Status",
+    "Added At",
     "Actions",
   ];
 
@@ -36,6 +38,14 @@ const ItemsTable = (props) => {
               </td>
               <td className="px-4 py-2 border-b border-gray-200">
                 <ItemStatusBadge status={item.status} />
+              </td>
+              <td className="px-4 py-2 border-b border-gray-200">
+                {moment(
+                  new Date(
+                    item?.createdAt?._seconds * 1000 +
+                      item?.createdAt?._nanoseconds / 1e6
+                  )
+                ).format("MM-DD-YYYY")}
               </td>
               <td className="px-4 py-2 border-b border-gray-200">
                 <button
@@ -76,7 +86,7 @@ const ItemsTable = (props) => {
                   </span>
                 ))}
               </div>
-              <p className="text-gray-800 font-bold mt-2">${item.price}</p>
+              <p className="text-gray-800 font-bold mt-2">₱ {item.price}</p>
               <div className="flex justify-between items-center mt-2">
                 <ItemStatusBadge status={item.status} />
                 <span className="text-sm text-gray-500">

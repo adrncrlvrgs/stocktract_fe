@@ -35,6 +35,7 @@ function Index() {
         hideProgressBar={false}
         closeOnClick
         pauseOnFocusLoss={false}
+        pauseOnHover={false}
       />
       <ItemHeader
         viewMode={viewMode}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "components/Table";
+import moment from "moment";
 
 const LogsTable = (props) => {
   const { logs, isLoading } = props;
@@ -13,9 +14,14 @@ const LogsTable = (props) => {
           <td className="px-4 py-2 border-b border-gray-200">{log.userID}</td>
           <td className="px-4 py-2 border-b border-gray-200">{log.action}</td>
           <td className="px-4 py-2 border-b border-gray-200">{log.details}</td>
-          {/* <td className="px-4 py-2 border-b border-gray-200">
-            {log.timestamp}
-          </td> */}
+          <td className="px-4 py-2 border-b border-gray-200">
+            {moment(
+              new Date(
+                log?.timestamp?._seconds * 1000 +
+                  log?.timestamp?._nanoseconds / 1e6
+              )
+            ).format("MM-DD-YYYY")}
+          </td>
         </tr>
       ))}
     </Table>

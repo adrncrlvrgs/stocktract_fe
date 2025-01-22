@@ -31,6 +31,7 @@ function Index() {
         hideProgressBar={false}
         closeOnClick
         pauseOnFocusLoss={false}
+        pauseOnHover={false}
       />
       <CategoryHeader
         search={search}

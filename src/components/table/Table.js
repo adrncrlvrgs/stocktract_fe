@@ -13,7 +13,7 @@ function Table(props) {
           <thead className="bg-gray-50 text-gray-600 text-sm uppercase font-semibold">
             <tr>
               {heads.map((head, key) => (
-                <th key={key} className="px-6 py-4 border-b border-gray-200">
+                <th key={key} className="px-5 py-4 border-b border-gray-200">
                   {head}
                 </th>
               ))}

@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "components/Table";
 import { Avatar } from "components/Avatar";
 import StatusBadge from "components/Badges/StatusBadge";
+import moment from "moment";
 
 const UsersTable = (props) => {
   const { users, isLoading, toggleEdit, toggleDelete } = props;
@@ -12,8 +13,10 @@ const UsersTable = (props) => {
     "Role",
     "Email",
     "Status",
+    "Created At",
     "Actions",
   ];
+
   return (
     <Table heads={tableHeaders} isLoading={isLoading}>
       {users?.map((user) => (
@@ -33,6 +36,14 @@ const UsersTable = (props) => {
           <td className="px-4 py-2 border-b border-gray-200">{user.email}</td>
           <td className="px-4 py-2 border-b border-gray-200">
             <StatusBadge status={user.status} />
+          </td>
+          <td className="px-4 py-2 border-b border-gray-200">
+            {moment(
+              new Date(
+                user?.createdAt?._seconds * 1000 +
+                  user?.createdAt?._nanoseconds / 1e6
+              )
+            ).format("MM-DD-YYYY")}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <button
