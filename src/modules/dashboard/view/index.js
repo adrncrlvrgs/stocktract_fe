@@ -18,7 +18,7 @@ function Index() {
         pauseOnFocusLoss={false}
         pauseOnHover={false}
       />
-      <div className="flex w-full border-b border-gray-300">
+      <div className="flex flex-col sm:flex-row w-full border-b border-gray-300">
         <div className="w-full sm:w-3/5 border-r border-gray-300">
           <SalesActivity />
         </div>

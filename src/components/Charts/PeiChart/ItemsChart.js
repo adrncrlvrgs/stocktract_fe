@@ -52,6 +52,8 @@ const ItemsChart = () => {
 
   const data = transformDataForECharts(items);
 
+  const isMobile = window.innerWidth <= 768; // Check if the screen is mobile-sized
+
   const option = {
     tooltip: {
       trigger: "item",
@@ -64,11 +66,11 @@ const ItemsChart = () => {
             <hr style="border: 0; border-top: 1px solid #eee; margin: 8px 0;">
             <strong style="font-size: 14px;">Items:</strong><br/>
         `;
-      
+
         const maxItemsToShow = 3;
         const itemsToShow = items.slice(0, maxItemsToShow);
         const remainingItemsCount = items.length - maxItemsToShow;
-      
+
         itemsToShow.forEach((item) => {
           tooltipText += `
             <div style="margin-bottom: 8px;">
@@ -80,8 +82,7 @@ const ItemsChart = () => {
             </div>
           `;
         });
-      
-        // Add "Others..." if there are more items
+
         if (remainingItemsCount > 0) {
           tooltipText += `
             <div style="color: #666; font-size: 12px;">
@@ -89,18 +90,24 @@ const ItemsChart = () => {
             </div>
           `;
         }
-      
+
         tooltipText += `</div>`;
-      
+
         return tooltipText;
       },
     },
     legend: {
-      bottom: "10%",
-      left: "center",
+      orient: isMobile ? "horizontal" : "vertical", 
+      bottom: isMobile ? "10%" : "auto",
+      right: isMobile ? "auto" : "5%",
+      top: isMobile ? "auto" : "20%", 
       textStyle: {
         color: "#666",
+        fontSize: isMobile ? "12px" : "14px", 
       },
+      itemWidth: isMobile ? 12 : 16, 
+      itemHeight: isMobile ? 12 : 16,
+      itemGap: isMobile ? 8 : 12, 
     },
     toolbox: {
       show: true,
@@ -117,7 +124,7 @@ const ItemsChart = () => {
       {
         name: "Items by Category",
         type: "pie",
-        radius: [30, 150],
+        radius: ["30%", "70%"],
         center: ["50%", "50%"],
         roseType: "area",
         data: data,
@@ -128,19 +135,20 @@ const ItemsChart = () => {
       left: "center",
       textStyle: {
         color: "#333",
-        fontSize: 18,
+        fontSize: isMobile ? "1em" : "1.2em", // Smaller title on mobile
         fontWeight: "bold",
       },
     },
   };
 
   return (
-    <div>
+    <div style={{ padding: "16px" }}>
       <p
         style={{
           marginBottom: "24px",
-          fontSize: "14px",
+          fontSize: "1em",
           color: "#666",
+          textAlign: "center",
         }}
       >
         Visualize the distribution of items by category, weighted by quantity.
@@ -151,11 +159,11 @@ const ItemsChart = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "500px",
+            height: "300px",
             backgroundColor: "#f9f9f9",
             borderRadius: "12px",
             color: "#999",
-            fontSize: "16px",
+            fontSize: "1em",
             fontWeight: "500",
           }}
         >
@@ -165,7 +173,7 @@ const ItemsChart = () => {
         <ReactECharts
           option={option}
           echarts={echarts}
-          style={{ height: "500px", width: "100%" }}
+          style={{ height: isMobile ? "300px" : "500px", width: "100%" }} // Smaller height on mobile
         />
       )}
     </div>

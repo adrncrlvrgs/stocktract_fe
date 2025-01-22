@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { getSales } from "api/sales";
+import { motion } from "framer-motion";
 
 export const SALE_TYPE = {
   Ordered: "Ordered",
@@ -10,7 +11,7 @@ export const SALE_TYPE = {
 };
 
 const StatsCard = (props) => {
-  const { number, title, className } = props;
+  const { number, title, className, key } = props;
 
   const getEmoji = (title) => {
     switch (title) {
@@ -44,21 +45,16 @@ const StatsCard = (props) => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center w-48 h-48 shadow-lg rounded-lg p-6  ${getColor(
+      key={key}
+      className={`flex flex-col items-center justify-center w-48 h-48 shadow-lg rounded-lg p-6 sm:w-72 ${getColor(
         title
-      )} ${className} transition-all hover:shadow-xl hover:transform hover:-translate-y-1`}
+      )} ${className} transition-all hover:shadow-lg hover:transform hover:-translate-y-1`}
     >
       <div className="text-3xl mb-4">{getEmoji(title)}</div>
       <div className="text-4xl font-bold">{number}</div>
       <div className="text-sm mt-2">{title}</div>
     </div>
   );
-};
-
-StatsCard.propTypes = {
-  number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  title: PropTypes.string.isRequired,
-  className: PropTypes.string,
 };
 
 const SalesActivity = () => {
@@ -83,7 +79,7 @@ const SalesActivity = () => {
       if (!acc[status]) {
         acc[status] = 0;
       }
-      acc[status] += itemQuantity; 
+      acc[status] += itemQuantity;
       return acc;
     }, {});
   };
@@ -91,23 +87,23 @@ const SalesActivity = () => {
   const itemQuantitiesByStatus = calculateItemQuantities(salesData);
 
   const stats = Object.keys(SALE_TYPE).map((key) => ({
-    number: itemQuantitiesByStatus[SALE_TYPE[key]] || 0, 
+    number: itemQuantitiesByStatus[SALE_TYPE[key]] || 0,
     title: SALE_TYPE[key],
   }));
 
   return (
     <div className="bg-gray-100 p-4 min-h-72">
       <h2 className="text-xl font-semibold">Sales Activity</h2>
-      <div className="flex space-x-4 p-4">
+      <motion.div className="flex lg:space-x-4 lg:overflow-x-hidden overflow-x-auto scrollbar-hide whitespace-nowrap gap-4 p-4">
         {stats.map((stat, index) => (
           <StatsCard
             key={index}
             number={stat.number}
             title={stat.title}
-            className="bg-blue-50"
+            className="bg-blue-50 flex-shrink-0 lg:flex-shrink "
           />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
