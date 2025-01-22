@@ -14,7 +14,7 @@ export default function LoginForm() {
     handleLogin(data, role);
   };
   return (
-    <CustomForm onSubmit={onSubmit} className="max-w-md md:ml-auto w-full">
+    <CustomForm onSubmit={onSubmit} className="max-w-md w-full z-50">
       <h3 className="text-gray-800 text-3xl font-extrabold mb-8">Sign in</h3>
       <div className="space-y-4">
         <Input

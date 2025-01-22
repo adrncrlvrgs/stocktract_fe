@@ -4,7 +4,7 @@ import StockBadge from "components/Badges/StockBadge";
 import moment from "moment";
 
 const StocksTable = (props) => {
-  const { stocks, isLoading, toggleEdit, toggleDelete } = props;
+  const { stocks, isLoading, toggleEdit, toggleDelete, auth } = props;
   const tableHeaders = [
     "Stock ID",
     "Supplier",
@@ -14,7 +14,7 @@ const StocksTable = (props) => {
     "Total Cost",
     "Status",
     "Added At",
-    "Actions",
+    ...(auth?.role === "admin" ? ["Actions"] : []),
   ];
 
   return (
@@ -44,24 +44,26 @@ const StocksTable = (props) => {
             {moment(
               new Date(
                 stock?.createdAt?._seconds * 1000 +
-                stock?.createdAt?._nanoseconds / 1e6
+                  stock?.createdAt?._nanoseconds / 1e6
               )
             ).format("MM-DD-YYYY")}
           </td>
-          <td className="px-4 py-2 border-b border-gray-200">
-            <button
-              className="text-blue-500 hover:underline"
-              onClick={() => toggleEdit(stock.stockID)}
-            >
-              Edit
-            </button>
-            <button
-              className="text-red-500 hover:underline ml-4"
-              onClick={() => toggleDelete(stock.stockID)}
-            >
-              Delete
-            </button>
-          </td>
+          {auth?.role === "admin" && (
+            <td className="px-4 py-2 border-b border-gray-200">
+              <button
+                className="text-blue-500 hover:underline"
+                onClick={() => toggleEdit(stock.stockID)}
+              >
+                Edit
+              </button>
+              <button
+                className="text-red-500 hover:underline ml-4"
+                onClick={() => toggleDelete(stock.stockID)}
+              >
+                Delete
+              </button>
+            </td>
+          )}
         </tr>
       ))}
     </Table>

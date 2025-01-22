@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "context/AuthContext";
 import { ToastContainer } from "react-toastify";
 
 import useCreateStock from "../hooks/useCreateStock";
@@ -15,6 +16,7 @@ import { useSearch } from "components/SearchBar";
 import StockHeader from "./StockHeader";
 
 function Index() {
+  const { user } = useAuth();
   const { search, handleSearchInputChange } = useSearch();
   const { stocks, meta, isLoading, refetch } = useGetStocks();
   const { onCreate, isCreating, isCreateOpen, toggleCreate } =
@@ -39,6 +41,7 @@ function Index() {
         search={search}
         handleSearchInputChange={handleSearchInputChange}
         toggleCreate={toggleCreate}
+        auth={user}
       />
 
       <StocksTable
@@ -46,6 +49,7 @@ function Index() {
         isLoading={isLoading}
         toggleEdit={toggleEdit}
         toggleDelete={toggleDelete}
+        auth={user}
       />
       <StockAddEditModal
         isOpen={isCreateOpen}

@@ -56,7 +56,7 @@ export const SearchStocks = ({
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target) &&
-        !event.target.closest("input") // Ensure the input field is not the target
+        !event.target.closest("input") 
       ) {
         setIsDropdownOpen(false);
       }
@@ -69,8 +69,8 @@ export const SearchStocks = ({
   }, []);
 
   return (
-    <div className="flex-grow mx-5 px-10 max-w-2xl relative">
-      <div className="relative">
+    <div className="flex-grow mx-5 px-10 max-w-2xl relative z-50">
+      <div className="relative z-50">
         <Input
           type="text"
           placeholder="Search stocks..."
@@ -98,11 +98,9 @@ export const SearchStocks = ({
                       name="fa-clock-rotate-left"
                       className="h-4 w-4 mr-2 text-gray-500"
                     />{" "}
-                    {/* Clock icon */}
                     {historyItem}
                   </div>
                 ))}
-              {/* Display Suggestions */}
               {suggestions.map((stock) => {
                 const matchIndex = stock.item
                   .toLowerCase()

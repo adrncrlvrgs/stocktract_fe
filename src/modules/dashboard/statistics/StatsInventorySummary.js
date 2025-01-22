@@ -24,7 +24,6 @@ const StatsInventorySummary = () => {
     fetchStocksData();
   }, []);
 
-  // Calculate total quantities for In Stock and To be Delivered
   const calculateQuantities = (stocks) => {
     return stocks.reduce(
       (acc, stock) => {

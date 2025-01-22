@@ -3,7 +3,7 @@ import { Table } from "components/Table";
 import ItemStatusBadge from "components/Badges/ItemStatusBadge";
 
 const ItemsTable = (props) => {
-  const { items, isLoading, toggleCreate} = props;
+  const { items, isLoading, toggleCreate } = props;
   const tableHeaders = [
     "Item ID",
     "Name",
@@ -26,16 +26,18 @@ const ItemsTable = (props) => {
             {item.quantity}
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
-            <ItemStatusBadge status={item.status}/>
+            <ItemStatusBadge status={item.status} />
           </td>
           <td className="px-4 py-2 border-b border-gray-200">
             <button
-              className="text-blue-500 hover:underline"
+              className={`text-blue-500 hover:underline ${
+                item.status === "Unavailable" ? "opacity-50 cursor-not-allowed" : ""
+              }`}
               onClick={() => toggleCreate(item.itemID)}
+              disabled={item.status === "Unavailable"} 
             >
               Add Sale
             </button>
-           
           </td>
         </tr>
       ))}

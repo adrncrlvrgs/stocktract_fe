@@ -43,7 +43,7 @@ const Carousel = ({ images }) => {
       {images.length > 1 && (
         <motion.button
           onClick={goToPrev}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
+          className="absolute left-2 top-1/2 transform  bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
           whileHover={{ scale: 1.1 }}
         >
           &lt;
@@ -53,7 +53,7 @@ const Carousel = ({ images }) => {
       {images.length > 1 && (
         <motion.button
           onClick={goToNext}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
+          className="absolute right-2 top-1/2 transform  bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all"
           whileHover={{ scale: 1.1 }}
         >
           &gt;

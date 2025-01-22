@@ -36,7 +36,7 @@ export default function SignUpForm() {
     <CustomForm
       onSubmit={handleSignUp}
       validate={validate}
-      className="max-w-md md:ml-auto w-full"
+      className="max-w-md  w-full"
     >
       <h3 className="text-gray-800 text-3xl font-extrabold mb-8">Sign up</h3>
       <div className="space-y-4">
@@ -96,12 +96,7 @@ export default function SignUpForm() {
           Sign Up
         </Button>
       </div>
-      <p className="text-sm text-gray-600 mt-4">
-        Already have an account?{" "}
-        <a href="/" className="text-blue-600 hover:text-blue-500 font-semibold">
-          Log in
-        </a>
-      </p>
+      
     </CustomForm>
   );
 }
