@@ -4,7 +4,7 @@ import SaleBadge from "components/Badges/SaleBadge";
 import moment from "moment";
 
 const SalesTable = (props) => {
-  const { sales, isLoading, toggleEdit, toggleDelete } = props;
+  const { sales, isLoading, toggleEdit, toggleDelete, auth } = props;
   const tableHeaders = [
     "Sale ID",
     "Item",
@@ -45,14 +45,17 @@ const SalesTable = (props) => {
               className="text-blue-500 hover:underline"
               onClick={() => toggleEdit(sale.saleID)}
             >
-              Edit
+              {auth?.role === "admin" ? "Edit" : "Edit Sale"}
             </button>
-            <button
-              className="text-red-500 hover:underline ml-4"
-              onClick={() => toggleDelete(sale.saleID)}
-            >
-              Delete
-            </button>
+
+            {auth?.role === "admin" && (
+              <button
+                className="text-red-500 hover:underline ml-4"
+                onClick={() => toggleDelete(sale.saleID)}
+              >
+                Delete
+              </button>
+            )}
           </td>
         </tr>
       ))}

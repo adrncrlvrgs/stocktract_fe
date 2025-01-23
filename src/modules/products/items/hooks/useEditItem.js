@@ -42,8 +42,10 @@ function useEditItem(triggerRefetch) {
     setIsEditing(true);
     try {
       const { itemImages, ...rest } = formData;
+      const { stockID } = data;
       const itemData = {
         ...rest,
+        stockID,
       };
 
       const formDataToSend = new FormData();
@@ -55,7 +57,6 @@ function useEditItem(triggerRefetch) {
       const newImages = [];
 
       if (itemImages && Array.isArray(itemImages)) {
-        console.log(itemImages);
         for (const image of itemImages) {
           if (typeof image === "string" && image.startsWith("http")) {
             existingImages.push(image);

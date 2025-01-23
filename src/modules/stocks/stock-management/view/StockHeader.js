@@ -5,7 +5,6 @@ import { InputSearch } from "components/SearchBar";
 import StockCreateAction from "./StockCreateAction";
 
 const StockHeader = ({ search, handleSearchInputChange, toggleCreate, auth }) => {
-  console.log(auth)
   return (
     <div className="mb-2">
       <div className="flex justify-between items-center my-4">

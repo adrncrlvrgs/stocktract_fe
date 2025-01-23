@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "context/AuthContext";
 import { ToastContainer } from "react-toastify";
 
 import useGetSales from "../hooks/useGetSales";
@@ -13,6 +14,7 @@ import PaginationComponent from "components/Pagination/PaginationComponent";
 import { useSearch, InputSearch } from "components/SearchBar";
 
 function Index() {
+  const { user } = useAuth();
   const { search, handleSearchInputChange } = useSearch();
   const { sales, meta, isLoading, refetch } = useGetSales();
   const { data, onEdit, isFetching, isEditing, isEditOpen, toggleEdit } =
@@ -39,6 +41,7 @@ function Index() {
         isLoading={isLoading}
         toggleEdit={toggleEdit}
         toggleDelete={toggleDelete}
+        auth={user}
       />
       <SaleEditModal
         data={data}

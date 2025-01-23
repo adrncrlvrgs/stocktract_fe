@@ -52,7 +52,6 @@ function useCreateSale(triggerRefetch) {
         saleID: saleID,
       };
       await addSale(saleData);
-      console.log(formData);
       setIsLoading(false);
       toggleOpen();
       triggerRefetch();

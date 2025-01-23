@@ -17,7 +17,6 @@ const useStockReport = () => {
 
       const filteredStocks = stocks.filter((stock) => {
         const createdAtSeconds = stock?.createdAt._seconds;
-        console.log(stock.createdAt);
         const createdAt = new Date(createdAtSeconds * 1000);
 
         const fromDate = new Date(dateRange.from);
@@ -25,8 +24,6 @@ const useStockReport = () => {
 
         return createdAt >= fromDate && createdAt <= toDate;
       });
-
-      console.log(filteredStocks);
 
       if (!filteredStocks || filteredStocks.length === 0) {
         setError("No data available for the selected date range.");
