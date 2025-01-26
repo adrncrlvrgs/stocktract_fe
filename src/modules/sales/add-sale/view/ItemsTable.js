@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "components/Table";
+import { Table } from "components/TableComponent";
 import ItemStatusBadge from "components/Badges/ItemStatusBadge";
 
 const ItemsTable = (props) => {
@@ -31,10 +31,12 @@ const ItemsTable = (props) => {
           <td className="px-4 py-2 border-b border-gray-200">
             <button
               className={`text-blue-500 hover:underline ${
-                item.status === "Unavailable" ? "opacity-50 cursor-not-allowed" : ""
+                item.status === "Unavailable"
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
               }`}
               onClick={() => toggleCreate(item.itemID)}
-              disabled={item.status === "Unavailable"} 
+              disabled={item.status === "Unavailable"}
             >
               Add Sale
             </button>
