@@ -1,36 +1,29 @@
-# Use the Node.js image with version 20.12.0
-FROM node:20.12.0 AS build
+# Use an official Node.js runtime as the base image
+FROM node:20.12.0-alpine as build
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json for dependency installation
-COPY package.json package-lock.json ./
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Add ARG for API base URL
-ARG REACT_APP_API_BASE_URL
-ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
-
-# Copy the rest of the frontend files
+# Copy the rest of the application code
 COPY . .
 
-# Build the React app with the API base URL
+# Build the application
 RUN npm run build
 
-# Use the Nginx image to serve the built files
+# Use a lightweight web server to serve the static files
 FROM nginx:alpine
 
-# Copy the built frontend files to the Nginx directory
+# Copy the build output to the Nginx HTML directory
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Copy the Nginx configuration file
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 80 for the frontend (HTTP)
+# Expose port 80
 EXPOSE 80
 
-# Command to start Nginx
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
