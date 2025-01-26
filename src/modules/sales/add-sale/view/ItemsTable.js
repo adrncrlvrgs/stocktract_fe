@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "components/Table/Table";
+import { Table } from "components/Table/Table.js";
 import ItemStatusBadge from "components/Badges/ItemStatusBadge";
 
 const ItemsTable = (props) => {
