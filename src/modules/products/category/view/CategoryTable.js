@@ -1,5 +1,5 @@
 import React from "react";
-import Table from "components/Table/Table.js";
+import { Table } from "components/Table";
 
 const CategoryTable = (props) => {
   const { categories, isLoading, toggleEdit, toggleDelete } = props;
