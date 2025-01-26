@@ -147,7 +147,7 @@ export default function Index() {
 
             <motion.div
               variants={itemVariants}
-              className="bg-white/30 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/20"
+              className="bg-white/30 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/20 flex flex-col items-center"
             >
               <SignUpForm />
             </motion.div>

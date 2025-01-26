@@ -36,7 +36,7 @@ export default function SignUpForm() {
     <CustomForm
       onSubmit={handleSignUp}
       validate={validate}
-      className="max-w-md  w-full"
+      className="max-w-md w-full"
     >
       <h3 className="text-gray-800 text-3xl font-extrabold mb-8">Sign up</h3>
       <div className="space-y-4">
