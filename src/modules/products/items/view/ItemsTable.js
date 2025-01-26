@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "components/Table/Table.js";
+import { Table } from "components/Table";
 import ItemStatusBadge from "components/Badges/ItemStatusBadge";
 import { Carousel } from "components/Carousel";
 import { Spinner } from "components/Spinner";

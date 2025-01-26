@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "components/Table/Table.js";
+import { Table } from "components/Table";
 import StockBadge from "components/Badges/StockBadge";
 import moment from "moment";
 
