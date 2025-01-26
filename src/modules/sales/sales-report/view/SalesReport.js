@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useSalesReport from "../hooks/useSalesReport";
 import { Input } from "components/Input";
-import FormGroup from "components/Form/FormGroup.js";
+import FormGroup from "components/form/FormGroup.js";
 import { Button } from "components/Button";
 import CardContainer from "components/Cards/CardContainer";
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
-import CustomForm from "components/Form/Form";
+import CustomForm from "components/form/Form";
 import { Input } from "components/Input";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
 import { ImageUpload } from "components/Input/ImageUpload";
-import FormGroup from "components/Form/FormGroup";
+import FormGroup from "components/form/FormGroup";
 import { PriceInput } from "components/Input/PriceInput";
 import ItemStatusDropdown from "components/Input/Status-dropdown/ItemStatusDropdown";
 import { Button } from "components/Button";

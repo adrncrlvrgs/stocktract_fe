@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
-import CustomForm from "components/Form/Form";
+import CustomForm from "components/form/Form";
 import { Input } from "components/Input";
-import FormGroup from "components/Form/FormGroup";
+import FormGroup from "components/form/FormGroup";
 import { validateForm } from "utils/validate";
 import { Modal, ModalBody, ModalHeader, ModalFooter } from "components/Modal";
 import { Spinner } from "components/Spinner";

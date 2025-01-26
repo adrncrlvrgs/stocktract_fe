@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CustomForm from "components/Form/Form";
+import CustomForm from "components/form/Form";
 import useLogin from "./useLogin";
 import { useAuth } from "context/AuthContext";
 import { Input } from "components/Input";

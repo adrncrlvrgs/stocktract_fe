@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CustomForm from "components/Form/Form";
-import FormGroup from "components/Form/FormGroup";
+import CustomForm from "components/form/Form";
+import FormGroup from "components/form/FormGroup";
 import { SaleDropdown } from "components/Input/Status-dropdown";
 import { Modal, ModalBody, ModalHeader } from "components/Modal";
 import { Spinner } from "components/Spinner";
@@ -9,7 +9,7 @@ import { Button } from "components/Button";
 const SaleEditModal = (props) => {
   const { data, isOpen, toggle, onSubmit, isFetching, isLoading } = props;
   const { saleID, items, itemQuantity, status, totalAmount } = data || {};
-  
+
   const header = data ? "Edit Sale" : "Add Sale";
 
   return (

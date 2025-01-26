@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import CustomForm from "components/Form/Form";
+import CustomForm from "components/form/Form";
 import { Input } from "components/Input";
 import useSignUp from "./useSignup";
 import { validateForm } from "utils/validate";
@@ -96,7 +96,6 @@ export default function SignUpForm() {
           Sign Up
         </Button>
       </div>
-      
     </CustomForm>
   );
 }
