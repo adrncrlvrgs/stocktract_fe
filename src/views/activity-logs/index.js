@@ -7,7 +7,7 @@ import LogsHeader from "modules/activity-logs/view/LogsHeader";
 import PaginationComponent from "components/Pagination/PaginationComponent";
 
 function Index() {
-  const { logs, meta, isLoading, refetch } = useGetLogs();
+  const { logs, meta, isLoading } = useGetLogs();
 
   return (
     <div className="p-6">
