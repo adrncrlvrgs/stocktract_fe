@@ -4,7 +4,6 @@ import LoginForm from "../../modules/login/LoginForm";
 import { ToastContainer } from "react-toastify";
 
 export default function Index() {
-  // Animation variants for the text and form
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

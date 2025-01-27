@@ -19,7 +19,7 @@ export const useSearchStocks = () => {
     } else {
       setSuggestions([]);
     }
-  }, 300); // 300ms debounce delay
+  }, 300); 
 
   useEffect(() => {
     fetchSuggestions(searchTerm);
