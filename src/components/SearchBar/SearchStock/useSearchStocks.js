@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { debounce } from "lodash";
 import { getStocks } from "api/stocks";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +15,9 @@ export const useSearchStocks = () => {
         const {data} = await getStocks({ search: term });
         setSuggestions(data);
       } catch (error) {
-        console.error("Error fetching suggestions:", error);
+        toast.error(
+          "Failed to fetch suggestions: " + (error.message || "An error occurred.")
+        )
       }
     } else {
       setSuggestions([]);
