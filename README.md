@@ -25,4 +25,11 @@ This is the frontend of Stocktract, built using React to provide a seamless and 
 4. The app will be accessible at:  
    `http://localhost:3000`
 
+## Contributing
+
+Contributions are welcome! To contribute:  
+1. Fork the repository.  
+2. Create a feature branch.  
+3. Submit a pull request for review.
+
 
