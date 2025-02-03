@@ -2,7 +2,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const apiUrl = process.env.REACT_APP_API_BASE_URL;
-//still cant access base url in production
 const getToken = () => Cookies.get("token");
 
 const instance = axios.create({
